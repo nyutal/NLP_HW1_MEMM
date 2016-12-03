@@ -33,7 +33,8 @@ def main():
     word_count = {}
     tag_count = {}
 
-    lines = [line.rstrip('\n') for line in open('train_small.wtag')]
+    # lines = [line.rstrip('\n') for line in open('train_small.wtag')]
+    lines = [line.rstrip('\n') for line in open('train.wtag')]
 
     for line in lines:
         w = line.split(" ")
@@ -50,10 +51,17 @@ def main():
                 word_count[lower_w] += 1
             else:
                 word_count[lower_w] = 1
-            print(lower_w,tag)
+            if tag in tag_count:
+                tag_count[tag] += 1
+            else:
+                tag_count[tag] = 1
+            # print(lower_w,tag)
 
-    print(word_count)
-    print(word_count['the'])
+    print()
+    print('the word \'the\' appears: ', word_count['the'], ' times')
+    print('number of uniqe words: ' , len(word_count))
+    print(tag_count)
+    print('number of uniqe tags: ' , len(tag_count))
 
 
 
