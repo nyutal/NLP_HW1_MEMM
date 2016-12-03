@@ -29,17 +29,36 @@ class MyClass(object):
 def main():
     """Compare runs for various test graph initializations"""
 
-    my_vars = ['A', 'B', 'C']  # Sanity check
-    my_dict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+    sentences = []
+    word_count = {}
+    tag_count = {}
 
-    for i in range(CONST.graph_size[1]):
-        print(np.maximum(3, i))
+    lines = [line.rstrip('\n') for line in open('train_small.wtag')]
 
-    for k,v in iteritems(my_dict):
-        print(k,v)
+    for line in lines:
+        w = line.split(" ")
+        if w[-1] == '._.':
+            del w[-1]
+        sentences.append(w)
 
-    print('all done')
-    logging.warning('Warn1')
+    for line in sentences:
+        print(line)
+        for word in line:
+            w,tag = word.split("_")
+            lower_w = str(w).lower()
+            if lower_w in word_count:
+                word_count[lower_w] += 1
+            else:
+                word_count[lower_w] = 1
+            print(lower_w,tag)
+
+    print(word_count)
+    print(word_count['the'])
+
+
+
+    logging.info('Done!')
+    print("Done!")
 
 
 
