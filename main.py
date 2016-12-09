@@ -30,45 +30,91 @@ def main():
     """Compare runs for various test graph initializations"""
 
     sentences = []
+    sentences_w = []
+    sentences_t = []
     word_count = {}
     tag_count = {}
 
-    # lines = [line.rstrip('\n') for line in open('train_small.wtag')]
-    lines = [line.rstrip('\n') for line in open('train.wtag')]
+    lines = [line.rstrip('\n') for line in open('train_small.wtag')]
+    # lines = [line.rstrip('\n') for line in open('train.wtag')]
 
     for line in lines:
-        w = line.split(" ")
+        w = ['*_*', '*_*'] # start
+        w.extend(line.split(" "))
         if w[-1] == '._.':
-            del w[-1]
+            del w[-1] # remove 'period' from the end of the sentence
+        w.append('SSS_SSS') # stop
         sentences.append(w)
 
-    for line in sentences:
-        print(line)
-        for word in line:
-            w,tag = word.split("_")
-            lower_w = str(w).lower()
-            if lower_w in word_count:
-                word_count[lower_w] += 1
-            else:
-                word_count[lower_w] = 1
-            if tag in tag_count:
-                tag_count[tag] += 1
-            else:
-                tag_count[tag] = 1
+    for sentence in sentences:
+        w = ['*','*']
+        tag = ['*','*']
+        for word in sentence:
+            a,b = word.split("_")
+            w.append(a)
+            tag.append(b)
+        sentences_w.append(w)
+        sentences_t.append(tag)
+
+    print(sentences_w)
+    print(sentences_t)
+
+    # add a feature for each trigram seen in the training data
+    trigrams = {}
+    v_index = 0
+    bigrams_offset = 0
+    for sentence in sentences:
+        print(sentence)
+        for i in range(len(sentence)-2):
+            if hash((sentence[i], sentence[i+1], sentence[i+2])) not in trigrams:
+                trigrams[hash((sentence[i], sentence[i+1], sentence[i+2]))] = v_index
+                v_index += 1
+    bigrams_offset = v_index
+
+    # add a feature for each bigram seen in the training data
+    for sentence in sentences:
+        print(sentence)
+        for i in range(len(sentence)-1):
+            if hash((sentence[i], sentence[i+1])) not in trigrams:
+                trigrams[hash((sentence[i], sentence[i+1]))] = v_index
+                v_index += 1
+    unigrams_offset = v_index
+    for sentence in sentences:
+        print(sentence)
+        for i in range(len(sentence)-1):
+            if hash((sentence[i], sentence[i+1])) not in trigrams:
+                trigrams[hash((, sentence[i+1]))] = v_index
+                v_index += 1
+    unigrams_offset = v_index
+    # for line in sentences:
+    #     for word in line:
+    #         w,tag = word.split("_")
+    #         lower_w = str(w).lower()
+    #         if lower_w in word_count:
+    #             word_count[lower_w] += 1
+    #         else:
+    #             word_count[lower_w] = 1
+    #         if tag in tag_count:
+    #             tag_count[tag] += 1
+    #         else:
+    #             tag_count[tag] = 1
             # print(lower_w,tag)
 
     print()
-    print('the word \'the\' appears: ', word_count['the'], ' times')
+    for tri in trigrams:
+        print(tri)
+
+    capital_word = 'Word'
+    print('capital_word?: ', capital_word.islower())
+
     print('number of uniqe words: ' , len(word_count))
     print(tag_count)
     print('number of uniqe tags: ' , len(tag_count))
 
-
-
+    # for w in tag_count:
+    #     print('the tag ', w, ' appears: ', tag_count[w], ' times')
     logging.info('Done!')
     print("Done!")
-
-
 
 """Run main"""
 if __name__ == '__main__':
