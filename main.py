@@ -47,8 +47,8 @@ def main():
         sentences.append(w)
 
     for sentence in sentences:
-        w = ['*','*']
-        tag = ['*','*']
+        w = []
+        tag = []
         for word in sentence:
             a,b = word.split("_")
             w.append(a)
@@ -56,8 +56,8 @@ def main():
         sentences_w.append(w)
         sentences_t.append(tag)
 
-    print(sentences_w)
-    print(sentences_t)
+    print(sentences_w[0])
+    print(sentences_t[0])
 
     # add a feature for each trigram seen in the training data
     trigrams = {}
@@ -82,8 +82,8 @@ def main():
     for sentence in sentences:
         print(sentence)
         for i in range(len(sentence)-1):
-            if hash((sentence[i], sentence[i+1])) not in trigrams:
-                trigrams[hash((, sentence[i+1]))] = v_index
+            if hash(sentence[i]) not in trigrams:
+                trigrams[hash((sentence[i]))] = v_index
                 v_index += 1
     unigrams_offset = v_index
     # for line in sentences:
@@ -100,9 +100,9 @@ def main():
     #             tag_count[tag] = 1
             # print(lower_w,tag)
 
-    print()
-    for tri in trigrams:
-        print(tri)
+    # print()
+    # for tri in trigrams:
+    #     print(tri)
 
     capital_word = 'Word'
     print('capital_word?: ', capital_word.islower())
