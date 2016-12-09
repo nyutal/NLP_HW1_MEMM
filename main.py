@@ -60,32 +60,37 @@ def main():
     print(sentences_t[0])
 
     # add a feature for each trigram seen in the training data
-    trigrams = {}
+    features = {}
     v_index = 0
     bigrams_offset = 0
-    for sentence in sentences:
-        print(sentence)
-        for i in range(len(sentence)-2):
-            if hash((sentence[i], sentence[i+1], sentence[i+2])) not in trigrams:
-                trigrams[hash((sentence[i], sentence[i+1], sentence[i+2]))] = v_index
+    for sentence_t in sentences_t:
+        print(sentence_t)
+        for i in range(len(sentence_t)-2):
+            t_hash = hash((sentence_t[i], sentence_t[i+1], sentence_t[i+2])) #TODO: make all index backards (n,n-1,n-2)
+            if t_hash not in features:
+                features[t_hash] = v_index
                 v_index += 1
     bigrams_offset = v_index
+    print(bigrams_offset)
 
     # add a feature for each bigram seen in the training data
-    for sentence in sentences:
-        print(sentence)
-        for i in range(len(sentence)-1):
-            if hash((sentence[i], sentence[i+1])) not in trigrams:
-                trigrams[hash((sentence[i], sentence[i+1]))] = v_index
+    for sentence_t in sentences_t:
+        for i in range(len(sentence_t)-1):
+            t_hash = hash((sentence_t[i], sentence_t[i + 1]))
+            if t_hash not in features:
+                features[t_hash] = v_index
                 v_index += 1
     unigrams_offset = v_index
-    for sentence in sentences:
-        print(sentence)
-        for i in range(len(sentence)-1):
-            if hash(sentence[i]) not in trigrams:
-                trigrams[hash((sentence[i]))] = v_index
+    print(unigrams_offset)
+
+    for sentence_w, sentence_t in zip(sentences_w, sentences_t):
+        for i in range(len(sentence_t)-1):
+            t_hash = hash((sentence_w[i], sentence_t[i]))
+            if t_hash not in features:
+                features[t_hash] = v_index
                 v_index += 1
-    unigrams_offset = v_index
+    print(v_index)
+
     # for line in sentences:
     #     for word in line:
     #         w,tag = word.split("_")
@@ -104,12 +109,12 @@ def main():
     # for tri in trigrams:
     #     print(tri)
 
-    capital_word = 'Word'
-    print('capital_word?: ', capital_word.islower())
+    # capital_word = 'Word'
+    # print('capital_word?: ', capital_word.islower())
 
-    print('number of uniqe words: ' , len(word_count))
-    print(tag_count)
-    print('number of uniqe tags: ' , len(tag_count))
+    # print('number of uniqe words: ' , len(word_count))
+    # print(tag_count)
+    # print('number of uniqe tags: ' , len(tag_count))
 
     # for w in tag_count:
     #     print('the tag ', w, ' appears: ', tag_count[w], ' times')
