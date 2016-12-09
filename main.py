@@ -64,7 +64,6 @@ def main():
     v_index = 0
     bigrams_offset = 0
     for sentence_t in sentences_t:
-        print(sentence_t)
         for i in range(len(sentence_t)-2):
             t_hash = hash((sentence_t[i], sentence_t[i+1], sentence_t[i+2])) #TODO: make all index backards (n,n-1,n-2)
             if t_hash not in features:
