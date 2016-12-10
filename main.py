@@ -37,8 +37,9 @@ def main():
     sentences_w = []
     sentences_t = []
     features = {}
+    tags = set()
 
-    v_index = prepare_features(sentences, sentences_t, sentences_w, features)
+    v_index = prepare_features(sentences, sentences_t, sentences_w, features, tags)
 
     weights = np.random.rand(v_index, 1) # make weights vector the same length as the feature vector
 
@@ -47,11 +48,25 @@ def main():
         v_dot_f = calc_v_dot_f(features, s_tags, s_words, weights)
         print(v_dot_f)
 
+    log_sum = 0
+    for s_words, s_tags in zip(sentences_w, sentences_t):
+        v_dot_f = calc_v_dot_f(features, s_tags, s_words, weights)
+        print(v_dot_f)
+
+    L = v_dot_f - 1
+    print(L)
+
+    regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
+    print(regularizer_L)
+    regularizer_Lprime = CONST.reg_lambda * weights[0] #TODO: [k]
+    print(regularizer_Lprime)
 
     logging.info('Done!')
     print("Done!")
 
 
+# TODO: should this be for one parameter at the time??? Fk???
+# TODO: use one line sums: J = sum([(t0 + t1*x[i] - y[i])**2 for i in range(m)])
 def calc_v_dot_f(features, s_tags, s_words, weights):
     v_dot_f = 0
     # trigrams:
@@ -69,7 +84,7 @@ def calc_v_dot_f(features, s_tags, s_words, weights):
     return v_dot_f
 
 
-def prepare_features(sentences, sentences_t, sentences_w, features):
+def prepare_features(sentences, sentences_t, sentences_w, features, tags):
     lines = [line.rstrip('\n') for line in open(train_file_name)]
     for line in lines:
         w = ['*_*', '*_*']  # start
@@ -85,11 +100,15 @@ def prepare_features(sentences, sentences_t, sentences_w, features):
             a, b = word.split("_")
             w.append(a)
             tag.append(b)
+            tags.add(b) # create a set of all tags
         sentences_w.append(w)
         sentences_t.append(tag)
+    tags.remove("SSS")
+    tags.remove("*")
+
     print(sentences_w[0]) # just debug
     print(sentences_t[0]) # just debug
-
+    print('all tags(', len(tags), '):', tags)
     v_index = 0
 
     # F103: add a feature for each trigram seen in the training data

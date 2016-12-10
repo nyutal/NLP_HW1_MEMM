@@ -38,8 +38,7 @@ def logLikelihoodLogitStable(vBeta, mX, vY):
 
 # score function
 def likelihoodScore(vBeta, mX, vY):
-    return(np.dot(mX.T,
-                  (logit(mX, vBeta) - vY)))
+    return(np.dot(mX.T, (logit(mX, vBeta) - vY)))
 
 #====================================================================
 # optimize to get the MLE using the L-BFGS optimizer (analytical derivatives)
