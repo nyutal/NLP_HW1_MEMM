@@ -7,6 +7,10 @@ from consts import CONST
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
+train_file_name = 'train_small.wtag'
+# train_file_name = 'train.wtag'
+
+# put something into class?
 class MyClass(object):
     epsilon = 10 ** (-4)
 
@@ -34,40 +38,39 @@ def main():
     sentences_t = []
     features = {}
 
-    trigrams_offset, bigrams_offset, unigrams_offset, v_index = \
-        prepare_features(sentences, sentences_t, sentences_w, features)
+    v_index = prepare_features(sentences, sentences_t, sentences_w, features)
 
     weights = np.random.rand(v_index, 1) # make weights vector the same length as the feature vector
 
-    # v dot f of one example sentence:
-    s_words = sentences_w[0]
-    s_tags = sentences_t[0]
-    v_dot_f = 0
-    # trigrams:
-    for i in range(len(s_tags) - 2):# TODO: do we need to look at the stop sign?
-        t_hash = hash((s_tags[i], s_tags[i + 1], s_tags[i + 2])) # TODO: make all index backards (n,n-1,n-2)
-        # print((s_tags[i], s_tags[i + 1], s_tags[i + 2]), features[t_hash])
-        v_dot_f += weights[features[t_hash]]
-    # bigrams:
-    for i in range(len(s_tags) - 1):# TODO: do we need to look at the stop sign?
-        t_hash = hash((s_tags[i], s_tags[i + 1])) # TODO: make all index backards (n,n-1,n-2)
-        # print((s_tags[i], s_tags[i + 1]), features[t_hash])
-        v_dot_f += weights[features[t_hash]]
-    # unigrams:
-    for i in range(len(s_tags)):# TODO: do we need to look at the stop sign?
-        t_hash = hash((s_words[i], s_tags[i])) # TODO: make all index backards (n,n-1,n-2)
-        # print((s_tags[i], w_tags[i]), features[t_hash])
-        v_dot_f += weights[features[t_hash]]
-    print(v_dot_f)
+    # v dot f of all sentences:
+    for s_words, s_tags in zip(sentences_w, sentences_t):
+        v_dot_f = calc_v_dot_f(features, s_tags, s_words, weights)
+        print(v_dot_f)
 
 
     logging.info('Done!')
     print("Done!")
 
 
+def calc_v_dot_f(features, s_tags, s_words, weights):
+    v_dot_f = 0
+    # trigrams:
+    for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
+        t_hash = hash((s_tags[i-2], s_tags[i-1], s_tags[i]))
+        v_dot_f += weights[features[t_hash]]
+    # bigrams:
+    for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
+        t_hash = hash((s_tags[i-1], s_tags[i]))
+        v_dot_f += weights[features[t_hash]]
+    # word-tag (emission):
+    for i in range(2,len(s_tags)-1): # start from word not *, do not look at the stop sign.
+        t_hash = hash((s_words[i], s_tags[i]))
+        v_dot_f += weights[features[t_hash]]
+    return v_dot_f
+
+
 def prepare_features(sentences, sentences_t, sentences_w, features):
-    lines = [line.rstrip('\n') for line in open('train_small.wtag')]
-    # lines = [line.rstrip('\n') for line in open('train.wtag')]
+    lines = [line.rstrip('\n') for line in open(train_file_name)]
     for line in lines:
         w = ['*_*', '*_*']  # start
         w.extend(line.split(" "))
@@ -84,37 +87,38 @@ def prepare_features(sentences, sentences_t, sentences_w, features):
             tag.append(b)
         sentences_w.append(w)
         sentences_t.append(tag)
-    print(sentences_w[0])
-    print(sentences_t[0])
+    print(sentences_w[0]) # just debug
+    print(sentences_t[0]) # just debug
 
-    # add a feature for each trigram seen in the training data
     v_index = 0
-    trigrams_offset = 0
+
+    # F103: add a feature for each trigram seen in the training data
     for sentence_t in sentences_t:
-        for i in range(len(sentence_t) - 2):# TODO: do we need to look at the stop sign?
-            t_hash = hash((sentence_t[i], sentence_t[i + 1], sentence_t[i + 2]))  # TODO: make all index backards (n,n-1,n-2)
+        for i in range(2,len(sentence_t)): # start from word not *, look at the stop sign
+            t_hash = hash((sentence_t[i-2], sentence_t[i-1], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
                 v_index += 1
-    bigrams_offset = v_index
-    print(bigrams_offset)
-    # add a feature for each bigram seen in the training data
+    print(v_index)
+
+    # F104: add a feature for each bigram seen in the training data
     for sentence_t in sentences_t:
-        for i in range(len(sentence_t) - 1):# TODO: do we need to look at the stop sign?
-            t_hash = hash((sentence_t[i], sentence_t[i + 1]))
+        for i in range(2,len(sentence_t)): # start from word not *, look at the stop sign
+            t_hash = hash((sentence_t[i-1], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
                 v_index += 1
-    unigrams_offset = v_index
-    print(unigrams_offset)
+    print(v_index)
+
+    # F100: word-tag pairs (emission)
     for sentence_w, sentence_t in zip(sentences_w, sentences_t):
-        for i in range(len(sentence_t)):# TODO: do we need to look at the stop sign?
+        for i in range(2, len(sentence_t)-1): # start from word not *, do not look at the stop sign.
             t_hash = hash((sentence_w[i], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
                 v_index += 1
     print(v_index)
-    return trigrams_offset, bigrams_offset, unigrams_offset, v_index
+    return v_index
 
 """Run main"""
 if __name__ == '__main__':
