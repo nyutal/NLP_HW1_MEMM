@@ -37,63 +37,53 @@ def main():
     sentences_t = []
     features = {}
     tags = set()
+    f_count = {}
 
-    v_index = prepare_features(sentences, sentences_t, sentences_w, features, tags)
+    v_index, feature_counts = prepare_features(sentences, sentences_t, sentences_w, features, tags, f_count)
 
-    #weights = np.random.rand(v_index) / 1000 # make weights vector the same length as the feature vector
-    # L = calc_L(weights, features, sentences_t, sentences_w, tags, v_index)
-    # Lprime = calc_Lprime(weights, features, sentences_t, sentences_w, tags, v_index)
-    # print(L, Lprime)
+    weights = np.random.rand(v_index) / 1000 # make weights vector the same length as the feature vector
+    # L = calc_L(weights, features, sentences_t, sentences_w, tags, feature_counts)
+    # Lprime = calc_Lprime(weights, features, sentences_t, sentences_w, tags, feature_counts)
+    # print(Lprime)
 
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.zeros(v_index),
-                                           args=(features, sentences_t, sentences_w, tags, v_index),
-                                           fprime=calc_Lprime,
+                                           args=(features, sentences_t, sentences_w, tags, feature_counts),
+                                           fprime=calc_Lprime, m=100,
                                            pgtol=1e-3, disp=True)
     print('x1:', x1)
     print('f1:', f1)
     print('d1:', d1)
 
-    # regularizer_Lprime = CONST.reg_lambda * weights[0] #TODO: [k]
-    # print('regularizer_Lprime:', regularizer_Lprime)
-
     logging.info('Done!')
     print("Done!")
 
 
-def calc_L(weights, features, sentences_t, sentences_w, tags, v_index):
+def calc_L(weights, features, sentences_t, sentences_w, tags, feature_counts):
     # v dot f of all sentences:
     s1 = sum([calc_v_dot_f(features, s_tags, s_words, weights)
               for s_words, s_tags in zip(sentences_w, sentences_t)])
     # print('s1:', s1)
 
-    s2 = sum([calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags)
+    s2 = sum([np.log(calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags))
               for s_words, s_tags in zip(sentences_w, sentences_t)])
     # print('s2:', s2)
 
     regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
     # print('regularizer_L:', regularizer_L)
 
-    return float(s1 - s2 - regularizer_L)
+    return - float(s1 - s2 - regularizer_L)
 
-def calc_Lprime(weights, features, sentences_t, sentences_w, tags, v_index):
-    # # v dot f of all sentences:
-    # s1 = sum([calc_v_dot_f(features, s_tags, s_words, weights)
-    #           for s_words, s_tags in zip(sentences_w, sentences_t)])
-    # # print('s1:', s1)
-    #
-    # s2 = sum([calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags)
-    #           for s_words, s_tags in zip(sentences_w, sentences_t)])
-    # # print('s2:', s2)
-    #
-    # regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
-    # # print('regularizer_L:', regularizer_L)
 
-    # return s1 - s2 - regularizer_L
-    return np.random.rand(v_index)
+# v dot f of all sentences: one parameter at the time:
+def calc_Lprime(weights, features, sentences_t, sentences_w, tags, feature_counts):
+    s2 = sum([calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags)/10
+              for s_words, s_tags in zip(sentences_w, sentences_t)])
 
-# TODO: should this be for one parameter at the time??? Fk???
-# TODO: use one line sums: J = sum([(t0 + t1*x[i] - y[i])**2 for i in range(m)])
+    regularizer_Lprime = CONST.reg_lambda * weights
+
+    return - (feature_counts - s2 - regularizer_Lprime)
+
 def calc_v_dot_f(features, s_tags, s_words, weights):
     v_dot_f = 0
     # trigrams:
@@ -131,10 +121,10 @@ def calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags):
             if t_hash in features:
                 v_dot_f += weights[features[t_hash]]
         t += np.exp(v_dot_f)
-    return np.log(t)
+    return t
 
 
-def prepare_features(sentences, sentences_t, sentences_w, features, tags):
+def prepare_features(sentences, sentences_t, sentences_w, features, tags, f_count):
     lines = [line.rstrip('\n') for line in open(CONST.train_file_name)]
     for line in lines:
         w = ['*_*', '*_*']  # start
@@ -156,8 +146,8 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags):
     tags.remove("SSS")
     tags.remove("*")
 
-    print(sentences_w[0]) # just debug
-    print(sentences_t[0]) # just debug
+    # print(sentences_w[0]) # just debug
+    # print(sentences_t[0]) # just debug
     print('all tags(', len(tags), '):', tags)
     v_index = 0
 
@@ -167,7 +157,10 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags):
             t_hash = hash((sentence_t[i-2], sentence_t[i-1], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
+                f_count[v_index] = 1
                 v_index += 1
+            else:
+                f_count[features[t_hash]] += 1
     print(v_index)
 
     # F104: add a feature for each bigram seen in the training data
@@ -176,7 +169,10 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags):
             t_hash = hash((sentence_t[i-1], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
+                f_count[v_index] = 1
                 v_index += 1
+            else:
+                f_count[features[t_hash]] += 1
     print(v_index)
 
     # F100: word-tag pairs (emission)
@@ -185,9 +181,19 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags):
             t_hash = hash((sentence_w[i], sentence_t[i]))
             if t_hash not in features:
                 features[t_hash] = v_index
+                f_count[v_index] = 1
                 v_index += 1
+            else:
+                f_count[features[t_hash]] += 1
     print(v_index)
-    return v_index
+
+    feature_counts = np.zeros(v_index)
+    for feature in features:
+        feature_counts[features[feature]] = f_count[features[feature]]
+    # print(feature_counts)
+    # print('f_count: ', f_count)
+
+    return v_index, feature_counts
 
 """Run main"""
 if __name__ == '__main__':
