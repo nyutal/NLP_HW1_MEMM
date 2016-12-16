@@ -28,9 +28,9 @@ def main():
     prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fgArr)
 
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           x0=np.zeros(fv.getSize()),
-                                           args=(fgArr, sentences_t, sentences_w, tags, fv),
-                                           fprime=calc_Lprime, m=100,
+                                           x0=np.full(fv.getSize(), CONST.epsilon),
+                                           args=(fgArr, sentences_t, sentences_w, tags, fv, False),
+                                           fprime=calc_Lprime, m=100, maxiter=50,
                                            pgtol=1e-3, disp=True)
     print('x1:', x1)
     print('f1:', f1)
@@ -40,7 +40,7 @@ def main():
     print("Done!")
 
 
-def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
+def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
     print('start L')
     c = 0
     s1 = 0.0
@@ -58,17 +58,21 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
                     idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
                     if ( idx != -1 ):
                         prelogexp += weights[idx]
+            if prelogexp < (10**-10): prelogexp = (10**-10) # remove zeros from log
+            print(prelogexp)
             s2 += np.log(np.exp(prelogexp))
     
 #     s1 = calc_v_dot_f(fgArr, sentences_t, sentences_w, weights)
 #     s2 = calc_v_dot_f_for_tag_in_tags(fgArr, sentences_t, sentences_w, weights, tags)
-    regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
+    regularizer_L = 0.0
+    if regulaized: 
+        regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
     retVal = -float(s1 - s2 - regularizer_L)
     print('finish L ' + str(retVal))
     return retVal
 
 # v dot f of all sentences: one parameter at the time:
-def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
+def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
     c = 0
     print('start LPrime')
     print('start LPrime-Empirical')
@@ -84,6 +88,15 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
         for i in range(2, len(t)):
             c += 1
             if ( c % 10000 == 0 ): print('LPrime sample ' + str(c))
+            
+#             for tag in tags:
+#                 tagsCalc[tag] = 0.0    
+#             for k in range(fv.getSize()):
+#                 tag = fv.featureIdx2Tag[k]
+#                 if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
+#                     tagsCalc[tag] += weights[k]
+#             for tag in tags:
+
             tagsCalc = {}
             denominator = 0.0
             for tag in tags:
@@ -94,17 +107,34 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
                         tagsCalc[tag] += weights[idx]
                 np.exp(tagsCalc[tag])
                 denominator += tagsCalc[tag]
-            for k in range(fv.getSize()):
-                tag = fv.featureIdx2Tag[k]
-                if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
-                    expected[k] += tagsCalc[tag] / denominator
+            
+#             checkListA = []    
+#             for k in range(fv.getSize()):
+#                 tag = fv.featureIdx2Tag[k]
+#                 if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
+#                     checkListA.append(k)
+#                     expected[k] += tagsCalc[tag] / denominator
+                    
+            
+#             checkListB = []    
+            for tag in tags:
+                for fg in fgArr:
+                    k = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    if ( k != -1):
+#                         checkListB.append(k)
+                        expected[k] += tagsCalc[tag] / denominator
+
 #                 for itag, tag in enumerate(tags):
 #                     if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
 #                         expected[k] += tagsCalc[tag] / denominator
-            
-    regulaized = CONST.reg_lambda * weights
     
-    lprimeVec = empirical - expected - regulaized
+    regulaized_LP = np.zeros(fv.getSize()) 
+    if regulaized: regulaized_LP = CONST.reg_lambda * weights
+    
+    print(empirical)
+    print(expected)
+    print(regulaized_LP)
+    lprimeVec = empirical - expected - regulaized_LP
     retVal = -lprimeVec
     print('finish LPrime')
     print(retVal)
