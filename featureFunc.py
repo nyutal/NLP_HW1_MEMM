@@ -3,7 +3,8 @@ class FeatureVec(object):
     
     def __init__(self):
         self.featureVecSize = -1 
-        self.featureIdx2Fg = {}    
+        self.featureIdx2Fg = {}
+        self.featureIdx2Tag = {} 
         
     def getSize(self):
         return self.featureVecSize + 1   
@@ -26,7 +27,8 @@ class FeatureGenerator(object):
             print('adding feature ' + t + ' ' + words[i] + ' at index ' + str(featureVec.featureVecSize))
             self.hash2FeatureIdx[h] = featureVec.featureVecSize
             self.featureIdx2hash[featureVec.featureVecSize] = h
-            featureVec.featureIdx2Fg[featureVec.featureVecSize] = self #in order to access specific feature 
+            featureVec.featureIdx2Fg[featureVec.featureVecSize] = self #in order to access specific feature
+            featureVec.featureIdx2Tag[featureVec.featureVecSize] = t
             self.hash2Count[h] = 1
             
     def getFeatureIdx(self, words, t, t_minus_1, t_minus_2, i):

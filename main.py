@@ -5,28 +5,9 @@ import scipy.optimize
 import numpy as np
 import logging
 from consts import CONST
+from featureFunc import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
-
-
-# put something into class?
-class MyClass(object):
-    epsilon = 10 ** (-4)
-
-    def __init__(self, nid):
-        self.enabled = True
-
-    def __lt__(self, other):
-        if type(self) is str(type(other)):
-            return self.nid < other.nid
-        else:
-            return str(type(self)) < str(type(other))
-
-    def reset(self):
-        self.enabled = True
-
-    def disable(self):
-        self.enabled = False
 
 
 def main():
@@ -37,18 +18,18 @@ def main():
     sentences_t = []
     features = {}
     tags = set()
-    f_count = {}
+    
+    fv = FeatureVec()
+    fgArr = []
+    fgArr.append(F100())
+    fgArr.append(F103())
+    fgArr.append(F104())
 
-    v_index, feature_counts = prepare_features(sentences, sentences_t, sentences_w, features, tags, f_count)
-
-    weights = np.random.rand(v_index) / 1000 # make weights vector the same length as the feature vector
-    # L = calc_L(weights, features, sentences_t, sentences_w, tags, feature_counts)
-    # Lprime = calc_Lprime(weights, features, sentences_t, sentences_w, tags, feature_counts)
-    # print(Lprime)
+    prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fgArr)
 
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           x0=np.zeros(v_index),
-                                           args=(features, sentences_t, sentences_w, tags, feature_counts),
+                                           x0=np.ones(fv.getSize()),
+                                           args=(fgArr, sentences_t, sentences_w, tags, fv),
                                            fprime=calc_Lprime, m=100,
                                            pgtol=1e-3, disp=True)
     print('x1:', x1)
@@ -59,78 +40,111 @@ def main():
     print("Done!")
 
 
-def calc_L(weights, features, sentences_t, sentences_w, tags, feature_counts):
-    # v dot f of all sentences:
-    s1 = sum([calc_v_dot_f(features, s_tags, s_words, weights)
-              for s_words, s_tags in zip(sentences_w, sentences_t)])
-    # print('s1:', s1)
-
-    s2 = sum([np.log(calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags))
-              for s_words, s_tags in zip(sentences_w, sentences_t)])
-    # print('s2:', s2)
-
+def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
+    print('start L')
+    c = 0
+    s1 = 0.0
+    s2 = 0.0
+    for w, t in zip(sentences_w, sentences_t):
+        for i in range(2, len(t)):
+            c += 1
+#             if ( c % 1000 == 0 ): print('sample ' + str(c))
+            prelogexp = 0.0
+            for fg in fgArr:
+                idx = fg.getFeatureIdx(w, t[i], t[i-1], t[i-2], i)
+                if ( idx != -1 ):
+                    s1 += weights[idx] 
+                for tag in tags:
+                    idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    if ( idx != -1 ):
+                        prelogexp += weights[idx]
+            s2 += np.log(np.exp(prelogexp))
+    
+#     s1 = calc_v_dot_f(fgArr, sentences_t, sentences_w, weights)
+#     s2 = calc_v_dot_f_for_tag_in_tags(fgArr, sentences_t, sentences_w, weights, tags)
     regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
-    # print('regularizer_L:', regularizer_L)
-
-    return - float(s1 - s2 - regularizer_L)
-
+    retVal = -float(s1 - s2 - regularizer_L)
+    print('finish L ' + str(retVal))
+    return retVal
 
 # v dot f of all sentences: one parameter at the time:
-def calc_Lprime(weights, features, sentences_t, sentences_w, tags, feature_counts):
-    s2 = sum([calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags)/10
-              for s_words, s_tags in zip(sentences_w, sentences_t)])
+def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
+    c = 0
+    print('start LPrime')
+    print('start LPrime-Empirical')
+    empirical = np.zeros(fv.getSize())
+    for k in range(fv.getSize()):
+        empirical[k] = fv.featureIdx2Fg[k].getCountsByIdx(k)
+    print('finish LPrime-Empirical ')
+    print(empirical)
+    
+    
+    expected = np.zeros(fv.getSize())
+    for w, t in zip(sentences_w, sentences_t):
+        for i in range(2, len(t)):
+            c += 1
+            print('LPrime sample ' + str(c))
+            if ( c % 1000 == 0 ): print('LPrime sample ' + str(c))
+            tagsCalc = {}
+            denominator = 0.0
+            for tag in tags:
+                tagsCalc[tag] = 0.0
+                for fg in fgArr:
+                    idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    if ( idx != -1 ):
+                        tagsCalc[tag] += weights[idx]
+                np.exp(tagsCalc[tag])
+                denominator += tagsCalc[tag]
+            for k in range(fv.getSize()):
+                tag = fv.featureIdx2Tag[k]
+                if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
+                    expected[k] += tagsCalc[tag] / denominator
+#                 for itag, tag in enumerate(tags):
+#                     if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
+#                         expected[k] += tagsCalc[tag] / denominator
+            
+    
+    
+    lprimeVec = empirical - expected
+    retVal = -lprimeVec
+    print('finish LPrime ' + retVal)
+    return retVal
+    
+    
+# def calc_v_dot_f(fgArr, sentences_t, sentences_w, weights):
+#     v_dot_f = 0.0
+#     for w, t in zip(sentences_w, sentences_t):
+#         for i in range(2, len(t)):
+#             for fg in fgArr:
+#                 idx = fg.getFeatureIdx(w, t[i], t[i-1], t[i-2], i)
+#                 if ( idx != -1 ):
+#                     v_dot_f += weights[idx] 
+#     return v_dot_f
+# 
+# # TODO: is Xi a sentence or a "history" (1 word with its priors)?
+# def calc_v_dot_f_for_tag_in_tags(fgArr, sentences_t, sentences_w, weights, tags):
+#     t = CONST.epsilon
+#     s = 0.0
+#     for w, t in zip(sentences_w, sentences_t):
+#         for i in range(2, len(t)):
+#             prelog = 0.0
+#             for tag in tags:
+#                 v_dot_f = 0.0
+#                 for fg in fgArr:
+#                     idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+#                     if ( idx != -1 ):
+#                         v_dot_f += weights[idx]
+#                 prelog += np.exp(v_dot_f)
+#             s += np.log(prelog)
+#     return s
 
-    regularizer_Lprime = CONST.reg_lambda * weights
-
-    return - (feature_counts - s2 - regularizer_Lprime)
-
-def calc_v_dot_f(features, s_tags, s_words, weights):
-    v_dot_f = 0
-    # trigrams:
-    for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
-        t_hash = hash((s_tags[i-2], s_tags[i-1], s_tags[i]))
-        v_dot_f += weights[features[t_hash]]
-    # bigrams:
-    for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
-        t_hash = hash((s_tags[i-1], s_tags[i]))
-        v_dot_f += weights[features[t_hash]]
-    # word-tag (emission):
-    for i in range(2,len(s_tags)-1): # start from word not *, do not look at the stop sign.
-        t_hash = hash((s_words[i], s_tags[i]))
-        v_dot_f += weights[features[t_hash]]
-    return v_dot_f
-
-# TODO: is Xi a sentence or a "history" (1 word with its priors)?
-def calc_v_dot_f_for_tag_in_tags(features, s_tags, s_words, weights, tags):
-    v_dot_f = 0
-    t = CONST.epsilon
-    for tag in tags:
-        # trigrams:
-        for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
-            t_hash = hash((s_tags[i-2], s_tags[i-1], tag))
-            if t_hash in features:
-                v_dot_f += weights[features[t_hash]]
-        # bigrams:
-        for i in range(2,len(s_tags)): # start from word not *, look at the stop sign.
-            t_hash = hash((s_tags[i-1], tag))
-            if t_hash in features:
-                v_dot_f += weights[features[t_hash]]
-        # word-tag (emission):
-        for i in range(2,len(s_words)-1): # start from word not *, do not look at the stop sign.
-            t_hash = hash((s_words[i], tag))
-            if t_hash in features:
-                v_dot_f += weights[features[t_hash]]
-        t += np.exp(v_dot_f)
-    return t
-
-
-def prepare_features(sentences, sentences_t, sentences_w, features, tags, f_count):
+def prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fgArr):
     lines = [line.rstrip('\n') for line in open(CONST.train_file_name)]
     for line in lines:
         w = ['*_*', '*_*']  # start
         w.extend(line.split(" "))
-        if w[-1] == '._.':
-            del w[-1]  # remove 'period' from the end of the sentence
+#         if w[-1] == '._.':
+#             del w[-1]  # remove 'period' from the end of the sentence
         w.append('SSS_SSS')  # stop
         sentences.append(w)
     for sentence in sentences:
@@ -146,55 +160,16 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags, f_coun
     tags.remove("SSS")
     tags.remove("*")
 
-    # print(sentences_w[0]) # just debug
-    # print(sentences_t[0]) # just debug
     print('all tags(', len(tags), '):', tags)
-    v_index = 0
-
-    # F103: add a feature for each trigram seen in the training data
-    for sentence_t in sentences_t:
-        for i in range(2,len(sentence_t)): # start from word not *, look at the stop sign
-            t_hash = hash((sentence_t[i-2], sentence_t[i-1], sentence_t[i]))
-            if t_hash not in features:
-                features[t_hash] = v_index
-                f_count[v_index] = 1
-                v_index += 1
-            else:
-                f_count[features[t_hash]] += 1
-    print(v_index)
-
-    # F104: add a feature for each bigram seen in the training data
-    for sentence_t in sentences_t:
-        for i in range(2,len(sentence_t)): # start from word not *, look at the stop sign
-            t_hash = hash((sentence_t[i-1], sentence_t[i]))
-            if t_hash not in features:
-                features[t_hash] = v_index
-                f_count[v_index] = 1
-                v_index += 1
-            else:
-                f_count[features[t_hash]] += 1
-    print(v_index)
-
-    # F100: word-tag pairs (emission)
-    for sentence_w, sentence_t in zip(sentences_w, sentences_t):
-        for i in range(2, len(sentence_t)-1): # start from word not *, do not look at the stop sign.
-            t_hash = hash((sentence_w[i], sentence_t[i]))
-            if t_hash not in features:
-                features[t_hash] = v_index
-                f_count[v_index] = 1
-                v_index += 1
-            else:
-                f_count[features[t_hash]] += 1
-    print(v_index)
-
-    feature_counts = np.zeros(v_index)
-    for feature in features:
-        feature_counts[features[feature]] = f_count[features[feature]]
-    # print(feature_counts)
-    # print('f_count: ', f_count)
-
-    return v_index, feature_counts
-
+    
+    for w, t in zip(sentences_w, sentences_t):
+#         print(sentence_t)
+#         print(sentence_w)
+        for i in range(2, len(t)):
+            for fg in fgArr:
+                fg.addFeature(fv, w, t[i], t[i-1], t[i-2], i)
+  
+    
 """Run main"""
 if __name__ == '__main__':
     main()
