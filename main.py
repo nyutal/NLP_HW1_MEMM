@@ -28,7 +28,7 @@ def main():
     prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fgArr)
 
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           x0=np.ones(fv.getSize()),
+                                           x0=np.zeros(fv.getSize()),
                                            args=(fgArr, sentences_t, sentences_w, tags, fv),
                                            fprime=calc_Lprime, m=100,
                                            pgtol=1e-3, disp=True)
@@ -83,8 +83,7 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
             c += 1
-            print('LPrime sample ' + str(c))
-            if ( c % 1000 == 0 ): print('LPrime sample ' + str(c))
+            if ( c % 10000 == 0 ): print('LPrime sample ' + str(c))
             tagsCalc = {}
             denominator = 0.0
             for tag in tags:
@@ -103,40 +102,13 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
 #                     if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
 #                         expected[k] += tagsCalc[tag] / denominator
             
+    regulaized = CONST.reg_lambda * weights
     
-    
-    lprimeVec = empirical - expected
+    lprimeVec = empirical - expected - regulaized
     retVal = -lprimeVec
-    print('finish LPrime ' + retVal)
+    print('finish LPrime')
+    print(retVal)
     return retVal
-    
-    
-# def calc_v_dot_f(fgArr, sentences_t, sentences_w, weights):
-#     v_dot_f = 0.0
-#     for w, t in zip(sentences_w, sentences_t):
-#         for i in range(2, len(t)):
-#             for fg in fgArr:
-#                 idx = fg.getFeatureIdx(w, t[i], t[i-1], t[i-2], i)
-#                 if ( idx != -1 ):
-#                     v_dot_f += weights[idx] 
-#     return v_dot_f
-# 
-# # TODO: is Xi a sentence or a "history" (1 word with its priors)?
-# def calc_v_dot_f_for_tag_in_tags(fgArr, sentences_t, sentences_w, weights, tags):
-#     t = CONST.epsilon
-#     s = 0.0
-#     for w, t in zip(sentences_w, sentences_t):
-#         for i in range(2, len(t)):
-#             prelog = 0.0
-#             for tag in tags:
-#                 v_dot_f = 0.0
-#                 for fg in fgArr:
-#                     idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
-#                     if ( idx != -1 ):
-#                         v_dot_f += weights[idx]
-#                 prelog += np.exp(v_dot_f)
-#             s += np.log(prelog)
-#     return s
 
 def prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fgArr):
     lines = [line.rstrip('\n') for line in open(CONST.train_file_name)]
@@ -161,10 +133,8 @@ def prepare_features(sentences, sentences_t, sentences_w, features, tags, fv, fg
     tags.remove("*")
 
     print('all tags(', len(tags), '):', tags)
-    
+
     for w, t in zip(sentences_w, sentences_t):
-#         print(sentence_t)
-#         print(sentence_w)
         for i in range(2, len(t)):
             for fg in fgArr:
                 fg.addFeature(fv, w, t[i], t[i-1], t[i-2], i)
