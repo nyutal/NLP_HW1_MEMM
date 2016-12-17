@@ -24,6 +24,7 @@ def main():
     fgArr.append(F100())
     fgArr.append(F103())
     fgArr.append(F104())
+    print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
 
     prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr)
 
@@ -31,11 +32,15 @@ def main():
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
                                            args=(fgArr, sentences_t, sentences_w, tags, fv, True),
-                                           fprime=calc_Lprime, m=100, maxiter=3, maxfun=3, disp=True)
+                                           fprime=calc_Lprime, m=256, maxiter=20,
+                                           maxfun=5, disp=True, factr=CONST.accuracy['low'])
     print('x1:', x1)
     print('f1:', f1)
     print('d1:', d1)
-
+    fp = open('test.txt', 'w')
+    for i in x1:
+        fp.write("%s\n" % i)
+    print('5')
     logging.info('Done!')
     print("Done!")
 
@@ -59,8 +64,6 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
             if prelogexp < (10**-10): prelogexp = (10**-10) # remove zeros from log
             s2 += np.log(np.exp(prelogexp))
     
-#     s1 = calc_v_dot_f(fgArr, sentences_t, sentences_w, weights)
-#     s2 = calc_v_dot_f_for_tag_in_tags(fgArr, sentences_t, sentences_w, weights, tags)
     regularizer_L = 0.0
     if regulaized:
         regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
@@ -80,15 +83,6 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
         for i in range(2, len(t)):
             c += 1
             if c % 10000 == 0 : print('LPrime sample ', c, time.asctime())
-
-#             for tag in tags:
-#                 tagsCalc[tag] = 0.0
-#             for k in range(fv.getSize()):
-#                 tag = fv.featureIdx2Tag[k]
-#                 if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
-#                     tagsCalc[tag] += weights[k]
-#             for tag in tags:
-
             tagsCalc = {}
             denominator = 0.0
             for tag in tags:
@@ -99,13 +93,6 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
                         tagsCalc[tag] += weights[idx]
                 np.exp(tagsCalc[tag])
                 denominator += tagsCalc[tag]
-
-#             for k in range(fv.getSize()):
-#                 tag = fv.featureIdx2Tag[k]
-#                 if ( fv.featureIdx2Fg[k].calc(k, w, tag, t[i-1], t[i-2], i)):
-#                     expected[k] += tagsCalc[tag] / denominator
-
-            
             for tag in tags:
                 for fg in fgArr:
                     k = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
@@ -117,9 +104,6 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
         print('regl')
         regulaized_LP = CONST.reg_lambda * weights
 
-#     print(empirical)
-#     print(expected)
-#     print(regulaized_LP)
     lprimeVec = empirical - expected - regulaized_LP
     retVal = -lprimeVec
     print('finished LPrime')
