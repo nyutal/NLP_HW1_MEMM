@@ -24,7 +24,7 @@ class FeatureGenerator(object):
             self.hash2Count[h] += 1
         else:
             featureVec.featureVecSize += 1
-            print('adding feature ' + t + ' ' + words[i] + ' at index ' + str(featureVec.featureVecSize))
+#             print('adding feature ' + t + ' ' + words[i] + ' at index ' + str(featureVec.featureVecSize))
             self.hash2FeatureIdx[h] = featureVec.featureVecSize
             self.featureIdx2hash[featureVec.featureVecSize] = h
             featureVec.featureIdx2Fg[featureVec.featureVecSize] = self #in order to access specific feature
