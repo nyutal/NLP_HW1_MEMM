@@ -1,7 +1,7 @@
 # DEFINES
 import numpy as np
 class CONST(object):
-    reg_lambda = 1
+    reg_lambda = 8.0
     epsilon = np.finfo(float).eps
 
     # train_file_name = 'train_small.wtag'

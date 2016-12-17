@@ -30,8 +30,8 @@ def main():
     print('start optimization')
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
-                                           args=(fgArr, sentences_t, sentences_w, tags, fv, False),
-                                           fprime=calc_Lprime, m=100, maxiter=1, maxfun=1,
+                                           args=(fgArr, sentences_t, sentences_w, tags, fv, True),
+                                           fprime=calc_Lprime, m=100, maxiter=3, maxfun=3,
                                            disp=True)
     print('x1:', x1)
     print('f1:', f1)
@@ -82,7 +82,7 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
             c += 1
-#             if ( c % 10000 == 0 ): print('LPrime sample ' + str(c))
+            if ( c % 10000 == 0 ): print('LPrime sample ' + str(c))
             
 #             for tag in tags:
 #                 tagsCalc[tag] = 0.0    
@@ -116,7 +116,9 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
                         expected[k] += tagsCalc[tag] / denominator
 
     regulaized_LP = np.zeros(fv.getSize()) 
-    if regulaized: regulaized_LP = CONST.reg_lambda * weights
+    if regulaized:
+        print('regl') 
+        regulaized_LP = CONST.reg_lambda * weights
     
 #     print(empirical)
 #     print(expected)
