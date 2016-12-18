@@ -139,8 +139,6 @@ def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
     for line in lines:
         w = ['*_*', '*_*']  # start
         w.extend(line.split(" "))
-#         if w[-1] == '._.':
-#             del w[-1]  # remove 'period' from the end of the sentence
         w.append('SSS_SSS')  # stop
         sentences.append(w)
 
