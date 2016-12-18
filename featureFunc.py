@@ -50,6 +50,7 @@ class FeatureGenerator(object):
         h, valid = self.getHashAndValid(words, t, t_minus_1, t_minus_2, i)
         if not valid: return -1
         if h in self.hash2FeatureIdx:
+            # print(type(self).__name__, " fetched")
             return self.hash2FeatureIdx[h]
         return -1
     

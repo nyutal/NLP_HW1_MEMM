@@ -30,7 +30,7 @@ def main():
     fgArr.append(F102_3())
     fgArr.append(F103())
     fgArr.append(F104())
-    # fgArr.append(F105())
+    fgArr.append(F105())
     fv = FeatureVec(fgArr)
 
     # print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
@@ -49,7 +49,7 @@ def main():
     print('f1:', f1)
     print('d1:', d1)
 
-    x1 = x1 * 1000000 # in order to eliminate underflow
+    x1 = x1 * 10**12 # in order to eliminate underflow
 
     fv.setWeights(x1)
     v = Viterbi(tags, fv, x1)
@@ -103,7 +103,7 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
             #     preLog += np.exp(tagPreLogExp[tag])
             # s2 += np.log(preLog)
             # print(tagVals)
-            tagValsMul100 = 100.0 *np.asarray(list(tagPreLogExp.values()))
+            tagValsMul100 = 100.0 * np.asarray(list(tagPreLogExp.values()))
             loged = sp.misc.logsumexp(tagValsMul100)
             s2 += loged - np.log(100)
 
@@ -141,7 +141,7 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
                     idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
                     if idx != -1:
                         tagsCalc[tag] += weights[idx]
-                np.exp(tagsCalc[tag])
+                tagsCalc[tag] = np.exp(tagsCalc[tag])
                 denominator += tagsCalc[tag]
             for tag in tags:
                 for fg in fgArr:
