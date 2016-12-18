@@ -1,5 +1,5 @@
-import numpy as np
-
+from consts import CONST
+# import numpy as np
 
 class Viterbi(object):
 
@@ -7,24 +7,26 @@ class Viterbi(object):
         self.preSk = ['*']
         self.postSk = ['SSS']
         self.middleSk = tags
+        if '*' in self.middleSk: self.middleSk.remove('*')
+        if 'SSS' in self.middleSk: self.middleSk.remove('SSS')
         self.fv = fv
         self.weights = weights
 
-    def solve(self, sentence, addPrefix=False):
+    def solve(self, sentence, addPrefixSuffix=False):
         fullSentence = []
-        if addPrefix: fullSentence = ['*', '*'] + sentence + ['SSS']
-        else: fullSentence = sentence + ['SSS']
+        if addPrefixSuffix: fullSentence = ['*', '*'] + sentence + ['SSS']
+        else: fullSentence = sentence
         l = len(fullSentence)
         tags = ['*', '*']
         pi = {}
         pi[(1, '*', '*')] = 1.0
         bp = {}
         for k in range(2, l):
-            for u in self.getSk(k-1):
-                for v in self.getSk(k):
+            for u in self.getSk(k-1, l):
+                for v in self.getSk(k, l):
                     piMax = float("-inf")
                     b = None
-                    for t in self.getSk(k-2):
+                    for t in self.getSk(k-2, l):
                         curr = pi[(k-1), t, u] * self.fv.getQ(v, u, t, fullSentence, k)
                         if piMax < curr:
                             piMax = curr
@@ -36,8 +38,8 @@ class Viterbi(object):
         piMax = float("-inf")
         uMax = None
         vMax = None
-        for u in self.getSk(l - 2):
-            for v in self.getSk(l-1):
+        for u in self.getSk(l - 2, l):
+            for v in self.getSk(l-1, l):
                 if pi[l-1, u, v ] > piMax:
                     piMax = pi[l-1, u, v ]
                     uMax = u
@@ -52,6 +54,7 @@ class Viterbi(object):
         # print(reversedPath)
         return list(reversed(reversedPath))
 
-    def getSk(self, k):
+    def getSk(self, k, l):
         if k < 2: return self.preSk
-        return self.middleSk
+        elif k < l-1: return self.middleSk
+        return self.postSk

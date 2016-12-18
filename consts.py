@@ -6,6 +6,7 @@ class CONST(object):
     accuracy = {'low':10**16, 'med':10**10, 'high':10**10}
     # train_file_name = 'train_small.wtag'
     train_file_name = 'train.wtag'
+    viterbiMulFactor = 100000
 
     def __setattr__(self, *_):
         raise ValueError("don't you dare!")
