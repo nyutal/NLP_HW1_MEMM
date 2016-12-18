@@ -8,6 +8,7 @@ from consts import CONST
 from featureFunc import *
 import time
 from viterbi import *
+from SentenceParser import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
@@ -21,7 +22,7 @@ def main():
     sentences_w = []
     sentences_t = []
     tags = set()
-    
+
     fgArr = []
     fgArr.append(F100())
     fgArr.append(F101_2())
@@ -36,6 +37,14 @@ def main():
     # print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
 
     prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr)
+
+    vSentences = []
+    vSentences_w = []
+    vSentences_t = []
+    vTags = set()
+    parser = SentenceParser()
+    parser.parseTagedFile(vSentences, vSentences_t, vSentences_w, vTags, "test.Wtag")
+    print(vTags.issubset(tags))
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
@@ -52,15 +61,30 @@ def main():
     x1 = x1 * 10**12 # in order to eliminate underflow
 
     fv.setWeights(x1)
+
+
+
     v = Viterbi(tags, fv, x1)
 
-    for i in range(len(sentences)):
-        print('sample ', str(i), ':')
-        tags = v.solve(sentences_w[i])
-        print(sentences_w[i][2:])
-        print(sentences_t[i][2:])
-        print(tags)
 
+    totalTags = 0
+    totalErrors = 0
+    for i in range(len(vSentences)):
+        print('sample ', str(i), ':')
+        tags = v.solve(vSentences_w[i])
+        if len(tags) != len(vSentences_w[i])-2:
+            print(len(tags))
+            print(tags)
+            print(len(vSentences_w[i]))
+            print(vSentences_w[i])
+            exit()
+        for j in range(2, len(vSentences_t[i])-1):
+            totalTags += 1
+            if ( vSentences_t[i][j] != tags[j-2] ):
+                totalErrors += 1
+                print('Error:' , vSentences_t[i][j],tags[j-2])
+
+    print('TotalTags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ', float(totalTags-totalErrors)/totalTags)
 
 
 
@@ -157,33 +181,9 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
     return retVal
 
 def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
-    lines = [line.rstrip('\n') for line in open(CONST.train_file_name)]
-    samples = 0
-    for line in lines:
-        w = ['*_*', '*_*']  # start
-        w.extend(line.split(" "))
-        w.append('SSS_SSS')  # stop
-        sentences.append(w)
-        samples += 1
-        # print(w)
-        if samples > 100: break
 
-    # sentences = sentences[0:100]
-    # print(len(sentences))
-    for sentence in sentences:
-        w = []
-        tag = []
-        for word in sentence:
-            a, b = word.split("_")
-            w.append(a)
-            tag.append(b)
-            tags.add(b) # create a set of all tags
-        sentences_w.append(w)
-        sentences_t.append(tag)
-    # tags.remove("SSS")
-    tags.remove("*")
-
-    print('all tags(', len(tags), '):', tags)
+    parser = SentenceParser()
+    parser.parseTagedFile(sentences, sentences_t, sentences_w, tags,CONST.train_file_name)
 
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
