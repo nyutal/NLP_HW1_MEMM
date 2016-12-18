@@ -49,8 +49,8 @@ def main():
 
     for i in range(len(sentences)):
         tags = v.solve(sentences_w[i])
-        print(sentences_w[i])
-        print(sentences_t[i])
+        print(sentences_w[i][2:-2])
+        print(sentences_t[i][2:-2])
         print(tags)
 
 

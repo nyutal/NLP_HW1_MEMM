@@ -49,8 +49,8 @@ class Viterbi(object):
         for k in range(l-3, 1, -1):
             # print("adding to v, u ", str(k), reversedPath[-1], reversedPath[-2], bp[(k+2,reversedPath[-1], reversedPath[-2])])
             reversedPath.append(bp[(k+2,reversedPath[-1], reversedPath[-2])])
-        print(reversedPath)
-        return reversedPath.reverse()
+        # print(reversedPath)
+        return list(reversed(reversedPath))
 
     def getSk(self, k):
         if k < 2: return self.preSk
