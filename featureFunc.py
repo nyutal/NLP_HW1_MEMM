@@ -1,13 +1,28 @@
 
 class FeatureVec(object):
     
-    def __init__(self):
+    def __init__(self, fgArr):
         self.featureVecSize = -1 
         self.featureIdx2Fg = {}
-        self.featureIdx2Tag = {} 
+        self.featureIdx2Tag = {}
+        self.fgArr = fgArr
+        self.weights = []
         
     def getSize(self):
-        return self.featureVecSize + 1   
+        return self.featureVecSize + 1
+
+    def setWeights(self, w):
+        self.weights = w
+
+    def getQ(self, t, t_minus_1, t_minus_2, words, i):
+        qRes = 0.0
+        for fg in self.fgArr:
+            k = fg.getFeatureIdx(words, t, t_minus_1, t_minus_2, i)
+            if k != -1:
+                qRes += self.weights[k]
+        return qRes
+
+
 
 class FeatureGenerator(object):
     

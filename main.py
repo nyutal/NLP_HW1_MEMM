@@ -7,6 +7,7 @@ import logging
 from consts import CONST
 from featureFunc import *
 import time
+from viterbi import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
@@ -14,29 +15,47 @@ logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 def main():
     """Compare runs for various test graph initializations"""
 
+    np.seterr(all='raise')
+
     sentences = []
     sentences_w = []
     sentences_t = []
     tags = set()
     
-    fv = FeatureVec()
     fgArr = []
     fgArr.append(F100())
     fgArr.append(F103())
     fgArr.append(F104())
-    print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
+    fv = FeatureVec(fgArr)
+
+    # print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
 
     prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr)
 
-    print('start optimization')
+    print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
                                            args=(fgArr, sentences_t, sentences_w, tags, fv, True),
-                                           fprime=calc_Lprime, m=256, maxiter=20,
-                                           maxfun=5, disp=True, factr=CONST.accuracy['low'])
+                                           fprime=calc_Lprime, m=256, maxfun=5, maxiter=5, disp=True, factr=CONST.accuracy['high'])
+
+
+
     print('x1:', x1)
     print('f1:', f1)
     print('d1:', d1)
+
+    fv.setWeights(x1)
+    v = Viterbi(tags, fv, x1)
+
+    for i in range(len(sentences)):
+        tags = v.solve(sentences_w[i])
+        print(sentences_w[i])
+        print(sentences_t[i])
+        print(tags)
+
+
+
+
     fp = open('test.txt', 'w')
     for i in x1:
         fp.write("%s\n" % i)
@@ -52,6 +71,8 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
     s2 = 0.0
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
+            c += 1
+            if c % 10000 == 0: print('L sample ', c, time.asctime())
             prelogexp = 0.0
             for fg in fgArr:
                 idx = fg.getFeatureIdx(w, t[i], t[i-1], t[i-2], i)
@@ -60,7 +81,12 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
                 for tag in tags:
                     idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
                     if idx != -1:
-                        prelogexp += weights[idx]
+                        try:
+                            prevlogregex = prelogexp
+                            prelogexp += weights[idx]
+                        except RuntimeError:
+                            print('oops', weights[idx], prevlogregex)
+                            exit()
             if prelogexp < (10**-10): prelogexp = (10**-10) # remove zeros from log
             s2 += np.log(np.exp(prelogexp))
     
@@ -68,7 +94,7 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
     if regulaized:
         regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
     retVal = -float(s1 - s2 - regularizer_L)
-    print('finish L', str(retVal))
+    print('finish L', str(retVal), time.asctime())
     return retVal
 
 # v dot f of all sentences: one parameter at the time:
@@ -101,12 +127,11 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv, regulaized):
 
     regulaized_LP = np.zeros(fv.getSize())
     if regulaized:
-        print('regl')
         regulaized_LP = CONST.reg_lambda * weights
 
     lprimeVec = empirical - expected - regulaized_LP
     retVal = -lprimeVec
-    print('finished LPrime')
+    print('finished LPrime', time.asctime())
     return retVal
 
 def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
