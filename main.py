@@ -13,35 +13,37 @@ logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
 
 def main():
-    """Compare runs for various test graph initializations"""
-
     np.seterr(all='raise')
 
     sentences = []
     sentences_w = []
     sentences_t = []
     tags = set()
-    
+    test_sentences_w = []
+    test_sentences_t = []
+
     fgArr = []
     fgArr.append(F100())
-    fgArr.append(F101_2())
+    # fgArr.append(F101_2())
     fgArr.append(F101_3())
-    fgArr.append(F102_2())
-    fgArr.append(F102_3())
+    # fgArr.append(F102_2())
+    # fgArr.append(F102_3())
     fgArr.append(F103())
     fgArr.append(F104())
-    fgArr.append(F105())
+    # fgArr.append(F105())
     fv = FeatureVec(fgArr)
 
     # print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
 
     prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr)
+    prepare_test(test_sentences_t, test_sentences_w)
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
                                            args=(fgArr, sentences_t, sentences_w, tags, fv),
-                                           fprime=calc_Lprime, m=256, maxfun=8, maxiter=8, disp=True, factr=CONST.accuracy['high'])
+                                           fprime=calc_Lprime, m=256, maxfun=1000, maxiter=20, disp=True,
+                                           factr=CONST.accuracy['high'])
 
 
 
@@ -54,19 +56,41 @@ def main():
     fv.setWeights(x1)
     v = Viterbi(tags, fv, x1)
 
-    for i in range(len(sentences)):
-        print('sample ', str(i), ':')
-        tags = v.solve(sentences_w[i])
-        print(sentences_w[i][2:])
-        print(sentences_t[i][2:])
-        print(tags)
-
-
-
-
     fp = open('test.txt', 'w')
     for i in x1:
         fp.write("%s\n" % i)
+
+    total_tags = 0
+    correct_tags = 0
+    for i in range(100):  # TODO: len(test_sentences_w)
+        t = test_sentences_t[i][2:]
+        print('sample', i, ':')
+        test_result_tags = v.solve(test_sentences_w[i])
+        print(test_sentences_w[i][2:])
+        print(t)
+        print(test_result_tags)
+        for w in range(len(t)):
+            total_tags += 1
+            if t[w] == test_result_tags[w]:
+                correct_tags += 1
+    print('Test: correct_tags / total_tags', correct_tags / total_tags)
+
+
+    total_tags = 0
+    correct_tags = 0
+    for i in range(100):  #TODO: len(sentences_w)
+        t = sentences_t[i][2:]
+        print('sample ', i, ':')
+        train_result_tags = v.solve(sentences_w[i])
+        print(sentences_w[i][2:])
+        print(t)
+        print(train_result_tags)
+        for w in range(len(t)):
+            total_tags += 1
+            if t[w] == train_result_tags[w]:
+                correct_tags += 1
+    print('Train: correct_tags / total_tags', correct_tags / total_tags)
+
     logging.info('Done!')
     print("Done!")
 
@@ -166,7 +190,7 @@ def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
         sentences.append(w)
         samples += 1
         # print(w)
-        if samples > 100: break
+        if samples > 1000: break
 
     # sentences = sentences[0:100]
     # print(len(sentences))
@@ -190,7 +214,27 @@ def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
             for fg in fgArr:
                 fg.addFeature(fv, w, t[i], t[i-1], t[i-2], i)
     print('fv contains ', fv.getSize(), ' features')
-    
+
+def prepare_test(test_sentences_t, test_sentences_w):
+    lines = [line.rstrip('\n') for line in open(CONST.test_file_name)]
+    sent = []
+    for line in lines:
+        w = ['*_*', '*_*']  # start
+        w.extend(line.split(" "))
+        w.append('SSS_SSS')  # stop
+        sent.append(w)
+
+    for sentence in sent:
+        w = []
+        tag = []
+        for word in sentence:
+            a, b = word.split("_")
+            w.append(a)
+            tag.append(b)
+        test_sentences_w.append(w)
+        test_sentences_t.append(tag)
+
+
 """Run main"""
 if __name__ == '__main__':
     main()

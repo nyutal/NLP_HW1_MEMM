@@ -4,7 +4,7 @@ class CONST(object):
     reg_lambda = 8.0
     epsilon = np.finfo(float).eps
     accuracy = {'low':10**16, 'med':10**10, 'high':10**10}
-    # train_file_name = 'train_small.wtag'
+    test_file_name = 'test.wtag'
     train_file_name = 'train.wtag'
     viterbiMulFactor = 100000
 
