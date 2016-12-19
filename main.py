@@ -8,7 +8,8 @@ from consts import CONST
 from featureFunc import *
 import time
 from viterbi import *
-from SentenceParser import *
+from memmChecker import *
+from sentenceParser import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
@@ -18,83 +19,42 @@ def main():
 
     np.seterr(all='raise')
 
-    sentences = []
-    sentences_w = []
-    sentences_t = []
-    tags = set()
+    fv = FeatureVec()
+    fv.addFeatureGen(F100())
+    fv.addFeatureGen(F101_2())
+    fv.addFeatureGen(F101_3())
+    fv.addFeatureGen(F102_2())
+    fv.addFeatureGen(F102_3())
+    fv.addFeatureGen(F103())
+    fv.addFeatureGen(F104())
+    fv.addFeatureGen(F105())
 
-    fgArr = []
-    fgArr.append(F100())
-    fgArr.append(F101_2())
-    fgArr.append(F101_3())
-    fgArr.append(F102_2())
-    fgArr.append(F102_3())
-    fgArr.append(F103())
-    fgArr.append(F104())
-    fgArr.append(F105())
-    fv = FeatureVec(fgArr)
-
-    # print('Accuracy =',CONST.epsilon * CONST.accuracy['low'])
-
-    prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr)
-
-    vSentences = []
-    vSentences_w = []
-    vSentences_t = []
-    vTags = set()
     parser = SentenceParser()
-    parser.parseTagedFile(vSentences, vSentences_t, vSentences_w, vTags, "test.Wtag")
-    print(vTags.issubset(tags))
+    testCorpus = parser.parseTagedFile(CONST.train_file_name, 1000)
+    fv.generateFeatures(testCorpus)
+
+
+    validateCorpus = parser.parseTagedFile("test.Wtag", 1)
+    print(validateCorpus.getTags().issubset(testCorpus.getTags()))
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
-                                           args=(fgArr, sentences_t, sentences_w, tags, fv),
-                                           fprime=calc_Lprime, #m=256, maxfun=8, maxiter=8,
-                                           disp=True, factr=CONST.accuracy['high'])
-
-
+                                           args=(fv,),
+                                           fprime=calc_Lprime,  # m=256, maxfun=8, maxiter=8,
+                                           disp=True)#, factr=CONST.accuracy['high'])
 
     print('x1:', x1)
     print('f1:', f1)
     print('d1:', d1)
 
-    x1 = x1 * 10**12 # in order to eliminate underflow
+    x1 = x1 * 10 ** 12  # in order to eliminate underflow
 
     fv.setWeights(x1)
 
+    checker = MemmChecker()
 
-
-    v = Viterbi(tags, fv, x1)
-
-    resultFileName = 'results_'+time.strftime("%Y%m%d_%H%M%S") +'.txt'
-    fp = open(resultFileName, 'w')
-    totalTags = 0
-    totalErrors = 0
-    totalSentence = 0
-    for i in range(len(vSentences)):
-        print('sample ', str(i), ':')
-        tags = v.solve(vSentences_w[i])
-        if len(tags) != len(vSentences_w[i])-2:
-            print(len(tags))
-            print(tags)
-            print(len(vSentences_w[i]))
-            print(vSentences_w[i])
-            exit()
-        for j in range(2, len(vSentences_t[i])-1):
-            totalTags += 1
-            if ( vSentences_t[i][j] != tags[j-2] ):
-                totalErrors += 1
-                print('Error:' , vSentences_t[i][j],tags[j-2])
-                # fp.write(str(('Error:' , vSentences_t[i][j],tags[j-2], '\n')))
-                # fp.write("%s\n" % str(('Error:' + vSentences_t[i][j],tags[j-2])))
-                fp.write("Error! tag[i]:%s vTag[i]:%s word[i]:%s vTag[i-1]:%s word[i-1]:%s vTag[i-2]:%s word[i-2]:%s\n" % ( tags[j - 2], vSentences_t[i][j], vSentences_w[i][j], vSentences_t[i][j-1], vSentences_w[i][j-1], vSentences_t[i][j-2], vSentences_w[i][j-2]))
-        totalSentence += 1
-        print('#sentence: ', totalSentence, '#tags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ',
-              float(totalTags - totalErrors) / totalTags)
-        fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" %  (totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags) )
-
-    # print('TotalTags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ', float(totalTags-totalErrors)/totalTags)
+    checker.check(fv, validateCorpus)
 
 
 
@@ -105,11 +65,17 @@ def main():
     print("Done!")
 
 
-def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
-#     print('start L')
+def calc_L(weights, fv):
+    #     print('start L')
     c = 0
     s1 = 0.0
     s2 = 0.0
+
+    sentences_w = fv.corpus.getSentencesW()
+    sentences_t = fv.corpus.getSentencesT()
+    tags = fv.corpus.getTags()
+    fgArr = fv.fgArr
+
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
             c += 1
@@ -118,11 +84,11 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
             for tag in tags:
                 tagPreLogExp[tag] = 0.0
             for fg in fgArr:
-                idx = fg.getFeatureIdx(w, t[i], t[i-1], t[i-2], i)
+                idx = fg.getFeatureIdx(w, t[i], t[i - 1], t[i - 2], i)
                 if idx != -1:
-                    s1 += weights[idx] 
+                    s1 += weights[idx]
                 for tag in tags:
-                    idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    idx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
                     if idx != -1:
                         try:
                             prevlogregex = tagPreLogExp[tag]
@@ -130,25 +96,23 @@ def calc_L(weights, fgArr, sentences_t, sentences_w, tags, fv):
                         except RuntimeError:
                             print('oops', weights[idx], prevlogregex)
                             exit()
-            # if prelogexp < (10**-10): prelogexp = (10**-10) # remove zeros from log
-            # preLog = 0.0
-            # for tag in tags:
-            #     print('tag', tag, tagPreLogExp[tag])
-            #     preLog += np.exp(tagPreLogExp[tag])
-            # s2 += np.log(preLog)
-            # print(tagVals)
             tagValsMul100 = 100.0 * np.asarray(list(tagPreLogExp.values()))
             loged = sp.misc.logsumexp(tagValsMul100)
             s2 += loged - np.log(100)
 
-    
-    regularizer_L = (CONST.reg_lambda/2) * (np.linalg.norm(weights))**2
+    regularizer_L = (CONST.reg_lambda / 2) * (np.linalg.norm(weights)) ** 2
     retVal = -float(s1 - s2 - regularizer_L)
     print('finish L', str(retVal), time.asctime())
     return retVal
 
+
 # v dot f of all sentences: one parameter at the time:
-def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
+def calc_Lprime(weights, fv):
+    sentences_w = fv.corpus.getSentencesW()
+    sentences_t = fv.corpus.getSentencesT()
+    tags = fv.corpus.getTags()
+    fgArr = fv.fgArr
+
     c = 0
     empirical = np.zeros(fv.getSize())
     # empirical = np.zeros(fv.getSize())
@@ -159,27 +123,21 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
             c += 1
-            if c % 10000 == 0 : print('LPrime sample ', c, time.asctime())
+            if c % 10000 == 0: print('LPrime sample ', c, time.asctime())
             tagsCalc = {}
             denominator = 0.0
-
-            # for fg in fgArr:
-            #     idx = fg.getFeatureIdx(w, t[i], t[i - 1], t[i - 2], i)
-            #     if idx != -1:
-            #         empirical[idx] += 1
-            # print('empiricalTest: ', idx, tag, w[i], t[i-1])
 
             for tag in tags:
                 tagsCalc[tag] = 0.0
                 for fg in fgArr:
-                    idx = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    idx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
                     if idx != -1:
                         tagsCalc[tag] += weights[idx]
                 tagsCalc[tag] = np.exp(tagsCalc[tag])
                 denominator += tagsCalc[tag]
             for tag in tags:
                 for fg in fgArr:
-                    k = fg.getFeatureIdx(w, tag, t[i-1], t[i-2], i)
+                    k = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
                     if k != -1:
                         expected[k] += tagsCalc[tag] / denominator
 
@@ -190,17 +148,18 @@ def calc_Lprime(weights, fgArr, sentences_t, sentences_w, tags, fv):
     print('finished LPrime', time.asctime())
     return retVal
 
-def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
 
-    parser = SentenceParser()
-    parser.parseTagedFile(sentences, sentences_t, sentences_w, tags,CONST.train_file_name)
+# def prepare_features(sentences, sentences_t, sentences_w, tags, fv, fgArr):
+#
+#     parser = SentenceParser()
+#     parser.parseTagedFile(sentences, sentences_t, sentences_w, tags,CONST.train_file_name)
+#
+#     for w, t in zip(sentences_w, sentences_t):
+#         for i in range(2, len(t)):
+#             for fg in fgArr:
+#                 fg.addFeature(fv, w, t[i], t[i-1], t[i-2], i)
+#     print('fv contains ', fv.getSize(), ' features')
 
-    for w, t in zip(sentences_w, sentences_t):
-        for i in range(2, len(t)):
-            for fg in fgArr:
-                fg.addFeature(fv, w, t[i], t[i-1], t[i-2], i)
-    print('fv contains ', fv.getSize(), ' features')
-    
 """Run main"""
 if __name__ == '__main__':
     main()

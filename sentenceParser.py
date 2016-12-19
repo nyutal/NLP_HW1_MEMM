@@ -1,11 +1,31 @@
 
+class Corpus(object):
+
+    def __init__(self, sentences, sentences_t, sentences_w, tags=set()):
+        self.sentences = sentences
+        self.sentences_w = sentences_w
+        self.sentences_t = sentences_t
+        self.tags = tags
+
+    def getSentences(self):
+        return self.sentences
+
+    def getSentencesW(self):
+        return self.sentences_w
+
+    def getSentencesT(self):
+        return self.sentences_t
+
+    def getTags(self):
+        return self.tags
+
 class SentenceParser(object):
 
-    def parseTagedFile(self, sentences, sentences_t, sentences_w, tags, fileName, maxSentences=-1):
-        # sentences = []
-        # sentences_w = []
-        # sentences_t = []
-        # tags = set()
+    def parseTagedFile(self, fileName, maxSentences=-1):
+        sentences = []
+        sentences_w = []
+        sentences_t = []
+        tags = set()
 
         lines = [line.rstrip('\n') for line in open(fileName)]
         samples = 0
@@ -32,6 +52,8 @@ class SentenceParser(object):
         # tags.remove("SSS")
         tags.remove("*")
 
-        print('SentenceParser parded tag file with ', len(sentences))
+        print('SentenceParser parsed tag file with ', len(sentences))
         print('all tags(', len(tags), '):', tags)
+
+        return Corpus(sentences, sentences_t, sentences_w, tags)
         # return (sentences, sentences_t, sentences_w, tags)

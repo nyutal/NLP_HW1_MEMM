@@ -1,12 +1,17 @@
+from sentenceParser import *
 
 class FeatureVec(object):
     
-    def __init__(self, fgArr):
+    def __init__(self, fgArr = []):
         self.featureVecSize = -1 
         self.featureIdx2Fg = {}
         self.featureIdx2Tag = {}
         self.fgArr = fgArr
         self.weights = []
+        self.corpus = None
+
+    def addFeatureGen(self, fg):
+        self.fgArr.append(fg)
         
     def getSize(self):
         return self.featureVecSize + 1
@@ -21,6 +26,14 @@ class FeatureVec(object):
             if k != -1:
                 qRes += self.weights[k]
         return qRes
+
+    def generateFeatures(self, corpus):
+        self.corpus = corpus
+        for w, t in zip(corpus.sentences_w, corpus.sentences_t):
+            for i in range(2, len(t)):
+                for fg in self.fgArr:
+                    fg.addFeature(self, w, t[i], t[i - 1], t[i - 2], i)
+        print('fv contains ', self.getSize(), ' features')
 
 
 
