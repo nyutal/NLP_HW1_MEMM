@@ -50,7 +50,8 @@ def main():
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.full(fv.getSize(), CONST.epsilon),
                                            args=(fgArr, sentences_t, sentences_w, tags, fv),
-                                           fprime=calc_Lprime, m=256, maxfun=8, maxiter=8, disp=True, factr=CONST.accuracy['high'])
+                                           fprime=calc_Lprime, #m=256, maxfun=8, maxiter=8,
+                                           disp=True, factr=CONST.accuracy['high'])
 
 
 
@@ -66,9 +67,11 @@ def main():
 
     v = Viterbi(tags, fv, x1)
 
-
+    resultFileName = 'results_'+time.strftime("%Y%m%d_%H%M%S") +'.txt'
+    fp = open(resultFileName, 'w')
     totalTags = 0
     totalErrors = 0
+    totalSentence = 0
     for i in range(len(vSentences)):
         print('sample ', str(i), ':')
         tags = v.solve(vSentences_w[i])
@@ -83,8 +86,15 @@ def main():
             if ( vSentences_t[i][j] != tags[j-2] ):
                 totalErrors += 1
                 print('Error:' , vSentences_t[i][j],tags[j-2])
+                # fp.write(str(('Error:' , vSentences_t[i][j],tags[j-2], '\n')))
+                # fp.write("%s\n" % str(('Error:' + vSentences_t[i][j],tags[j-2])))
+                fp.write("Error! tag[i]:%s vTag[i]:%s word[i]:%s vTag[i-1]:%s word[i-1]:%s vTag[i-2]:%s word[i-2]:%s\n" % ( tags[j - 2], vSentences_t[i][j], vSentences_w[i][j], vSentences_t[i][j-1], vSentences_w[i][j-1], vSentences_t[i][j-2], vSentences_w[i][j-2]))
+        totalSentence += 1
+        print('#sentence: ', totalSentence, '#tags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ',
+              float(totalTags - totalErrors) / totalTags)
+        fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" %  (totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags) )
 
-    print('TotalTags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ', float(totalTags-totalErrors)/totalTags)
+    # print('TotalTags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ', float(totalTags-totalErrors)/totalTags)
 
 
 
