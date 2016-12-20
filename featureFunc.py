@@ -11,12 +11,17 @@ class FeatureVec(object):
         self.weights = []
         self.corpus = None
         self.empirical = None
+        self.iter = 0
 
     def addFeatureGen(self, fg):
         self.fgArr.append(fg)
         
     def getSize(self):
         return self.featureVecSize + 1
+
+    def getIter(self):
+        self.iter += 1
+        return self.iter
 
     def setWeights(self, w):
         self.weights = w
@@ -43,6 +48,13 @@ class FeatureVec(object):
             for k in range(self.getSize()):
                 self.empirical[k] = self.featureIdx2Fg[k].getCountsByIdx(k)
         return self.empirical
+
+    def getFeatureGenString(self):
+        s = ''
+        for fg in self.fgArr:
+            s += fg.__class__.__name__
+        return s
+
 
 
 

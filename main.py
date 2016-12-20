@@ -7,9 +7,7 @@ import logging
 from consts import CONST
 from featureFunc import *
 import time
-from viterbi import *
 from memmChecker import *
-from sentenceParser import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
@@ -38,7 +36,8 @@ def main():
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile("test.Wtag", 15)
+    validateCorpus = parser.parseTagedFile(CONST.test_file_name)
+
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
 
     print('start optimization', time.asctime())
@@ -46,7 +45,8 @@ def main():
                                            # x0=np.full(fv.getSize(), 100*CONST.epsilon),
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
-                                           # fprime=calc_Lprime, m=56, #maxiter=50,
+                                           m=50,
+                                           maxiter=50,
                                            disp=True)#, factr=CONST.accuracy['high'])
 
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
@@ -73,6 +73,7 @@ def main():
 
 
 def calc_L(weights, fv):
+
     sentences_w = fv.corpus.getSentencesW()
     sentences_t = fv.corpus.getSentencesT()
     tags = fv.corpus.getTags()
@@ -89,11 +90,6 @@ def calc_L(weights, fv):
     empirical = fv.getEmpirical()
     expected = np.zeros(fv.getSize())
     gradReg = CONST.reg_lambda * weights
-
-
-    # #empirical calculation (for each k eiddccfiunujvnggdvbifrkjidglfvrrkdedjlbcugdr
-    # for k in range(fv.getSize()):
-    #     empirical[k] = fv.featureIdx2Fg[k].getCountsByIdx(k)
 
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
@@ -150,6 +146,10 @@ def calc_L(weights, fv):
     f = -funcRes #maximize function
 
     print('finish L', str(f), time.asctime())
+    file_name = 'results_test' + str(fv.getIter()) + '.txt'
+    fp = open(file_name, 'w')
+    for i in weights:
+        fp.write("%s\n" % i)
     return (f, g)
 
 

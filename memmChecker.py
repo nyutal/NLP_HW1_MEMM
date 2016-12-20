@@ -1,5 +1,6 @@
 from viterbi import *
 import time
+from consts import CONST
 
 class MemmChecker(object):
     def check(self, model, corpus):
@@ -7,7 +8,11 @@ class MemmChecker(object):
 
         resultFileName = 'results_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
         print('Starting validation, writing to ', resultFileName)
+
         fp = open(resultFileName, 'w')
+        fp.write("lambda=%s" % CONST.reg_lambda)
+        fp.write("feature generators = %s" % model.getFeatureGenString() )
+        fp.write("learn corpus = %s" % model.corpus.getFileInfo() )
         totalTags = 0
         totalErrors = 0
         totalSentence = 0

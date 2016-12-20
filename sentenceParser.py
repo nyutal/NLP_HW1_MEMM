@@ -1,11 +1,12 @@
 
 class Corpus(object):
-
-    def __init__(self, sentences, sentences_t, sentences_w, tags=set()):
+    def __init__(self, sentences, sentences_t, sentences_w, tags, fileName, maxSentences):
         self.sentences = sentences
         self.sentences_w = sentences_w
         self.sentences_t = sentences_t
         self.tags = tags
+        self.fileName = fileName
+        self.maxSentences = maxSentences
 
     def getSentences(self):
         return self.sentences
@@ -18,6 +19,10 @@ class Corpus(object):
 
     def getTags(self):
         return self.tags
+
+    def getFileInfo():
+        s = ''
+        s += fileName + ' ' + maxSentences
 
 class SentenceParser(object):
 
@@ -41,9 +46,12 @@ class SentenceParser(object):
         for sentence in sentences:
             w = []
             tag = []
-            for word in sentence:
+            for idx, word in enumerate(sentence):
                 a, b = word.split("_")
-                w.append(a)
+                if (idx == 2) and (b != 'NNP'):
+                    w.append(a.lower())
+                else:
+                    w.append(a)
                 tag.append(b)
                 tags.add(b)  # create a set of all tags
 
@@ -55,5 +63,5 @@ class SentenceParser(object):
         print('SentenceParser parsed tag file with ', len(sentences))
         print('all tags(', len(tags), '):', tags)
 
-        return Corpus(sentences, sentences_t, sentences_w, tags)
+        return Corpus(sentences, sentences_t, sentences_w, tags, fileName, maxSentences)
         # return (sentences, sentences_t, sentences_w, tags)
