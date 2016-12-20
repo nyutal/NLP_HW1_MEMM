@@ -14,7 +14,7 @@ class MemmChecker(object):
         for i in range(len(corpus.getSentences())):
             totalSentence += 1
             # print('sample ', str(i), ':')
-            tags = v.solve(corpus.getSentencesW()[i])
+            tags = v.fullSolve(corpus.getSentencesW()[i])
             vTags = corpus.getSentencesT()[i]
             vWords = corpus.getSentencesW()[i]
             if len(tags) != len(vWords) - 2:

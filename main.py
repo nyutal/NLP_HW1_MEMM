@@ -30,6 +30,7 @@ def main():
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
     fv.addFeatureGen(F105())
+    fv.addFeatureGen(FCapital())
 
     parser = SentenceParser()
     trainCorpus = parser.parseTagedFile(CONST.train_file_name, 100)

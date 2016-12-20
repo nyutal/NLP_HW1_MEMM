@@ -163,3 +163,14 @@ class F104(FeatureGenerator):
 class F105(FeatureGenerator):
     def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
         return (t), True
+
+class FCapital(FeatureGenerator):
+
+    def __init__(self):
+        super().__init__()
+        self.upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
+        if t_minus_1 == '*' or i == len(words)-1 or ( words[i][0] not in self.upperLetters):
+            return (None), False
+        return (t), True
