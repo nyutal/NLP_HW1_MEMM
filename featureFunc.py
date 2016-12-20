@@ -1,4 +1,5 @@
 from sentenceParser import *
+import numpy as np
 
 class FeatureVec(object):
     
@@ -9,6 +10,7 @@ class FeatureVec(object):
         self.fgArr = fgArr
         self.weights = []
         self.corpus = None
+        self.empirical = None
 
     def addFeatureGen(self, fg):
         self.fgArr.append(fg)
@@ -34,6 +36,13 @@ class FeatureVec(object):
                 for fg in self.fgArr:
                     fg.addFeature(self, w, t[i], t[i - 1], t[i - 2], i)
         print('fv contains ', self.getSize(), ' features')
+
+    def getEmpirical(self):
+        if self.empirical is None:
+            self.empirical = np.zeros(self.getSize())
+            for k in range(self.getSize()):
+                self.empirical[k] = self.featureIdx2Fg[k].getCountsByIdx(k)
+        return self.empirical
 
 
 
@@ -116,6 +125,12 @@ class F101_3(FeatureGenerator):
         if len(words[i]) < 3: return None, False
         return (words[i][-3:], t), True
 
+class F101_4(FeatureGenerator):
+
+    def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
+        if len(words[i]) < 4: return None, False
+        return (words[i][-4:], t), True
+
 class F102_2(FeatureGenerator):
 
     def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
@@ -128,6 +143,11 @@ class F102_3(FeatureGenerator):
         if len(words[i]) < 3: return None, False
         return (words[i][0:3], t), True
 
+class F102_4(FeatureGenerator):
+
+    def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
+        if len(words[i]) < 4: return None, False
+        return (words[i][0:4], t), True
 
 class F103(FeatureGenerator):
     

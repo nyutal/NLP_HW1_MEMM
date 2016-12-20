@@ -23,8 +23,10 @@ def main():
     fv.addFeatureGen(F100())
     fv.addFeatureGen(F101_2())
     fv.addFeatureGen(F101_3())
+    fv.addFeatureGen(F101_4())
     fv.addFeatureGen(F102_2())
     fv.addFeatureGen(F102_3())
+    fv.addFeatureGen(F102_4())
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
     fv.addFeatureGen(F105())
@@ -40,12 +42,13 @@ def main():
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           x0=np.full(fv.getSize(), CONST.epsilon),
+                                           # x0=np.full(fv.getSize(), 100*CONST.epsilon),
+                                           x0=np.ones(fv.getSize()),
                                            args=(fv,),
                                            # fprime=calc_Lprime,  # m=256, maxfun=8, maxiter=8,
                                            disp=True)#, factr=CONST.accuracy['high'])
 
-    x1 = x1 * 10 ** 15  # in order to eliminate underflow
+    # x1 = x1 * 10 ** 15  # in order to eliminate underflow
     print('x1:', x1)
     print('f1:', f1)
     print('d1:', d1)
@@ -74,117 +77,80 @@ def calc_L(weights, fv):
     tags = fv.corpus.getTags()
     fgArr = fv.fgArr
 
-    #     print('start L')
     c = 0
+
+    #function  calculation vartiables
     s1 = 0.0
     s2 = 0.0
+    funcReg = (CONST.reg_lambda / 2) * (np.linalg.norm(weights)) ** 2
 
-
-    empirical = np.zeros(fv.getSize())
+    #gradiant calculation variables
+    empirical = fv.getEmpirical()
     expected = np.zeros(fv.getSize())
+    gradReg = CONST.reg_lambda * weights
 
-    for k in range(fv.getSize()):
-        empirical[k] = fv.featureIdx2Fg[k].getCountsByIdx(k)
+
+    # #empirical calculation (for each k eiddccfiunujvnggdvbifrkjidglfvrrkdedjlbcugdr
+    # for k in range(fv.getSize()):
+    #     empirical[k] = fv.featureIdx2Fg[k].getCountsByIdx(k)
 
     for w, t in zip(sentences_w, sentences_t):
         for i in range(2, len(t)):
             c += 1
             if c % 10000 == 0: print('L sample ', c, time.asctime())
-            tagPreLogExp = {}
 
-            tagsCalc = {}
-            denominator = 0.0
+            s2TagPreLogExp = {}
+
+            expectedTagsCalc = {}
+            expectedDenominator = 0.0
 
             for tag in tags:
-                tagPreLogExp[tag] = 0.0
-                tagsCalc[tag] = 0.0
+
+                #s2 prellog  zerois
+                s2TagPreLogExp[tag] = 0.0
+
+                #expected have constant coeficcient per sample and tag, calculate it here ( exp(v*f(t) / sum tags(exp())
+                expectedTagsCalc[tag] = 0.0
                 for fg in fgArr:
                     idx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
                     if idx != -1:
-                        tagsCalc[tag] += weights[idx]
-                tagsCalc[tag] = np.exp(tagsCalc[tag])
-                denominator += tagsCalc[tag]
-
-            # for tag in tags:
-            #     for fg in fgArr:
-            #         k = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
-            #         if k != -1:
-            #             expected[k] += tagsCalc[tag] / denominator
-
+                        expectedTagsCalc[tag] += weights[idx]
+                expectedTagsCalc[tag] = np.exp(expectedTagsCalc[tag])
+                expectedDenominator += expectedTagsCalc[tag]
 
             for fg in fgArr:
+
+                #s1 is simply the sum of active features weights
                 idx = fg.getFeatureIdx(w, t[i], t[i - 1], t[i - 2], i)
                 if idx != -1:
                     s1 += weights[idx]
+
                 for tag in tags:
-                    idx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
-                    if idx != -1:
-                        expected[idx] += tagsCalc[tag] / denominator
-                        try:
-                            prevlogregex = tagPreLogExp[tag]
-                            tagPreLogExp[tag] += weights[idx]
-                        except RuntimeError:
-                            print('oops', weights[idx], prevlogregex)
-                            exit()
+                    jdx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
+                    if jdx != -1:
+
+                        #expected calculation
+                        expected[jdx] += expectedTagsCalc[tag] / expectedDenominator
+
+                        #s2 calculation
+                        s2TagPreLogExp[tag] += weights[jdx]
 
 
-            tagValsMul100 = 100.0 * np.asarray(list(tagPreLogExp.values()))
+            #s2 cqlculqtion
+            tagValsMul100 = np.asarray(list(s2TagPreLogExp.values()))
             loged = sp.misc.logsumexp(tagValsMul100)
-            s2 += loged - np.log(100)
+            s2 += loged
 
-    regulaized_LP = CONST.reg_lambda * weights
-    lprimeVec = empirical - expected - regulaized_LP
-    g = -lprimeVec
-    # print('finished LPrime', time.asctime())
-    # return retVal
 
-    regularizer_L = (CONST.reg_lambda / 2) * (np.linalg.norm(weights)) ** 2
-    f = -float(s1 - s2 - regularizer_L)
+    gradVec = empirical - expected - gradReg
+    g = -gradVec #maximize function
+
+    funcRes = s1 - s2 - funcReg
+    f = -funcRes #maximize function
+
     print('finish L', str(f), time.asctime())
     return (f, g)
 
-
-# v dot f of all sentences: one parameter at the time:
-# def calc_Lprime(weights, fv):
-#     sentences_w = fv.corpus.getSentencesW()
-#     sentences_t = fv.corpus.getSentencesT()
-#     tags = fv.corpus.getTags()
-#     fgArr = fv.fgArr
-#
-#     c = 0
-#     empirical = np.zeros(fv.getSize())
-#     # empirical = np.zeros(fv.getSize())
-#     for k in range(fv.getSize()):
-#         empirical[k] = fv.featureIdx2Fg[k].getCountsByIdx(k)
-#
-#     expected = np.zeros(fv.getSize())
-#     for w, t in zip(sentences_w, sentences_t):
-#         for i in range(2, len(t)):
-#             c += 1
-#             if c % 10000 == 0: print('LPrime sample ', c, time.asctime())
-#             tagsCalc = {}
-#             denominator = 0.0
-#
-#             for tag in tags:
-#                 tagsCalc[tag] = 0.0
-#                 for fg in fgArr:
-#                     idx = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
-#                     if idx != -1:
-#                         tagsCalc[tag] += weights[idx]
-#                 tagsCalc[tag] = np.exp(tagsCalc[tag])
-#                 denominator += tagsCalc[tag]
-#             for tag in tags:
-#                 for fg in fgArr:
-#                     k = fg.getFeatureIdx(w, tag, t[i - 1], t[i - 2], i)
-#                     if k != -1:
-#                         expected[k] += tagsCalc[tag] / denominator
-#
-#     regulaized_LP = CONST.reg_lambda * weights
-#
-#     lprimeVec = empirical - expected - regulaized_LP
-#     retVal = -lprimeVec
-#     print('finished LPrime', time.asctime())
-#     return retVal
 
 
 """Run main"""
