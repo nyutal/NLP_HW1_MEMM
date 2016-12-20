@@ -52,7 +52,7 @@ class FeatureVec(object):
     def getFeatureGenString(self):
         s = ''
         for fg in self.fgArr:
-            s += fg.__class__.__name__
+            s += ' ' + fg.__class__.__name__
         return s
 
 

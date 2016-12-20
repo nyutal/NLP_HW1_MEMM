@@ -20,9 +20,10 @@ class Corpus(object):
     def getTags(self):
         return self.tags
 
-    def getFileInfo():
+    def getFileInfo(self):
         s = ''
-        s += fileName + ' ' + maxSentences
+        s += self.fileName + ' with #samples: ' + str(self.maxSentences)
+        return s
 
 class SentenceParser(object):
 

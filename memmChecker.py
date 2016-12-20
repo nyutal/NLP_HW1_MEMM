@@ -11,8 +11,8 @@ class MemmChecker(object):
 
         fp = open(resultFileName, 'w')
         fp.write("lambda=%s" % CONST.reg_lambda)
-        fp.write("feature generators = %s" % model.getFeatureGenString() )
-        fp.write("learn corpus = %s" % model.corpus.getFileInfo() )
+        fp.write("feature generators = %s\n" % model.getFeatureGenString() )
+        fp.write("learn corpus = %s\n" % model.corpus.getFileInfo() )
         totalTags = 0
         totalErrors = 0
         totalSentence = 0

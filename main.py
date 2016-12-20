@@ -31,24 +31,21 @@ def main():
     fv.addFeatureGen(FCapital())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 100)
+    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 10)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile(CONST.test_file_name)
+    validateCorpus = parser.parseTagedFile(CONST.test_file_name,1 )
 
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           # x0=np.full(fv.getSize(), 100*CONST.epsilon),
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
-                                           m=50,
-                                           maxiter=50,
-                                           disp=True)#, factr=CONST.accuracy['high'])
-
+                                           # fprime=calc_Lprime, m=56, #maxiter=50,
+                                           disp=True)  # , factr=CONST.accuracy['high'])
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
     print('x1:', x1)
     print('f1:', f1)
@@ -146,10 +143,11 @@ def calc_L(weights, fv):
     f = -funcRes #maximize function
 
     print('finish L', str(f), time.asctime())
-    file_name = 'results_test' + str(fv.getIter()) + '.txt'
-    fp = open(file_name, 'w')
-    for i in weights:
-        fp.write("%s\n" % i)
+    # file_name = 'results_test' + str(fv.getIter()) + '.txt'
+    # fp = open(file_name, 'w')
+    # for i in weights:
+    #     fp.write("%s\n" % i)
+
     return (f, g)
 
 
