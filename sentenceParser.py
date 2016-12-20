@@ -41,9 +41,12 @@ class SentenceParser(object):
         for sentence in sentences:
             w = []
             tag = []
-            for word in sentence:
+            for idx, word in enumerate(sentence):
                 a, b = word.split("_")
-                w.append(a)
+                if (idx == 2) and (b != 'NNP'):
+                    w.append(a.lower())
+                else:
+                    w.append(a)
                 tag.append(b)
                 tags.add(b)  # create a set of all tags
 
