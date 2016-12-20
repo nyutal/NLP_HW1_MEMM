@@ -6,6 +6,7 @@ class CONST(object):
     accuracy = {'low':10**16, 'med':10**10, 'high':10**10}
     test_file_name = 'test.wtag'
     train_file_name = 'train.wtag'
+    test_file_name = 'test.wtag'
     viterbiMulFactor = 100000
 
     def __setattr__(self, *_):

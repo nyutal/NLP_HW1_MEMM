@@ -3,14 +3,13 @@ from consts import CONST
 
 class Viterbi(object):
 
-    def __init__(self, tags, fv, weights):
+    def __init__(self, model):
         self.preSk = ['*']
         self.postSk = ['SSS']
-        self.middleSk = tags
+        self.middleSk = model.corpus.getTags()
         if '*' in self.middleSk: self.middleSk.remove('*')
         if 'SSS' in self.middleSk: self.middleSk.remove('SSS')
-        self.fv = fv
-        self.weights = weights
+        self.model = model
 
     def solve(self, sentence, addPrefixSuffix=False):
         fullSentence = []
@@ -27,7 +26,7 @@ class Viterbi(object):
                     piMax = float("-inf")
                     b = None
                     for t in self.getSk(k-2, l):
-                        curr = pi[(k-1), t, u] * self.fv.getQ(v, u, t, fullSentence, k)
+                        curr = pi[(k-1), t, u] * self.model.getQ(v, u, t, fullSentence, k)
                         if piMax < curr:
                             piMax = curr
                             b = t
