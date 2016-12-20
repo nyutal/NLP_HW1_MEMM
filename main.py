@@ -45,7 +45,7 @@ def main():
                                            # x0=np.full(fv.getSize(), 100*CONST.epsilon),
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
-                                           # fprime=calc_Lprime,  # m=256, maxfun=8, maxiter=8,
+                                           # fprime=calc_Lprime, m=56, #maxiter=50,
                                            disp=True)#, factr=CONST.accuracy['high'])
 
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
