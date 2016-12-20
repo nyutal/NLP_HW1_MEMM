@@ -1,5 +1,5 @@
 from consts import CONST
-# import numpy as np
+import numpy as np
 
 class Viterbi(object):
 
@@ -26,7 +26,7 @@ class Viterbi(object):
                     piMax = float("-inf")
                     b = None
                     for t in self.getSk(k-2, l):
-                        curr = pi[(k-1), t, u] * self.model.getQ(v, u, t, fullSentence, k)
+                        curr = pi[(k-1), t, u] * self.model.getWeightForHistory(v, u, t, fullSentence, k)
                         if piMax < curr:
                             piMax = curr
                             b = t
@@ -51,6 +51,56 @@ class Viterbi(object):
             # print("adding to v, u ", str(k), reversedPath[-1], reversedPath[-2], bp[(k+2,reversedPath[-1], reversedPath[-2])])
             reversedPath.append(bp[(k+2,reversedPath[-1], reversedPath[-2])])
         # print(reversedPath)
+        return list(reversed(reversedPath))
+
+    def fullSolve(self, sentence, addPrefixSuffix=False):
+        fullSentence = []
+        if addPrefixSuffix: fullSentence = ['*', '*'] + sentence + ['SSS']
+        else: fullSentence = sentence
+        l = len(fullSentence)
+        tags = ['*', '*']
+        pi = {}
+        pi[(1, '*', '*')] = 1.0
+        bp = {}
+
+
+
+        for k in range(2, l):
+            tuvExpFv = {}
+            sumTuExpFv = {}
+            for t in self.getSk(k - 2, l):
+                for u in self.getSk(k-1, l):
+                    sumTuExpFv[t, u] = 0.0
+                    for v in self.getSk(k, l):
+                        w = self.model.getWeightForHistory(v, u, t, fullSentence, k)
+                        tuvExpFv[t, u, v] = np.exp(w)
+                        sumTuExpFv[t, u] += tuvExpFv[t, u, v]
+            for u in self.getSk(k-1, l):
+                for v in self.getSk(k, l):
+                    piMax = float("-inf")
+                    b = None
+                    for t in self.getSk(k-2, l):
+                        curr = pi[(k-1), t, u] * tuvExpFv[t,u,v] / sumTuExpFv[t, u]
+                        if piMax < curr:
+                            piMax = curr
+                            b = t
+                    pi[(k, u, v)] = piMax
+                    bp[(k, u, v)] = b
+                    # print(k, u, v, b, piMax)
+
+        piMax = float("-inf")
+        uMax = None
+        vMax = None
+        for u in self.getSk(l - 2, l):
+            for v in self.getSk(l-1, l):
+                if pi[l-1, u, v ] > piMax:
+                    piMax = pi[l-1, u, v ]
+                    uMax = u
+                    vMax = v
+        reversedPath = [vMax, uMax]
+        for k in range(l-3, 1, -1):
+            # print("adding to v, u ", str(k), reversedPath[-1], reversedPath[-2], bp[(k+2,reversedPath[-1], reversedPath[-2])])
+            reversedPath.append(bp[(k+2,reversedPath[-1], reversedPath[-2])])
         return list(reversed(reversedPath))
 
     def getSk(self, k, l):

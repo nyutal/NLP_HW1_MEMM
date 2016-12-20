@@ -32,12 +32,12 @@ def main():
     fv.addFeatureGen(F105())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTagedFile(CONST.train_file_name)
+    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 100)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile("test.Wtag")
+    validateCorpus = parser.parseTagedFile("test.Wtag", 15)
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
 
     print('start optimization', time.asctime())

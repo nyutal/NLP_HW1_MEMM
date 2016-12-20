@@ -21,13 +21,13 @@ class FeatureVec(object):
     def setWeights(self, w):
         self.weights = w
 
-    def getQ(self, t, t_minus_1, t_minus_2, words, i):
-        qRes = 0.0
+    def getWeightForHistory(self, t, t_minus_1, t_minus_2, words, i):
+        wRes = 0.0
         for fg in self.fgArr:
             k = fg.getFeatureIdx(words, t, t_minus_1, t_minus_2, i)
             if k != -1:
-                qRes += self.weights[k]
-        return qRes
+                wRes += self.weights[k]
+        return wRes
 
     def generateFeatures(self, corpus):
         self.corpus = corpus
