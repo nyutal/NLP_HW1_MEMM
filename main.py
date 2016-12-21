@@ -19,6 +19,8 @@ def main():
 
     np.seterr(all='raise')
 
+    train = False
+
     fv = FeatureVec()
     fv.addFeatureGen(F100())
     fv.addFeatureGen(F101_2())
@@ -41,21 +43,23 @@ def main():
     validateCorpus = parser.parseTagedFile(CONST.test_file_name)
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
 
-    print('start optimization', time.asctime())
-    x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
-                                           x0=np.ones(fv.getSize()),
-                                           args=(fv,),
-                                          # maxfun=8
-                                           m=60,
-                                           maxiter=30,
-                                           disp=True)#, factr=CONST.accuracy['high'])
+    if train:
+        print('start optimization', time.asctime())
+        x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
+                                               x0=np.ones(fv.getSize()),
+                                               args=(fv,),
+                                               # maxfun=8
+                                               m=60,
+                                               maxiter=30,
+                                               disp=True)#, factr=CONST.accuracy['high'])
 
-    # x1 = x1 * 10 ** 15  # in order to eliminate underflow
+        # x1 = x1 * 10 ** 15  # in order to eliminate underflow
+        print('x1:', x1)
+        print('f1:', f1)
+        print('d1:', d1)
+    else:
+        x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test32.txt')])))
     print('x1:', x1)
-    print('f1:', f1)
-    print('d1:', d1)
-
-
     fv.setWeights(x1)
 
     checker = MemmChecker()
