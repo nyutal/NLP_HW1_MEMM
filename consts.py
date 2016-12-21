@@ -1,7 +1,8 @@
 # DEFINES
 import numpy as np
 class CONST(object):
-    reg_lambda = 0.5
+    reg_lambda = 0.0
+    max_iter = 80
     epsilon = np.finfo(float).eps
     accuracy = {'low':10**16, 'med':10**10, 'high':10**10}
     test_file_name = 'test.wtag'

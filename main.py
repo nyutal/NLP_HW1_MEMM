@@ -11,7 +11,6 @@ from memmChecker import *
 
 logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
-
 def main():
     """Compare runs for various test graph initializations"""
 
@@ -19,35 +18,36 @@ def main():
 
     fv = FeatureVec()
     fv.addFeatureGen(F100())
-    fv.addFeatureGen(F101_2())
-    fv.addFeatureGen(F101_3())
-    fv.addFeatureGen(F101_4())
-    fv.addFeatureGen(F102_2())
-    fv.addFeatureGen(F102_3())
-    fv.addFeatureGen(F102_4())
+    # fv.addFeatureGen(F101_2())
+    # fv.addFeatureGen(F101_3())
+    # fv.addFeatureGen(F101_4())
+    # fv.addFeatureGen(F102_2())
+    # fv.addFeatureGen(F102_3())
+    # fv.addFeatureGen(F102_4())
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
-    fv.addFeatureGen(F105())
-    fv.addFeatureGen(FCapital())
-    fv.addFeatureGen(FDigit())
+    # fv.addFeatureGen(F105())
+    # fv.addFeatureGen(FCapital())
+    # fv.addFeatureGen(FDigit())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 1000)
+    trainCorpus = parser.parseTagedFile(CONST.train_file_name)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile(CONST.test_file_name, 50)
+    validateCorpus = parser.parseTagedFile(CONST.test_file_name)
 
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
-    print(CONST.reg_lambda)
+    print('lambda', str(CONST.reg_lambda))
+    print('max_iter', str(CONST.max_iter))
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
                                            # fprime=calc_Lprime, m=56,
-                                           maxiter=50,
+                                           maxiter=CONST.max_iter,
                                            disp=True)  # , factr=CONST.accuracy['high'])
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
     print('x1:', x1)
