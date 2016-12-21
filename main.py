@@ -46,8 +46,8 @@ def main():
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
                                           # maxfun=8
-                                           m=50,
-                                           maxiter=50,
+                                           m=60,
+                                           maxiter=30,
                                            disp=True)#, factr=CONST.accuracy['high'])
 
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
@@ -92,11 +92,13 @@ def calc_L(weights, fv):
     w = []
     t = []
     j = []
-    for i in range(6):
-        w.append(sentences_w[833*i : 833*(i+1)])
-        t.append(sentences_t[833*i : 833*(i+1)])
+    num_of_proc = 7
+    sen_per_proc = int(len(fv.corpus.getSentences()) / num_of_proc)
+    for i in range(num_of_proc):
+        w.append(sentences_w[sen_per_proc*i : sen_per_proc*(i+1)])
+        t.append(sentences_t[sen_per_proc*i : sen_per_proc*(i+1)])
 
-    for i in range(6):
+    for i in range(num_of_proc):
         j.append((fv, t[i], w[i], weights))
 
     with mp.Pool() as pool:
