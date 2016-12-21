@@ -29,22 +29,25 @@ def main():
     fv.addFeatureGen(F104())
     fv.addFeatureGen(F105())
     fv.addFeatureGen(FCapital())
+    fv.addFeatureGen(FDigit())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 10)
+    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 1000)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile(CONST.test_file_name,1 )
+    validateCorpus = parser.parseTagedFile(CONST.test_file_name, 50)
 
     print(validateCorpus.getTags().issubset(trainCorpus.getTags()))
+    print(CONST.reg_lambda)
 
     print('start optimization', time.asctime())
     x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(calc_L,
                                            x0=np.ones(fv.getSize()),
                                            args=(fv,),
-                                           # fprime=calc_Lprime, m=56, #maxiter=50,
+                                           # fprime=calc_Lprime, m=56,
+                                           maxiter=50,
                                            disp=True)  # , factr=CONST.accuracy['high'])
     # x1 = x1 * 10 ** 15  # in order to eliminate underflow
     print('x1:', x1)
