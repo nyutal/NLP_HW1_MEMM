@@ -5,10 +5,11 @@ import multiprocessing as mp
 import uuid
 
 class MemmChecker(object):
-    def check(self, model, corpus):
+    def check(self, model, corpus, fpMain):
         j = []
         num_of_proc = CONST.num_of_viterbers
         sen_per_proc = int( ( len(corpus.getSentences()) + num_of_proc - 1 ) / num_of_proc)
+        fpMain.write("learn corpus = %s\n" % model.corpus.getFileInfo())
 
         if CONST.parallel:
             for i in range(num_of_proc):
@@ -21,6 +22,8 @@ class MemmChecker(object):
                 ret = pool.map(calc_viterbi, j)
             totalTags, totalErrors = [sum(x) for x in zip(*ret)]
             print('totalTags=', totalTags, ', totalErrors=', totalErrors, ', precision=', (totalTags - totalErrors) / totalTags)
+            fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
+                totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
         else:
             v = Viterbi(model)
             resultFileName = 'results_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
@@ -59,6 +62,8 @@ class MemmChecker(object):
                 fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
                     totalSentence   , totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
                 fp.flush()
+                fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
+                    totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
             fp.close()
 
     def compete(self, model, corpus):

@@ -197,3 +197,14 @@ class FPlural(FeatureGenerator):
         if not words[i][len(words[i])-1] != 's':
             return (None), False
         return (t), True
+
+class FDigitWord(FeatureGenerator):
+
+    def __init__(self):
+        super().__init__()
+        self.digitWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'hundred' ,'thousand']
+
+    def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
+        if words[i].lower() not in self.digitWords:
+            return (None), False
+        return (t), True

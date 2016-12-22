@@ -11,14 +11,15 @@ from memmChecker import *
 from sentenceParser import *
 import multiprocessing as mp
 
-logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
+# logging.basicConfig(filename='hw1.log', filemode='w', level=logging.DEBUG)
 
 def main():
     """Compare runs for various test graph initializations"""
 
     np.seterr(all='raise')
 
-
+    fpMainName = 'result_main_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
+    fpMain = open(fpMainName, 'w')
 
     fv = FeatureVec()
     fv.addFeatureGen(F100())
@@ -34,6 +35,7 @@ def main():
     # fv.addFeatureGen(FCapital())
     # fv.addFeatureGen(FDigit())
     # fv.addFeatureGen(FPlural())
+    # fv.addFeatureGen(FDigitWord())
 
     parser = SentenceParser()
     trainCorpus = parser.parseTaggedFile(CONST.train_file_name, 1000)
@@ -41,7 +43,7 @@ def main():
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTaggedFile(CONST.test_file_name, 50)
+    validateCorpus = parser.parseTaggedFile(CONST.test_file_name, 100)
 
     if (validateCorpus.getTags().issubset(trainCorpus.getTags())) == False:
         exit('validation corpus atags not subset of learning set')
@@ -50,9 +52,14 @@ def main():
     compCorpus = parser.parseUnTaggedFile(CONST.comp_file_name)
 
     print('lambda', str(CONST.reg_lambda))
+    fpMain.write("lambda=%s\n" % CONST.reg_lambda)
     print('max_iter', str(CONST.max_iter))
+    fpMain.write("max_iter=%s\n" % CONST.max_iter)
+    print('featureGen:', fv.getFeatureGenString())
+    fpMain.write("featureGen:  %s" % fv.getFeatureGenString())
 
     print('start optimization', time.asctime())
+    fpMain.write("start optimization %s\n" % time.asctime())
 
     lFunc = calc_single_L
     if CONST.parallel: lFunc = calc_L
@@ -60,7 +67,7 @@ def main():
     if CONST.train:
         x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(lFunc,
                                                x0=np.ones(fv.getSize()),
-                                               args=(fv,),
+                                               args=(fv,fpMain),
                                                # m=60,
                                                maxiter=CONST.max_iter,
                                                disp=True)#, factr=CONST.accuracy['high'])
@@ -83,7 +90,7 @@ def main():
 
     checker = MemmChecker()
     if CONST.isValidate:
-        checker.check(fv, validateCorpus)
+        checker.check(fv, validateCorpus, fpMain)
     else:
         checker.compete(fv, compCorpus)
 
@@ -91,7 +98,7 @@ def main():
     print("Done!")
 
 
-def calc_L(weights, fv):
+def calc_L(weights, fv, fp):
     #function  calculation vartiables
     funcReg = (CONST.reg_lambda / 2) * (np.linalg.norm(weights)) ** 2
 
@@ -120,6 +127,7 @@ def calc_L(weights, fv):
     f = -funcRes #maximize function
 
     print('finish L', str(f), time.asctime())
+    fp.write("finish L %s %s\n" % ( str(f), time.asctime()) )
     # file_name = 'results/test' + str(fv.getIter()) + '.txt'
     # fp = open(file_name, 'w')
     # for i in weights:
