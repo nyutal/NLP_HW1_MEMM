@@ -18,31 +18,30 @@ def main():
 
     np.seterr(all='raise')
 
-    train = False
-    validate_or_compete = 'Compete' #'Validate'
+
 
     fv = FeatureVec()
     fv.addFeatureGen(F100())
-    fv.addFeatureGen(F101_2())
-    fv.addFeatureGen(F101_3())
-    fv.addFeatureGen(F101_4())
-    fv.addFeatureGen(F102_2())
-    fv.addFeatureGen(F102_3())
-    fv.addFeatureGen(F102_4())
+    # fv.addFeatureGen(F101_2())
+    # fv.addFeatureGen(F101_3())
+    # fv.addFeatureGen(F101_4())
+    # fv.addFeatureGen(F102_2())
+    # fv.addFeatureGen(F102_3())
+    # fv.addFeatureGen(F102_4())
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
-    fv.addFeatureGen(F105())
-    fv.addFeatureGen(FCapital())
+    # fv.addFeatureGen(F105())
+    # fv.addFeatureGen(FCapital())
     # fv.addFeatureGen(FDigit())
-    fv.addFeatureGen(FPlural())
+    # fv.addFeatureGen(FPlural())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTaggedFile(CONST.train_file_name)
+    trainCorpus = parser.parseTaggedFile(CONST.train_file_name, 1000)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTaggedFile(CONST.test_file_name)
+    validateCorpus = parser.parseTaggedFile(CONST.test_file_name, 50)
 
     if (validateCorpus.getTags().issubset(trainCorpus.getTags())) == False:
         exit('validation corpus atags not subset of learning set')
@@ -58,7 +57,7 @@ def main():
     lFunc = calc_single_L
     if CONST.parallel: lFunc = calc_L
 
-    if train:
+    if CONST.train:
         x1, f1, d1 = sp.optimize.fmin_l_bfgs_b(lFunc,
                                                x0=np.ones(fv.getSize()),
                                                args=(fv,),
@@ -83,7 +82,7 @@ def main():
     fv.setWeights(x1)
 
     checker = MemmChecker()
-    if validate_or_compete == 'Validate':
+    if CONST.isValidate:
         checker.check(fv, validateCorpus)
     else:
         checker.compete(fv, compCorpus)

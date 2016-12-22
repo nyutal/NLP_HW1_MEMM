@@ -2,7 +2,7 @@
 import numpy as np
 class CONST(object):
     reg_lambda = 0.0
-    max_iter = 200
+    max_iter = 100
     epsilon = np.finfo(float).eps
     accuracy = {'low':10**16, 'med':10**10, 'high':10**10}
     test_file_name = 'test.wtag'
@@ -13,6 +13,8 @@ class CONST(object):
     parallel = True
     num_of_learners = 6
     num_of_viterbers = 6
+    train = True
+    isValidate = True
 
     def __setattr__(self, *_):
         raise ValueError("don't you dare!")
