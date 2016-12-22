@@ -33,6 +33,7 @@ def main():
     fv.addFeatureGen(F105())
     fv.addFeatureGen(FCapital())
     # fv.addFeatureGen(FDigit())
+    fv.addFeatureGen(FPlural())
 
     parser = SentenceParser()
     trainCorpus = parser.parseTagedFile(CONST.train_file_name, 1000)

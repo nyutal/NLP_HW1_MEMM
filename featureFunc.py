@@ -190,3 +190,10 @@ class FDigit(FeatureGenerator):
         if not words[i][0].isdigit():
             return (None), False
         return (t), True
+
+class FPlural(FeatureGenerator):
+
+    def getHashAndValid(self, words, t, t_minus_1, t_minus_2, i):
+        if not words[i][len(words[i])-1] != 's':
+            return (None), False
+        return (t), True
