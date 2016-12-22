@@ -12,8 +12,6 @@ class MemmChecker(object):
 
         if CONST.parallel:
             for i in range(num_of_proc):
-                print(i)
-                print(len(corpus.getSentences()))
                 if i < num_of_proc-1:
                     j.append((corpus, model, sen_per_proc * i, sen_per_proc * (i + 1)))
                 else:
@@ -25,7 +23,7 @@ class MemmChecker(object):
             print('totalTags=', totalTags, ', totalErrors=', totalErrors, ', precision=', (totalTags - totalErrors) / totalTags)
         else:
             v = Viterbi(model)
-            resultFileName = 'results_' + time.strftime("%Y%m%d_%H%M%S") + '_' + str(uuid.uuid1())[0:5] + '.txt'
+            resultFileName = 'results_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
             print('Starting validation, writing to ', resultFileName)
             fp = open(resultFileName, 'w')
             fp.write("lambda=%s\n" % CONST.reg_lambda)
