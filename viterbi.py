@@ -2,7 +2,6 @@ from consts import CONST
 import numpy as np
 
 class Viterbi(object):
-
     def __init__(self, model):
         self.preSk = ['*']
         self.postSk = ['SSS']
@@ -12,13 +11,10 @@ class Viterbi(object):
         self.model = model
 
     def solve(self, sentence, addPrefixSuffix=False):
-        fullSentence = []
         if addPrefixSuffix: fullSentence = ['*', '*'] + sentence + ['SSS']
         else: fullSentence = sentence
         l = len(fullSentence)
-        tags = ['*', '*']
-        pi = {}
-        pi[(1, '*', '*')] = 1.0
+        pi = {(1, '*', '*'): 1.0}
         bp = {}
         for k in range(2, l):
             for u in self.getSk(k-1, l):
@@ -54,22 +50,14 @@ class Viterbi(object):
         return list(reversed(reversedPath))
 
     def fullSolve(self, sentence, addPrefixSuffix=False):
-        fullSentence = []
         if addPrefixSuffix: fullSentence = ['*', '*'] + sentence + ['SSS']
         else: fullSentence = sentence
         l = len(fullSentence)
-        tags = ['*', '*']
-        pi = {}
-        pi[(1, '*', '*')] = 1.0
+        pi = {(1, '*', '*'): 1.0}
         bp = {}
-
-
-
         for k in range(2, l):
-
             tuvExpFv = {}
             sumTuExpFv = {}
-
             for t in self.getSk(k - 2, l):
                 for u in self.getSk(k-1, l):
                     sumTuExpFv[t, u] = 0.0
