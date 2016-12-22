@@ -66,8 +66,10 @@ class Viterbi(object):
 
 
         for k in range(2, l):
+
             tuvExpFv = {}
             sumTuExpFv = {}
+
             for t in self.getSk(k - 2, l):
                 for u in self.getSk(k-1, l):
                     sumTuExpFv[t, u] = 0.0
@@ -75,12 +77,17 @@ class Viterbi(object):
                         w = self.model.getWeightForHistory(v, u, t, fullSentence, k)
                         tuvExpFv[t, u, v] = np.exp(w)
                         sumTuExpFv[t, u] += tuvExpFv[t, u, v]
+
             for u in self.getSk(k-1, l):
                 for v in self.getSk(k, l):
                     piMax = float("-inf")
                     b = None
                     for t in self.getSk(k-2, l):
-                        curr = pi[(k-1), t, u] * tuvExpFv[t,u,v] / sumTuExpFv[t, u]
+                        try:
+                            curr = pi[(k-1), t, u] * ( tuvExpFv[t,u,v] / sumTuExpFv[t, u] )
+                        except FloatingPointError:
+                            curr = 0.0
+
                         if piMax < curr:
                             piMax = curr
                             b = t

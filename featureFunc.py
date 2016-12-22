@@ -112,9 +112,6 @@ class FeatureGenerator(object):
         raise Exception('you should implement hash')
     
     def calc(self, featureIdx, words, t, t_minus_1, t_minus_2, i):
-#         print(featureIdx)
-#         print(self.getHashAndValid(words, t, t_minus_1, t_minus_2, i))
-#         print(self.featureIdx2hash[featureIdx])
         h, valid = self.getHashAndValid(words, t, t_minus_1, t_minus_2, i)
         return ( h == self.featureIdx2hash[featureIdx] )
 
