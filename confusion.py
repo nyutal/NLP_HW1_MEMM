@@ -28,5 +28,5 @@ for i in range(1,8):
                 conf[h] = c(word)
                 conf2[h] = 1
 
-for w in sorted(conf2, key=conf2.get, reverse=True)[1:10]:
+for w in sorted(conf2, key=conf2.get, reverse=True)[0:10]:
   print ('our:'+ str(w[0])+ ', real:'+ str(w[1]), 'errors:' + str(conf2[w]), conf[w].words)

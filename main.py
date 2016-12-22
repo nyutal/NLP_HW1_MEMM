@@ -50,7 +50,7 @@ def main():
                                                args=(fv,),
                                                # maxfun=8
                                                m=60,
-                                               maxiter=30,
+                                               maxiter=50,
                                                disp=True)#, factr=CONST.accuracy['high'])
 
         # x1 = x1 * 10 ** 15  # in order to eliminate underflow
@@ -58,7 +58,7 @@ def main():
         print('f1:', f1)
         print('d1:', d1)
     else:
-        x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test32.txt')])))
+        x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test53.txt')])))
     print('x1:', x1)
     fv.setWeights(x1)
 
