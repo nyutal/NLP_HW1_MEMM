@@ -61,6 +61,35 @@ class MemmChecker(object):
                 fp.flush()
             fp.close()
 
+    def compete(self, model, corpus):
+        v = Viterbi(model)
+        resultFileName = 'comp_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
+        resultFileName2 = 'MYcomp_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
+        print('Starting validation, writing to ', resultFileName)
+        fp = open(resultFileName, 'w')
+        fp2 = open(resultFileName2, 'w')
+        for i in range(len(corpus.getSentences())):
+            print(corpus.getSentencesW()[i])
+            tags = v.fullSolve(corpus.getSentencesW()[i])
+            print(tags)
+            print()
+            vWords = corpus.getSentencesW()[i]
+            if len(tags) != len(vWords) - 2:
+                print(len(tags))
+                print(tags)
+                print(len(vWords))
+                print(vWords)
+                exit()
+            vWords = vWords[2:]
+            for j in range(len(tags) - 1):
+                fp.write(str(vWords[j]) + '_' + str(tags[j]) + ' ')
+                fp2.write(str(vWords[j]) + '|' + str(tags[j]) + ' ')
+            fp.write('\n')
+            fp.flush()
+            fp2.write('\n')
+            fp2.flush()
+        fp.close()
+
 
 def calc_viterbi(params):
     corpus, model, start, batch_size = params

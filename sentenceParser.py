@@ -26,8 +26,7 @@ class Corpus(object):
         return s
 
 class SentenceParser(object):
-
-    def parseTagedFile(self, fileName, maxSentences=-1):
+    def parseTaggedFile(self, fileName, maxSentences=-1):
         sentences = []
         sentences_w = []
         sentences_t = []
@@ -69,3 +68,24 @@ class SentenceParser(object):
 
         return Corpus(sentences, sentences_t, sentences_w, tags, fileName, maxSentences)
         # return (sentences, sentences_t, sentences_w, tags)
+
+    def parseUnTaggedFile(self, fileName, maxSentences=-1):
+        sentences = []
+        sentences_w = []
+        sentences_t = []
+        tags = {'VBN', '.', 'WRB', 'RBS', 'NN', 'CC', 'MD', 'PRP$', 'UH', 'EX', 'PRP', 'WP$', 'RB', 'CD', 'NNS', 'DT', 'JJS', '``', 'PDT', "''", 'POS', 'WP', 'NNPS', 'VBG', '-LRB-', 'RP', 'IN', 'TO', 'NNP', 'SYM', '-RRB-', '$', 'FW', 'RBR', 'WDT', 'JJ', '#', ':', 'VBP', 'JJR', 'VBZ', ',', 'VBD', 'SSS', 'VB'}
+        lines = [line.rstrip('\n') for line in open(fileName)]
+        samples = 0
+        for line in lines:
+            w = ['*','*']  # start
+            w.extend(line.split(" "))
+            w.append('SSS')  # stop
+            sentences.append(w)
+            samples += 1
+            sentences_w.append(w)
+            if maxSentences != -1 and samples == maxSentences: break
+
+        print('SentenceParser parsed word file with ', len(sentences))
+        print(sentences_w)
+
+        return Corpus(sentences, sentences_t, sentences_w, tags, fileName, maxSentences)

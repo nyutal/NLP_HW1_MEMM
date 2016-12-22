@@ -18,16 +18,17 @@ def main():
 
     np.seterr(all='raise')
 
-    train = True
+    train = False
+    validate_or_compete = 'Compete' #'Validate'
 
     fv = FeatureVec()
     fv.addFeatureGen(F100())
-    # fv.addFeatureGen(F101_2())
-    # fv.addFeatureGen(F101_3())
-    # fv.addFeatureGen(F101_4())
-    # fv.addFeatureGen(F102_2())
-    # fv.addFeatureGen(F102_3())
-    # fv.addFeatureGen(F102_4())
+    fv.addFeatureGen(F101_2())
+    fv.addFeatureGen(F101_3())
+    fv.addFeatureGen(F101_4())
+    fv.addFeatureGen(F102_2())
+    fv.addFeatureGen(F102_3())
+    fv.addFeatureGen(F102_4())
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
     fv.addFeatureGen(F105())
@@ -36,15 +37,18 @@ def main():
     fv.addFeatureGen(FPlural())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTagedFile(CONST.train_file_name, 1000)
+    trainCorpus = parser.parseTaggedFile(CONST.train_file_name)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTagedFile(CONST.test_file_name, 50)
+    validateCorpus = parser.parseTaggedFile(CONST.test_file_name)
 
     if (validateCorpus.getTags().issubset(trainCorpus.getTags())) == False:
         exit('validation corpus atags not subset of learning set')
+
+
+    compCorpus = parser.parseUnTaggedFile(CONST.comp_file_name)
 
     print('lambda', str(CONST.reg_lambda))
     print('max_iter', str(CONST.max_iter))
@@ -66,27 +70,29 @@ def main():
         print('x1:', x1)
         print('f1:', f1)
         print('d1:', d1)
+
+        fp = open('test.txt', 'w')
+        for i in x1:
+            fp.write("%s\n" % i)
+        fp.close()
     else:
-        x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test32.txt')])))
+        x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test53.txt')])))
+
 
     print('x1:', x1)
     fv.setWeights(x1)
 
     checker = MemmChecker()
+    if validate_or_compete == 'Validate':
+        checker.check(fv, validateCorpus)
+    else:
+        checker.compete(fv, compCorpus)
 
-    checker.check(fv, validateCorpus)
-
-    fp = open('test.txt', 'w')
-    for i in x1:
-        fp.write("%s\n" % i)
     logging.info('Done!')
     print("Done!")
 
 
 def calc_L(weights, fv):
-    sentences_w = fv.corpus.getSentencesW()
-    sentences_t = fv.corpus.getSentencesT()
-
     #function  calculation vartiables
     funcReg = (CONST.reg_lambda / 2) * (np.linalg.norm(weights)) ** 2
 
