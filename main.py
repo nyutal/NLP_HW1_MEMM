@@ -68,8 +68,6 @@ def main():
 
     checker.check(fv, validateCorpus)
 
-
-
     fp = open('test.txt', 'w')
     for i in x1:
         fp.write("%s\n" % i)

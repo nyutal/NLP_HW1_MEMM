@@ -44,12 +44,15 @@ class SentenceParser(object):
             if maxSentences != -1 and samples == maxSentences: break
 
         # sentences = sentences[0:100]
+
+        capital_pos = ['NNP', 'NNPS', 'PRP'] # these words have to stay capitalized
+
         for sentence in sentences:
             w = []
             tag = []
             for idx, word in enumerate(sentence):
                 a, b = word.split("_")
-                if (idx == 2) and (b != 'NNP'):
+                if (idx == 2) and (b not in capital_pos):
                     w.append(a.lower())
                 else:
                     w.append(a)
