@@ -38,12 +38,12 @@ def main():
     # fv.addFeatureGen(FDigitWord())
 
     parser = SentenceParser()
-    trainCorpus = parser.parseTaggedFile(CONST.train_file_name, 1000)
+    trainCorpus = parser.parseTaggedFile(CONST.train_file_name)
     fv.generateFeatures(trainCorpus)
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 
-    validateCorpus = parser.parseTaggedFile(CONST.test_file_name, 100)
+    validateCorpus = parser.parseTaggedFile(CONST.test_file_name)
 
     if (validateCorpus.getTags().issubset(trainCorpus.getTags())) == False:
         exit('validation corpus atags not subset of learning set')
@@ -84,6 +84,8 @@ def main():
     else:
         x1 = np.asarray(list(map(float,[line.strip() for line in open('results/test53.txt')])))
 
+    print('finish optimization', time.asctime())
+    fpMain.write("finish optimization %s\n" % time.asctime())
 
     print('x1:', x1)
     fv.setWeights(x1)
@@ -92,7 +94,7 @@ def main():
     if CONST.isValidate:
         checker.check(fv, validateCorpus, fpMain)
     else:
-        checker.compete(fv, compCorpus)
+        checker.compete(fv, compCorpus, fpMain)
 
     logging.info('Done!')
     print("Done!")

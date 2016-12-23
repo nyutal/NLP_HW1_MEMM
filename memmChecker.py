@@ -10,6 +10,8 @@ class MemmChecker(object):
         num_of_proc = CONST.num_of_viterbers
         sen_per_proc = int( ( len(corpus.getSentences()) + num_of_proc - 1 ) / num_of_proc)
         fpMain.write("learn corpus = %s\n" % model.corpus.getFileInfo())
+        print('start tagging', time.asctime())
+        fpMain.write("start tagging %s\n" % time.asctime())
 
         if CONST.parallel:
             for i in range(num_of_proc):
@@ -22,8 +24,8 @@ class MemmChecker(object):
                 ret = pool.map(calc_viterbi, j)
             totalTags, totalErrors = [sum(x) for x in zip(*ret)]
             print('totalTags=', totalTags, ', totalErrors=', totalErrors, ', precision=', (totalTags - totalErrors) / totalTags)
-            fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
-                totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
+            fpMain.write("#totalTags: %s, #totalErrors: %s, Precision: %s\n" % (
+                totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
         else:
             v = Viterbi(model)
             resultFileName = 'results_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
@@ -65,12 +67,17 @@ class MemmChecker(object):
                 fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
                     totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
             fp.close()
+        print('finish tagging', time.asctime())
+        fpMain.write("finish tagging %s\n" % time.asctime())
 
-    def compete(self, model, corpus):
+    def compete(self, model, corpus, fpMain):
         v = Viterbi(model)
         resultFileName = 'comp_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
         resultFileName2 = 'MYcomp_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
         print('Starting validation, writing to ', resultFileName)
+        print('start tagging', time.asctime())
+        fpMain.write("start tagging %s\n" % time.asctime())
+
         fp = open(resultFileName, 'w')
         fp2 = open(resultFileName2, 'w')
         for i in range(len(corpus.getSentences())):
@@ -94,6 +101,8 @@ class MemmChecker(object):
             fp2.write('\n')
             fp2.flush()
         fp.close()
+        print('finish tagging', time.asctime())
+        fpMain.write("finish tagging %s\n" % time.asctime())
 
 
 def calc_viterbi(params):
