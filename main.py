@@ -18,24 +18,24 @@ def main():
 
     np.seterr(all='raise')
 
-    fpMainName = 'result_main_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
+    fpMainName = 'result_main_' + CONST.testName + '_' + time.strftime("%Y%m%d_%H%M%S") + '.txt'
     fpMain = open(fpMainName, 'w')
 
     fv = FeatureVec()
     fv.addFeatureGen(F100())
-    # fv.addFeatureGen(F101_2())
-    # fv.addFeatureGen(F101_3())
-    # fv.addFeatureGen(F101_4())
-    # fv.addFeatureGen(F102_2())
-    # fv.addFeatureGen(F102_3())
-    # fv.addFeatureGen(F102_4())
+    fv.addFeatureGen(F101_2())
+    fv.addFeatureGen(F101_3())
+    fv.addFeatureGen(F101_4())
+    fv.addFeatureGen(F102_2())
+    fv.addFeatureGen(F102_3())
+    fv.addFeatureGen(F102_4())
     fv.addFeatureGen(F103())
     fv.addFeatureGen(F104())
-    # fv.addFeatureGen(F105())
-    # fv.addFeatureGen(FCapital())
-    # fv.addFeatureGen(FDigit())
-    # fv.addFeatureGen(FPlural())
-    # fv.addFeatureGen(FDigitWord())
+    fv.addFeatureGen(F105())
+    fv.addFeatureGen(FCapital())
+    fv.addFeatureGen(FDigit())
+    fv.addFeatureGen(FPlural())
+    fv.addFeatureGen(FDigitWord())
 
     parser = SentenceParser()
     trainCorpus = parser.parseTaggedFile(CONST.train_file_name)
@@ -194,7 +194,7 @@ def par_calc(params):
             s2 += loged
     return s1, s2, expected
 
-def calc_single_L(weights, fv):
+def calc_single_L(weights, fv, fp):
 
     sentences_w = fv.corpus.getSentencesW()
     sentences_t = fv.corpus.getSentencesT()
@@ -268,10 +268,7 @@ def calc_single_L(weights, fv):
     f = -funcRes #maximize function
 
     print('finish L', str(f), time.asctime())
-    # file_name = 'results_test' + str(fv.getIter()) + '.txt'
-    # fp = open(file_name, 'w')
-    # for i in weights:
-    #     fp.write("%s\n" % i)
+    fp.write("finish L %s %s\n" % (str(f), time.asctime()))
 
     return (f, g)
 

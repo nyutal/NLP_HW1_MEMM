@@ -54,18 +54,18 @@ class MemmChecker(object):
                         totalErrors += 1
                         # print('Error:', vTags[j], tags[j - 2])
                         fp.write(
-                            "Error! sentence:%0d  tagIdx:%0d  tag[i]:%s  vTag[i]:%s  word[i]:%s  vTag[i-1]:%s  word[i-1]:%s  vTag[i-2]:%s  word[i-2]:%s\n" % (
+                            "Error! sentence:%0d  tagIdx:%0d  tag[i]:%s  vTag[i]:%s  word[i]:%s  vTag[i-1]:%s  word[i-1]:%s  vTag[i-2]:%s  word[i-2]:%s %s\n" % (
                                 totalSentence, (j - 1), tags[j - 2], vTags[j], vWords[j], vTags[j - 1],
                                 vWords[j - 1],
-                                vTags[j - 2], vWords[j - 2]))
+                                vTags[j - 2], vWords[j - 2], time.asctime()))
 
                 print('#sentence: ', totalSentence, '#tags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ',
                       float(totalTags - totalErrors) / totalTags)
-                fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
-                    totalSentence   , totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
+                fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s %s\n" % (
+                    totalSentence   , totalTags, totalErrors, float(totalTags - totalErrors) / totalTags, time.asctime()))
                 fp.flush()
-                fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
-                    totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
+                fpMain.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s %s\n" % (
+                    totalSentence, totalTags, totalErrors, float(totalTags - totalErrors) / totalTags, time.asctime()))
             fp.close()
         print('finish tagging', time.asctime())
         fpMain.write("finish tagging %s\n" % time.asctime())
@@ -138,10 +138,10 @@ def calc_viterbi(params):
                         (start+totalSentence), (j-1), tags[j - 2], vTags[j], vWords[j], vTags[j - 1], vWords[j - 1],
                         vTags[j - 2], vWords[j - 2]))
 
-        print('#sentence: ', totalSentence, '#tags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ',
+        print('#sentence: ', (start+totalSentence), '#tags: ', totalTags, 'Total Errors: ', totalErrors, 'Precision: ',
               float(totalTags - totalErrors) / totalTags)
-        fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s\n" % (
-            (start + totalSentence), totalTags, totalErrors, float(totalTags - totalErrors) / totalTags))
+        fp.write("#sentence: %s, #Tags: %s, #errors: %s, Precision: %s %s\n" % (
+            (start + totalSentence), totalTags, totalErrors, float(totalTags - totalErrors) / totalTags, time.asctime()))
         fp.flush()
     fp.close()
     return totalTags, totalErrors
