@@ -40,6 +40,7 @@ def main():
     parser = SentenceParser()
     trainCorpus = parser.parseTaggedFile(CONST.train_file_name)
     fv.generateFeatures(trainCorpus)
+    fv.printFeatureCount()
 
     # trainC2 = parser.parseTagedFile(CONST.train_file_name, 20)
 

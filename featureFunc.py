@@ -55,7 +55,9 @@ class FeatureVec(object):
             s += ' ' + fg.__class__.__name__
         return s
 
-
+    def printFeatureCount(self):
+        for fg in self.fgArr:
+            print(fg.__class__.__name__ + ' contains ' + str(len(fg.hash2FeatureIdx)) + ' features')
 
 
 class FeatureGenerator(object):
