@@ -1,0 +1,22 @@
+lambda=0.0
+max_iter=10
+featureGen:   F100 F103 F104start optimization Fri Dec 23 14:03:50 2016
+finish L 305338.551238 Fri Dec 23 14:04:03 2016
+finish L 288610.337615 Fri Dec 23 14:04:17 2016
+finish L 232598.860096 Fri Dec 23 14:04:32 2016
+finish L 158058.397977 Fri Dec 23 14:04:46 2016
+finish L 136276.406405 Fri Dec 23 14:05:01 2016
+finish L 123396.884691 Fri Dec 23 14:05:16 2016
+finish L 112229.568751 Fri Dec 23 14:05:30 2016
+finish L 99501.601054 Fri Dec 23 14:05:45 2016
+finish L 86458.8166414 Fri Dec 23 14:05:59 2016
+finish L 77203.1638989 Fri Dec 23 14:06:14 2016
+finish L 71773.3923648 Fri Dec 23 14:06:29 2016
+finish L 68415.3385764 Fri Dec 23 14:06:44 2016
+finish L 63488.2192853 Fri Dec 23 14:06:59 2016
+finish L 59248.1776214 Fri Dec 23 14:07:13 2016
+finish optimization Fri Dec 23 14:07:13 2016
+learn corpus = train.wtag with #samples: -1
+start tagging Fri Dec 23 14:07:13 2016
+#totalTags: 2267, #totalErrors: 427, Precision: 0.811645346272607
+finish tagging Fri Dec 23 14:11:18 2016

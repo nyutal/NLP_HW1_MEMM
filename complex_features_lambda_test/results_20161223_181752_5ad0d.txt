@@ -1,0 +1,37 @@
+lambda=4.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+Error! sentence:13  tagIdx:1  tag[i]:NNP  vTag[i]:NN  word[i]:storm  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:13  tagIdx:2  tag[i]:VBG  vTag[i]:NN  word[i]:flooding  vTag[i-1]:NN  word[i-1]:storm  vTag[i-2]:*  word[i-2]:*
+Error! sentence:13  tagIdx:22  tag[i]:VBG  vTag[i]:NN  word[i]:parking  vTag[i-1]:IN  word[i-1]:because  vTag[i-2]:,  word[i-2]:,
+Error! sentence:13  tagIdx:27  tag[i]:JJ  vTag[i]:NN  word[i]:dawn  vTag[i-1]:IN  word[i-1]:before  vTag[i-2]:JJ  word[i-2]:full
+#sentence: 13, #Tags: 28, #errors: 4, Precision: 0.8571428571428571
+Error! sentence:14  tagIdx:1  tag[i]:NNP  vTag[i]:NN  word[i]:bus  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:14  tagIdx:4  tag[i]:NNS  vTag[i]:RB  word[i]:sometimes  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:NNS  word[i-2]:schedules
+#sentence: 14, #Tags: 42, #errors: 6, Precision: 0.8571428571428571
+Error! sentence:15  tagIdx:1  tag[i]:NNP  vTag[i]:PRP  word[i]:Her  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+#sentence: 15, #Tags: 73, #errors: 7, Precision: 0.9041095890410958
+#sentence: 16, #Tags: 99, #errors: 7, Precision: 0.9292929292929293
+Error! sentence:17  tagIdx:3  tag[i]:POS  vTag[i]:VBZ  word[i]:'s  vTag[i-1]:PRP  word[i-1]:It  vTag[i-2]:``  word[i-2]:``
+Error! sentence:17  tagIdx:4  tag[i]:NN  vTag[i]:JJR  word[i]:worse  vTag[i-1]:VBZ  word[i-1]:'s  vTag[i-2]:PRP  word[i-2]:It
+Error! sentence:17  tagIdx:6  tag[i]:NNP  vTag[i]:PRP  word[i]:I  vTag[i-1]:IN  word[i-1]:than  vTag[i-2]:JJR  word[i-2]:worse
+Error! sentence:17  tagIdx:7  tag[i]:VBN  vTag[i]:VBD  word[i]:thought  vTag[i-1]:PRP  word[i-1]:I  vTag[i-2]:IN  word[i-2]:than
+#sentence: 17, #Tags: 111, #errors: 11, Precision: 0.9009009009009009
+Error! sentence:18  tagIdx:7  tag[i]:DT  vTag[i]:PDT  word[i]:all  vTag[i-1]:WRB  word[i-1]:where  vTag[i-2]:VB  word[i-2]:know
+#sentence: 18, #Tags: 123, #errors: 12, Precision: 0.9024390243902439
+Error! sentence:19  tagIdx:3  tag[i]:JJ  vTag[i]:NN  word[i]:traffic  vTag[i-1]:IN  word[i-1]:while  vTag[i-2]:CC  word[i-2]:but
+Error! sentence:19  tagIdx:22  tag[i]:RP  vTag[i]:IN  word[i]:out  vTag[i-1]:VBN  word[i-1]:thinned  vTag[i-2]:VBD  word[i-2]:had
+#sentence: 19, #Tags: 146, #errors: 14, Precision: 0.9041095890410958
+Error! sentence:20  tagIdx:7  tag[i]:NN  vTag[i]:JJS  word[i]:smoothest  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:20  tagIdx:9  tag[i]:NNP  vTag[i]:PRP  word[i]:I  vTag[i-1]:NNS  word[i-1]:commutes  vTag[i-2]:JJS  word[i-2]:smoothest
+Error! sentence:20  tagIdx:10  tag[i]:NN  vTag[i]:VBP  word[i]:'ve  vTag[i-1]:PRP  word[i-1]:I  vTag[i-2]:NNS  word[i-2]:commutes
+Error! sentence:20  tagIdx:12  tag[i]:VBD  vTag[i]:VBN  word[i]:had  vTag[i-1]:RB  word[i-1]:ever  vTag[i-2]:VBP  word[i-2]:'ve
+#sentence: 20, #Tags: 177, #errors: 18, Precision: 0.8983050847457628
+#sentence: 21, #Tags: 184, #errors: 18, Precision: 0.9021739130434783
+Error! sentence:22  tagIdx:10  tag[i]:VBD  vTag[i]:VBN  word[i]:stayed  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:VBN  word[i-2]:scared
+#sentence: 22, #Tags: 197, #errors: 19, Precision: 0.9035532994923858
+Error! sentence:23  tagIdx:18  tag[i]:DT  vTag[i]:RB  word[i]:no  vTag[i-1]:VBD  word[i-1]:was  vTag[i-2]:NN  word[i-2]:company
+Error! sentence:23  tagIdx:19  tag[i]:NN  vTag[i]:JJR  word[i]:greater  vTag[i-1]:RB  word[i-1]:no  vTag[i-2]:VBD  word[i-2]:was
+#sentence: 23, #Tags: 222, #errors: 21, Precision: 0.9054054054054054
+Error! sentence:24  tagIdx:18  tag[i]:NN  vTag[i]:NNS  word[i]:police  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Bay
+#sentence: 24, #Tags: 250, #errors: 22, Precision: 0.912

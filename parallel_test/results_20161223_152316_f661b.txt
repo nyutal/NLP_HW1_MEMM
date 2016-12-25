@@ -1,0 +1,82 @@
+lambda=0.0
+feature generators =  F100 F103 F104
+learn corpus = train.wtag with #samples: -1
+Error! sentence:27  tagIdx:2  tag[i]:JJ  vTag[i]:NNP  word[i]:Golden  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:*  word[i-2]:*
+Error! sentence:27  tagIdx:3  tag[i]:NN  vTag[i]:NNP  word[i]:Gate  vTag[i-1]:NNP  word[i-1]:Golden  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:27  tagIdx:4  tag[i]:NN  vTag[i]:VBD  word[i]:handled  vTag[i-1]:NNP  word[i-1]:Gate  vTag[i-2]:NNP  word[i-2]:Golden
+Error! sentence:27  tagIdx:8  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:NNS  word[i-1]:cars  vTag[i-2]:JJ  word[i-2]:many
+Error! sentence:27  tagIdx:9  tag[i]:NN  vTag[i]:RB  word[i]:normally  vTag[i-1]:RB  word[i-1]:as  vTag[i-2]:NNS  word[i-2]:cars
+Error! sentence:27  tagIdx:20  tag[i]:NN  vTag[i]:JJ  word[i]:two-hour  vTag[i-1]:JJ  word[i-1]:usual  vTag[i-2]:DT  word[i-2]:the
+#sentence: 27, #Tags: 22, #errors: 6, Precision: 0.7272727272727273
+Error! sentence:28  tagIdx:6  tag[i]:JJ  vTag[i]:NN  word[i]:giant  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:,  word[i-2]:,
+Error! sentence:28  tagIdx:7  tag[i]:NN  vTag[i]:RB  word[i]:closely  vTag[i-1]:NN  word[i-1]:giant  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:28  tagIdx:8  tag[i]:VBN  vTag[i]:VBD  word[i]:held  vTag[i-1]:RB  word[i-1]:closely  vTag[i-2]:NN  word[i-2]:giant
+Error! sentence:28  tagIdx:15  tag[i]:JJ  vTag[i]:VBN  word[i]:instituted  vTag[i-1]:VBZ  word[i-1]:has  vTag[i-2]:PRP  word[i-2]:it
+Error! sentence:28  tagIdx:17  tag[i]:NN  vTag[i]:CD  word[i]:6  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:VBN  word[i-2]:instituted
+Error! sentence:28  tagIdx:21  tag[i]:CD  vTag[i]:NN  word[i]:p.m.  vTag[i-1]:CD  word[i-1]:8  vTag[i-2]:TO  word[i-2]:to
+Error! sentence:28  tagIdx:22  tag[i]:JJ  vTag[i]:NN  word[i]:flextime  vTag[i-1]:NN  word[i-1]:p.m.  vTag[i-2]:CD  word[i-2]:8
+Error! sentence:28  tagIdx:23  tag[i]:NNS  vTag[i]:NN  word[i]:arrangement  vTag[i-1]:NN  word[i-1]:flextime  vTag[i-2]:NN  word[i-2]:p.m.
+Error! sentence:28  tagIdx:25  tag[i]:VBG  vTag[i]:WRB  word[i]:whereby  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:arrangement
+Error! sentence:28  tagIdx:30  tag[i]:NN  vTag[i]:JJ  word[i]:eight-hour  vTag[i-1]:DT  word[i-1]:any  vTag[i-2]:VB  word[i-2]:select
+Error! sentence:28  tagIdx:38  tag[i]:VB  vTag[i]:NN  word[i]:work  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:VB  word[i-2]:go
+#sentence: 28, #Tags: 61, #errors: 17, Precision: 0.7213114754098361
+Error! sentence:29  tagIdx:2  tag[i]:NN  vTag[i]:NNP  word[i]:Bechtel  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:*  word[i-2]:*
+Error! sentence:29  tagIdx:4  tag[i]:NN  vTag[i]:CD  word[i]:17,500  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Bechtel
+Error! sentence:29  tagIdx:8  tag[i]:NN  vTag[i]:CD  word[i]:4,000  vTag[i-1]:IN  word[i-1]:about  vTag[i-2]:,  word[i-2]:,
+Error! sentence:29  tagIdx:14  tag[i]:NNP  vTag[i]:NN  word[i]:one-third  vTag[i-1]::  word[i-1]:--  vTag[i-2]:NNP  word[i-2]:Francisco
+Error! sentence:29  tagIdx:16  tag[i]:NNP  vTag[i]:PRP  word[i]:them  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:one-third
+Error! sentence:29  tagIdx:17  tag[i]:NNP  vTag[i]:VBG  word[i]:commuting  vTag[i-1]:PRP  word[i-1]:them  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:29  tagIdx:19  tag[i]:NNP  vTag[i]:JJ  word[i]:stricken  vTag[i-1]:IN  word[i-1]:from  vTag[i-2]:VBG  word[i-2]:commuting
+#sentence: 29, #Tags: 83, #errors: 24, Precision: 0.7108433734939759
+Error! sentence:30  tagIdx:9  tag[i]:NN  vTag[i]:CD  word[i]:6,000  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VBG  word[i-2]:offering
+Error! sentence:30  tagIdx:10  tag[i]:NN  vTag[i]:NNP  word[i]:San  vTag[i-1]:CD  word[i-1]:6,000  vTag[i-2]:PRP$  word[i-2]:its
+Error! sentence:30  tagIdx:12  tag[i]:NNP  vTag[i]:NNS  word[i]:employees  vTag[i-1]:NNP  word[i-1]:Francisco  vTag[i-2]:NNP  word[i-2]:San
+Error! sentence:30  tagIdx:18  tag[i]:CD  vTag[i]:CC  word[i]:either  vTag[i-1]::  word[i-1]:--  vTag[i-2]:NN  word[i-2]:schedule
+Error! sentence:30  tagIdx:20  tag[i]:JJ  vTag[i]:NN  word[i]:a.m.  vTag[i-1]:CD  word[i-1]:6  vTag[i-2]:CC  word[i-2]:either
+Error! sentence:30  tagIdx:22  tag[i]:VB  vTag[i]:CD  word[i]:2  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:a.m.
+Error! sentence:30  tagIdx:23  tag[i]:RB  vTag[i]:NN  word[i]:p.m.  vTag[i-1]:CD  word[i-1]:2  vTag[i-2]:TO  word[i-2]:to
+Error! sentence:30  tagIdx:26  tag[i]:NNS  vTag[i]:NN  word[i]:a.m.  vTag[i-1]:CD  word[i-1]:10  vTag[i-2]:CC  word[i-2]:or
+Error! sentence:30  tagIdx:28  tag[i]:VB  vTag[i]:CD  word[i]:6  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:a.m.
+Error! sentence:30  tagIdx:29  tag[i]:NNS  vTag[i]:NN  word[i]:p.m  vTag[i-1]:CD  word[i-1]:6  vTag[i-2]:TO  word[i-2]:to
+#sentence: 30, #Tags: 113, #errors: 34, Precision: 0.6991150442477876
+Error! sentence:31  tagIdx:12  tag[i]:NN  vTag[i]:NNP  word[i]:PG&E  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:number
+Error! sentence:31  tagIdx:16  tag[i]:NN  vTag[i]:CD  word[i]:9-5  vTag[i-1]:JJ  word[i-1]:conventional  vTag[i-2]:VBG  word[i-2]:working
+#sentence: 31, #Tags: 135, #errors: 36, Precision: 0.7333333333333333
+#sentence: 32, #Tags: 161, #errors: 36, Precision: 0.7763975155279503
+Error! sentence:33  tagIdx:6  tag[i]:NNP  vTag[i]:NN  word[i]:flextime  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Group
+Error! sentence:33  tagIdx:9  tag[i]:RP  vTag[i]:IN  word[i]:up  vTag[i-1]:VBN  word[i-1]:left  vTag[i-2]:VBZ  word[i-2]:is
+Error! sentence:33  tagIdx:11  tag[i]:VB  vTag[i]:JJ  word[i]:individual  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:IN  word[i-2]:up
+Error! sentence:33  tagIdx:12  tag[i]:NN  vTag[i]:VBG  word[i]:working  vTag[i-1]:JJ  word[i-1]:individual  vTag[i-2]:TO  word[i-2]:to
+Error! sentence:33  tagIdx:25  tag[i]:VBN  vTag[i]:JJ  word[i]:on-site  vTag[i-1]:VB  word[i-1]:be  vTag[i-2]:MD  word[i-2]:must
+#sentence: 33, #Tags: 195, #errors: 41, Precision: 0.7897435897435897
+Error! sentence:34  tagIdx:6  tag[i]:NN  vTag[i]:NNS  word[i]:lengths  vTag[i-1]:DT  word[i-1]:some  vTag[i-2]:TO  word[i-2]:to
+Error! sentence:34  tagIdx:13  tag[i]:JJ  vTag[i]:VBN  word[i]:anticipated  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VB  word[i-2]:avoid
+#sentence: 34, #Tags: 210, #errors: 43, Precision: 0.7952380952380952
+Error! sentence:35  tagIdx:6  tag[i]:NN  vTag[i]:NNP  word[i]:Bechtel  vTag[i-1]:IN  word[i-1]:at  vTag[i-2]:NN  word[i-2]:president
+Error! sentence:35  tagIdx:13  tag[i]:NNS  vTag[i]:NN  word[i]:a.m.  vTag[i-1]:CD  word[i-1]:3  vTag[i-2]:IN  word[i-2]:at
+#sentence: 35, #Tags: 233, #errors: 45, Precision: 0.8068669527896996
+Error! sentence:36  tagIdx:10  tag[i]:NNS  vTag[i]:NN  word[i]:cooperation  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NNS  word[i-2]:measures
+Error! sentence:36  tagIdx:13  tag[i]:JJ  vTag[i]:VB  word[i]:last  vTag[i-1]:RB  word[i-1]:not  vTag[i-2]:MD  word[i-2]:may
+#sentence: 36, #Tags: 247, #errors: 47, Precision: 0.8097165991902834
+Error! sentence:37  tagIdx:6  tag[i]:VBN  vTag[i]:NNS  word[i]:drivers  vTag[i-1]:VBD  word[i-1]:said  vTag[i-2]:NN  word[i-2]:official
+Error! sentence:37  tagIdx:14  tag[i]:CD  vTag[i]:VBG  word[i]:committing  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:NNS  word[i-2]:pools
+Error! sentence:37  tagIdx:17  tag[i]:NN  vTag[i]:JJ  word[i]:anti-social  vTag[i-1]:DT  word[i-1]:an  vTag[i-2]:``  word[i-2]:``
+Error! sentence:37  tagIdx:22  tag[i]:JJ  vTag[i]:NNS  word[i]:two-thirds  vTag[i-1]:IN  word[i-1]:about  vTag[i-2]:''  word[i-2]:''
+Error! sentence:37  tagIdx:25  tag[i]:JJ  vTag[i]:NNS  word[i]:motorists  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:37  tagIdx:26  tag[i]:NN  vTag[i]:VBG  word[i]:crossing  vTag[i-1]:NNS  word[i-1]:motorists  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:37  tagIdx:28  tag[i]:NN  vTag[i]:NNP  word[i]:Golden  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VBG  word[i-2]:crossing
+Error! sentence:37  tagIdx:29  tag[i]:NN  vTag[i]:NNP  word[i]:Gate  vTag[i-1]:NNP  word[i-1]:Golden  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:37  tagIdx:31  tag[i]:JJ  vTag[i]:RB  word[i]:alone  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:NNP  word[i-2]:Gate
+#sentence: 37, #Tags: 287, #errors: 56, Precision: 0.8048780487804879
+Error! sentence:38  tagIdx:3  tag[i]:JJ  vTag[i]:NNS  word[i]:commuters  vTag[i-1]:DT  word[i-1]:some  vTag[i-2]:CC  word[i-2]:and
+Error! sentence:38  tagIdx:5  tag[i]:JJ  vTag[i]:VBN  word[i]:relieved  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:commuters
+Error! sentence:38  tagIdx:13  tag[i]:VBN  vTag[i]:VBG  word[i]:planning  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:,  word[i-2]:,
+#sentence: 38, #Tags: 307, #errors: 59, Precision: 0.8078175895765473
+Error! sentence:39  tagIdx:11  tag[i]:JJ  vTag[i]:RBS  word[i]:most  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NN  word[i-2]:world
+Error! sentence:39  tagIdx:12  tag[i]:NN  vTag[i]:VBN  word[i]:advanced  vTag[i-1]:RBS  word[i-1]:most  vTag[i-2]:POS  word[i-2]:'s
+Error! sentence:39  tagIdx:16  tag[i]:NN  vTag[i]:VBD  word[i]:kicked  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NN  word[i-2]:computer
+Error! sentence:39  tagIdx:18  tag[i]:VBP  vTag[i]:RB  word[i]:around  vTag[i-1]:PRP  word[i-1]:it  vTag[i-2]:VBD  word[i-2]:kicked
+Error! sentence:39  tagIdx:20  tag[i]:NNP  vTag[i]:RB  word[i]:symbolically  vTag[i-1]::  word[i-1]:--  vTag[i-2]:RB  word[i-2]:around
+Error! sentence:39  tagIdx:22  tag[i]:NNP  vTag[i]:RB  word[i]:anyway  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:RB  word[i-2]:symbolically
+Error! sentence:39  tagIdx:28  tag[i]:MD  vTag[i]:NN  word[i]:can  vTag[i-1]:NN  word[i-1]:tin  vTag[i-2]:JJ  word[i-2]:old
+#sentence: 39, #Tags: 336, #errors: 66, Precision: 0.8035714285714286

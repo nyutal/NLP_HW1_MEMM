@@ -1,0 +1,44 @@
+lambda=4.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+Error! sentence:49  tagIdx:19  tag[i]:VBD  vTag[i]:VBN  word[i]:needed  vTag[i-1]:NN  word[i-1]:creativity  vTag[i-2]:CC  word[i-2]:and
+Error! sentence:49  tagIdx:23  tag[i]:JJ  vTag[i]:NN  word[i]:top  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VB  word[i-2]:reach
+#sentence: 49, #Tags: 27, #errors: 2, Precision: 0.9259259259259259
+Error! sentence:50  tagIdx:9  tag[i]:RB  vTag[i]:IN  word[i]:about  vTag[i-1]:DT  word[i-1]:all  vTag[i-2]:IN  word[i-2]:at
+#sentence: 50, #Tags: 41, #errors: 3, Precision: 0.926829268292683
+Error! sentence:51  tagIdx:5  tag[i]:NNP  vTag[i]:JJ  word[i]:Taiwan-born  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:builder
+Error! sentence:51  tagIdx:9  tag[i]:VBD  vTag[i]:VBN  word[i]:nicknamed  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Hsu
+Error! sentence:51  tagIdx:22  tag[i]:RP  vTag[i]:IN  word[i]:out  vTag[i-1]:VBG  word[i-1]:wriggling  vTag[i-2]:IN  word[i-2]:at
+#sentence: 51, #Tags: 67, #errors: 6, Precision: 0.9104477611940298
+Error! sentence:52  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:flawless  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:JJ  word[i-2]:prodigious
+Error! sentence:52  tagIdx:12  tag[i]:NNS  vTag[i]:JJ  word[i]:fearless  vTag[i-1]:RB  word[i-1]:utterly  vTag[i-2]:VBZ  word[i-2]:is
+Error! sentence:52  tagIdx:21  tag[i]:NN  vTag[i]:JJ  word[i]:sexy  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:by
+Error! sentence:52  tagIdx:22  tag[i]:NN  vTag[i]:JJ  word[i]:nude  vTag[i-1]:JJ  word[i-1]:sexy  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:52  tagIdx:24  tag[i]:VBD  vTag[i]:VBN  word[i]:spread  vTag[i-1]:NNS  word[i-1]:sculptures  vTag[i-2]:JJ  word[i-2]:nude
+#sentence: 52, #Tags: 104, #errors: 11, Precision: 0.8942307692307693
+Error! sentence:53  tagIdx:6  tag[i]:VBN  vTag[i]:VBD  word[i]:left  vTag[i-1]:RB  word[i-1]:never  vTag[i-2]:NNP  word[i-2]:D.T.
+Error! sentence:53  tagIdx:19  tag[i]:NN  vTag[i]:JJ  word[i]:human  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:IN  word[i-2]:with
+#sentence: 53, #Tags: 128, #errors: 13, Precision: 0.8984375
+Error! sentence:54  tagIdx:12  tag[i]:VBD  vTag[i]:VBP  word[i]:put  vTag[i-1]:PRP  word[i-1]:they  vTag[i-2]:CC  word[i-2]:but
+Error! sentence:54  tagIdx:25  tag[i]:RB  vTag[i]:IN  word[i]:up  vTag[i-1]::  word[i-1]:--  vTag[i-2]:NNS  word[i-2]:positions
+Error! sentence:54  tagIdx:29  tag[i]:NN  vTag[i]:IN  word[i]:per  vTag[i-1]:CD  word[i-1]:million  vTag[i-2]:DT  word[i-2]:a
+#sentence: 54, #Tags: 162, #errors: 16, Precision: 0.9012345679012346
+Error! sentence:55  tagIdx:5  tag[i]:RB  vTag[i]:VBD  word[i]:stuck  vTag[i-1]:RB  word[i-1]:mistakenly  vTag[i-2]:NNS  word[i-2]:handlers
+Error! sentence:55  tagIdx:12  tag[i]:JJ  vTag[i]:NN  word[i]:kryptonite  vTag[i-1]:VBD  word[i-1]:needed  vTag[i-2]:PRP  word[i-2]:they
+#sentence: 55, #Tags: 175, #errors: 18, Precision: 0.8971428571428571
+Error! sentence:56  tagIdx:2  tag[i]:NN  vTag[i]:VBD  word[i]:became  vTag[i-1]:DT  word[i-1]:this  vTag[i-2]:*  word[i-2]:*
+Error! sentence:56  tagIdx:3  tag[i]:NN  vTag[i]:JJ  word[i]:apparent  vTag[i-1]:VBD  word[i-1]:became  vTag[i-2]:DT  word[i-2]:this
+#sentence: 56, #Tags: 191, #errors: 20, Precision: 0.8952879581151832
+#sentence: 57, #Tags: 215, #errors: 20, Precision: 0.9069767441860465
+#sentence: 58, #Tags: 247, #errors: 20, Precision: 0.9190283400809717
+Error! sentence:59  tagIdx:10  tag[i]:NN  vTag[i]:JJ  word[i]:ninth  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Short
+Error! sentence:59  tagIdx:14  tag[i]:NN  vTag[i]:JJ  word[i]:key  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:,  word[i-2]:,
+Error! sentence:59  tagIdx:16  tag[i]:IN  vTag[i]:NN  word[i]:thrust  vTag[i-1]:NN  word[i-1]:pawn  vTag[i-2]:JJ  word[i-2]:key
+Error! sentence:59  tagIdx:21  tag[i]:VBN  vTag[i]:VBD  word[i]:deteriorated  vTag[i-1]:NN  word[i-1]:position  vTag[i-2]:PRP$  word[i-2]:its
+#sentence: 59, #Tags: 270, #errors: 24, Precision: 0.9111111111111111
+Error! sentence:60  tagIdx:1  tag[i]:NNP  vTag[i]:RB  word[i]:instead  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:60  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:standard  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:,  word[i-2]:,
+Error! sentence:60  tagIdx:11  tag[i]:VBG  vTag[i]:NN  word[i]:king  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VB  word[i-2]:safeguard
+Error! sentence:60  tagIdx:22  tag[i]:NN  vTag[i]::  word[i]:;  vTag[i-1]:CD  word[i-1]:13  vTag[i-2]:NN  word[i-2]:move
+Error! sentence:60  tagIdx:28  tag[i]:IN  vTag[i]:NN  word[i]:offside  vTag[i-1]:NN  word[i-1]:knight  vTag[i-2]:DT  word[i-2]:a
+#sentence: 60, #Tags: 302, #errors: 29, Precision: 0.9039735099337748

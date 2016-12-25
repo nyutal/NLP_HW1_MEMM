@@ -1,0 +1,35 @@
+lambda=1.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+Error! sentence:25  tagIdx:3  tag[i]:NN  vTag[i]:RB  word[i]:pretty  vTag[i-1]:NN  word[i-1]:Everybody  vTag[i-2]:``  word[i-2]:``
+Error! sentence:25  tagIdx:4  tag[i]:JJ  vTag[i]:RB  word[i]:much  vTag[i-1]:RB  word[i-1]:pretty  vTag[i-2]:NN  word[i-2]:Everybody
+Error! sentence:25  tagIdx:5  tag[i]:VBN  vTag[i]:VBD  word[i]:pitched  vTag[i-1]:RB  word[i-1]:much  vTag[i-2]:RB  word[i-2]:pretty
+Error! sentence:25  tagIdx:8  tag[i]:VBN  vTag[i]:VBD  word[i]:cooperated  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:IN  word[i-2]:in
+#sentence: 25, #Tags: 22, #errors: 4, Precision: 0.8181818181818182
+Error! sentence:26  tagIdx:5  tag[i]:WDT  vTag[i]:IN  word[i]:that  vTag[i-1]:NNS  word[i-1]:indications  vTag[i-2]:JJ  word[i-2]:many
+Error! sentence:26  tagIdx:10  tag[i]:VBD  vTag[i]:VBN  word[i]:implemented  vTag[i-1]:NNS  word[i-1]:hours  vTag[i-2]:NN  word[i-2]:work
+Error! sentence:26  tagIdx:14  tag[i]:VBN  vTag[i]:VBD  word[i]:played  vTag[i-1]:NNS  word[i-1]:corporations  vTag[i-2]:JJ  word[i-2]:major
+#sentence: 26, #Tags: 40, #errors: 7, Precision: 0.825
+Error! sentence:27  tagIdx:8  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:NNS  word[i-1]:cars  vTag[i-2]:JJ  word[i-2]:many
+#sentence: 27, #Tags: 62, #errors: 8, Precision: 0.8709677419354839
+Error! sentence:28  tagIdx:25  tag[i]:IN  vTag[i]:WRB  word[i]:whereby  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:arrangement
+Error! sentence:28  tagIdx:30  tag[i]:NN  vTag[i]:JJ  word[i]:eight-hour  vTag[i-1]:DT  word[i-1]:any  vTag[i-2]:VB  word[i-2]:select
+Error! sentence:28  tagIdx:38  tag[i]:VB  vTag[i]:NN  word[i]:work  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:VB  word[i-2]:go
+#sentence: 28, #Tags: 101, #errors: 11, Precision: 0.8910891089108911
+Error! sentence:29  tagIdx:7  tag[i]:RB  vTag[i]:IN  word[i]:about  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:employees
+Error! sentence:29  tagIdx:14  tag[i]:JJ  vTag[i]:NN  word[i]:one-third  vTag[i-1]::  word[i-1]:--  vTag[i-2]:NNP  word[i-2]:Francisco
+Error! sentence:29  tagIdx:19  tag[i]:NN  vTag[i]:JJ  word[i]:stricken  vTag[i-1]:IN  word[i-1]:from  vTag[i-2]:VBG  word[i-2]:commuting
+Error! sentence:29  tagIdx:20  tag[i]:NNS  vTag[i]:NNP  word[i]:East  vTag[i-1]:JJ  word[i-1]:stricken  vTag[i-2]:IN  word[i-2]:from
+#sentence: 29, #Tags: 123, #errors: 15, Precision: 0.8780487804878049
+Error! sentence:30  tagIdx:18  tag[i]:DT  vTag[i]:CC  word[i]:either  vTag[i-1]::  word[i-1]:--  vTag[i-2]:NN  word[i-2]:schedule
+#sentence: 30, #Tags: 153, #errors: 16, Precision: 0.8954248366013072
+#sentence: 31, #Tags: 175, #errors: 16, Precision: 0.9085714285714286
+#sentence: 32, #Tags: 201, #errors: 16, Precision: 0.9203980099502488
+Error! sentence:33  tagIdx:9  tag[i]:RP  vTag[i]:IN  word[i]:up  vTag[i-1]:VBN  word[i-1]:left  vTag[i-2]:VBZ  word[i-2]:is
+Error! sentence:33  tagIdx:11  tag[i]:VB  vTag[i]:JJ  word[i]:individual  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:IN  word[i-2]:up
+#sentence: 33, #Tags: 235, #errors: 18, Precision: 0.9234042553191489
+#sentence: 34, #Tags: 250, #errors: 18, Precision: 0.928
+#sentence: 35, #Tags: 273, #errors: 18, Precision: 0.9340659340659341
+Error! sentence:36  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:extraordinary  vTag[i-1]:JJ  word[i-1]:such  vTag[i-2]:IN  word[i-2]:that
+Error! sentence:36  tagIdx:13  tag[i]:JJ  vTag[i]:VB  word[i]:last  vTag[i-1]:RB  word[i-1]:not  vTag[i-2]:MD  word[i-2]:may
+#sentence: 36, #Tags: 287, #errors: 20, Precision: 0.9303135888501742

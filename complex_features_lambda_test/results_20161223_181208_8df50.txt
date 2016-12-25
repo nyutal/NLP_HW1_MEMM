@@ -1,0 +1,36 @@
+lambda=0.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+Error! sentence:61  tagIdx:9  tag[i]:RP  vTag[i]:IN  word[i]:of  vTag[i-1]:VB  word[i-1]:think  vTag[i-2]:MD  word[i-2]:would
+Error! sentence:61  tagIdx:13  tag[i]:VB  vTag[i]:JJ  word[i]:weak  vTag[i-1]:RB  word[i-1]:very  vTag[i-2]::  word[i-2]:--
+Error! sentence:61  tagIdx:26  tag[i]:NN  vTag[i]:JJ  word[i]:expert  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:,  word[i-2]:,
+#sentence: 61, #Tags: 40, #errors: 3, Precision: 0.925
+Error! sentence:62  tagIdx:7  tag[i]:JJ  vTag[i]:VBN  word[i]:fallen  vTag[i-1]:VBD  word[i-1]:had  vTag[i-2]:NNP  word[i-2]:D.T.
+#sentence: 62, #Tags: 53, #errors: 4, Precision: 0.9245283018867925
+#sentence: 63, #Tags: 69, #errors: 4, Precision: 0.9420289855072463
+Error! sentence:64  tagIdx:1  tag[i]:NNP  vTag[i]:NNS  word[i]:bishops  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:64  tagIdx:4  tag[i]:IN  vTag[i]:JJ  word[i]:worth  vTag[i-1]:VBP  word[i-1]:are  vTag[i-2]:RB  word[i-2]:usually
+Error! sentence:64  tagIdx:31  tag[i]:VB  vTag[i]:NN  word[i]:passivity  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:VBN  word[i-2]:reduced
+#sentence: 64, #Tags: 101, #errors: 7, Precision: 0.9306930693069307
+Error! sentence:65  tagIdx:5  tag[i]:RBR  vTag[i]:JJR  word[i]:more  vTag[i-1]:VBD  word[i-1]:looked  vTag[i-2]:PRP  word[i-2]:it
+Error! sentence:65  tagIdx:12  tag[i]:RB  vTag[i]:JJ  word[i]:tall  vTag[i-1]:``  word[i-1]:``  vTag[i-2]:DT  word[i-2]:a
+Error! sentence:65  tagIdx:13  tag[i]:IN  vTag[i]:NN  word[i]:pawn  vTag[i-1]:JJ  word[i-1]:tall  vTag[i-2]:``  word[i-2]:``
+Error! sentence:65  tagIdx:19  tag[i]:VBD  vTag[i]:VBP  word[i]:put  vTag[i-1]:RB  word[i-1]:snidely  vTag[i-2]:NNS  word[i-2]:spectators
+#sentence: 65, #Tags: 122, #errors: 11, Precision: 0.9098360655737705
+Error! sentence:66  tagIdx:12  tag[i]:VBP  vTag[i]:RB  word[i]:continually  vTag[i-1]:PRP  word[i-1]:it  vTag[i-2]:WDT  word[i-2]:which
+Error! sentence:66  tagIdx:13  tag[i]:VBN  vTag[i]:VBD  word[i]:sized  vTag[i-1]:RB  word[i-1]:continually  vTag[i-2]:PRP  word[i-2]:it
+#sentence: 66, #Tags: 141, #errors: 13, Precision: 0.9078014184397163
+Error! sentence:67  tagIdx:2  tag[i]:RBS  vTag[i]:JJS  word[i]:most  vTag[i-1]:WRB  word[i-1]:when  vTag[i-2]:*  word[i-2]:*
+Error! sentence:67  tagIdx:4  tag[i]:VBN  vTag[i]:VBD  word[i]:thought  vTag[i-1]:NNS  word[i-1]:spectators  vTag[i-2]:JJS  word[i-2]:most
+Error! sentence:67  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:hopeless  vTag[i-1]:NN  word[i-1]:position  vTag[i-2]:PRP$  word[i-2]:its
+Error! sentence:67  tagIdx:11  tag[i]:VBN  vTag[i]:VBD  word[i]:thought  vTag[i-1]:NN  word[i-1]:computer  vTag[i-2]:DT  word[i-2]:the
+#sentence: 67, #Tags: 165, #errors: 17, Precision: 0.896969696969697
+Error! sentence:68  tagIdx:3  tag[i]:VBP  vTag[i]:VBD  word[i]:met  vTag[i-1]:NNS  word[i-1]:evaluations  vTag[i-2]:JJ  word[i-2]:such
+Error! sentence:68  tagIdx:8  tag[i]:VBP  vTag[i]:VBD  word[i]:kept  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:,  word[i-2]:,
+#sentence: 68, #Tags: 188, #errors: 19, Precision: 0.898936170212766
+Error! sentence:69  tagIdx:5  tag[i]:VBG  vTag[i]:NN  word[i]:king  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VBD  word[i-2]:shuffled
+Error! sentence:69  tagIdx:8  tag[i]:IN  vTag[i]:RB  word[i]:forth  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:RB  word[i-2]:back
+Error! sentence:69  tagIdx:11  tag[i]:NN  vTag[i]:JJ  word[i]:defensive  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:in
+#sentence: 69, #Tags: 211, #errors: 22, Precision: 0.8957345971563981
+Error! sentence:70  tagIdx:15  tag[i]:VBG  vTag[i]:NN  word[i]:king  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:D.T.
+#sentence: 70, #Tags: 227, #errors: 23, Precision: 0.8986784140969163

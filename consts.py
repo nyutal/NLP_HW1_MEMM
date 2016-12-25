@@ -1,7 +1,7 @@
 # DEFINES
 import numpy as np
 class CONST(object):
-    reg_lambda = 2.0
+    reg_lambda = 0.7
     max_iter = 200
     epsilon = np.finfo(float).eps
     test_file_name = 'test.wtag'
@@ -12,7 +12,7 @@ class CONST(object):
     num_of_viterbers = 4
     train = True
     isValidate = True
-    testName = 'final_complex_model'
+    testName = 'final_complex_0_7_model'
 
     def __setattr__(self, *_):
         raise ValueError("don't you dare!")

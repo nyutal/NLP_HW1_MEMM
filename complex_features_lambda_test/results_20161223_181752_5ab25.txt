@@ -1,0 +1,43 @@
+lambda=4.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+Error! sentence:1  tagIdx:1  tag[i]:RB  vTag[i]:IN  word[i]:about  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:1  tagIdx:14  tag[i]:NN  vTag[i]:JJ  word[i]:quake-torn  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NN  word[i-2]:area
+Error! sentence:1  tagIdx:18  tag[i]:NN  vTag[i]:RB  word[i]:cheek-to-jowl  vTag[i-1]:VBD  word[i-1]:wedged  vTag[i-2]:NN  word[i-2]:system
+Error! sentence:1  tagIdx:22  tag[i]:IN  vTag[i]:VBD  word[i]:sat  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:subways
+Error! sentence:1  tagIdx:24  tag[i]:JJ  vTag[i]:NN  word[i]:traffic  vTag[i-1]:IN  word[i-1]:in  vTag[i-2]:VBD  word[i-2]:sat
+#sentence: 1, #Tags: 35, #errors: 5, Precision: 0.8571428571428571
+Error! sentence:2  tagIdx:8  tag[i]:NN  vTag[i]:JJ  word[i]:better-than-average  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:VBD  word[i-2]:was
+#sentence: 2, #Tags: 46, #errors: 6, Precision: 0.8695652173913043
+Error! sentence:3  tagIdx:1  tag[i]:NNP  vTag[i]:NN  word[i]:city  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+#sentence: 3, #Tags: 67, #errors: 7, Precision: 0.8955223880597015
+Error! sentence:4  tagIdx:26  tag[i]:RBS  vTag[i]:JJS  word[i]:most  vTag[i-1]:VBD  word[i-1]:closed  vTag[i-2]:CC  word[i-2]:and
+Error! sentence:4  tagIdx:32  tag[i]:NNP  vTag[i]:NN  word[i]:Highway  vTag[i-1]:IN  word[i-1]:from  vTag[i-2]:CC  word[i-2]:and
+#sentence: 4, #Tags: 108, #errors: 9, Precision: 0.9166666666666666
+#sentence: 5, #Tags: 129, #errors: 9, Precision: 0.9302325581395349
+Error! sentence:6  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:wind-driven  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:of
+#sentence: 6, #Tags: 158, #errors: 10, Precision: 0.9367088607594937
+Error! sentence:7  tagIdx:15  tag[i]:NN  vTag[i]:JJ  word[i]:sleek  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:BART
+Error! sentence:7  tagIdx:17  tag[i]:NN  vTag[i]:JJ  word[i]:modern  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:JJ  word[i-2]:sleek
+#sentence: 7, #Tags: 177, #errors: 12, Precision: 0.9322033898305084
+Error! sentence:8  tagIdx:1  tag[i]:NNP  vTag[i]:RB  word[i]:moreover  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:8  tagIdx:17  tag[i]:JJ  vTag[i]:NN  word[i]:charge  vTag[i-1]:RB  word[i-1]:n't  vTag[i-2]:VBD  word[i-2]:did
+Error! sentence:8  tagIdx:21  tag[i]:JJ  vTag[i]:NN  word[i]:traffic  vTag[i-1]:VBG  word[i-1]:allowing  vTag[i-2]:,  word[i-2]:,
+Error! sentence:8  tagIdx:24  tag[i]:IN  vTag[i]:RP  word[i]:through  vTag[i-1]:VB  word[i-1]:zip  vTag[i-2]:TO  word[i-2]:to
+#sentence: 8, #Tags: 204, #errors: 16, Precision: 0.9215686274509803
+Error! sentence:9  tagIdx:4  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:VBP  word[i-1]:suspect  vTag[i-2]:RB  word[i-2]:also
+Error! sentence:9  tagIdx:5  tag[i]:JJ  vTag[i]:NN  word[i]:traffic  vTag[i-1]:DT  word[i-1]:that  vTag[i-2]:VBP  word[i-2]:suspect
+Error! sentence:9  tagIdx:6  tag[i]:VBN  vTag[i]:VBD  word[i]:benefited  vTag[i-1]:NN  word[i-1]:traffic  vTag[i-2]:DT  word[i-2]:that
+Error! sentence:9  tagIdx:19  tag[i]:NN  vTag[i]:JJ  word[i]:odd  vTag[i-1]:IN  word[i-1]:at  vTag[i-2]:IN  word[i-2]:in
+#sentence: 9, #Tags: 235, #errors: 20, Precision: 0.9148936170212766
+Error! sentence:10  tagIdx:5  tag[i]:JJ  vTag[i]:VBD  word[i]:drove  vTag[i-1]:RB  word[i-1]:normally  vTag[i-2]:WP  word[i-2]:who
+Error! sentence:10  tagIdx:6  tag[i]:NN  vTag[i]:IN  word[i]:across  vTag[i-1]:VBD  word[i-1]:drove  vTag[i-2]:RB  word[i-2]:normally
+Error! sentence:10  tagIdx:28  tag[i]:VBN  vTag[i]:VBD  word[i]:reached  vTag[i-1]:VB  word[i-1]:have  vTag[i-2]:MD  word[i-2]:may
+Error! sentence:10  tagIdx:32  tag[i]:NN  vTag[i]:RBR  word[i]:faster  vTag[i-1]:NN  word[i-1]:bit  vTag[i-2]:DT  word[i-2]:a
+Error! sentence:10  tagIdx:48  tag[i]:JJ  vTag[i]:VBN  word[i]:jammed  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NN  word[i-2]:system
+#sentence: 10, #Tags: 285, #errors: 25, Precision: 0.9122807017543859
+Error! sentence:11  tagIdx:3  tag[i]:NN  vTag[i]:JJS  word[i]:best  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+Error! sentence:11  tagIdx:12  tag[i]:JJ  vTag[i]:JJS  word[i]:worst  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VBZ  word[i-2]:is
+#sentence: 11, #Tags: 313, #errors: 27, Precision: 0.9137380191693291
+Error! sentence:12  tagIdx:5  tag[i]:JJ  vTag[i]:NN  word[i]:town  vTag[i-1]:IN  word[i-1]:into  vTag[i-2]:VBG  word[i-2]:getting
+#sentence: 12, #Tags: 321, #errors: 28, Precision: 0.9127725856697819

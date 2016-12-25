@@ -1,0 +1,37 @@
+lambda=2.0
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: 1000
+#sentence: 37, #Tags: 40, #errors: 0, Precision: 1.0
+Error! sentence:38  tagIdx:5  tag[i]:VBD  vTag[i]:VBN  word[i]:relieved  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:commuters
+#sentence: 38, #Tags: 60, #errors: 1, Precision: 0.9833333333333333
+Error! sentence:39  tagIdx:18  tag[i]:IN  vTag[i]:RB  word[i]:around  vTag[i-1]:PRP  word[i-1]:it  vTag[i-2]:VBD  word[i-2]:kicked
+Error! sentence:39  tagIdx:22  tag[i]:DT  vTag[i]:RB  word[i]:anyway  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:RB  word[i-2]:symbolically
+Error! sentence:39  tagIdx:28  tag[i]:MD  vTag[i]:NN  word[i]:can  vTag[i-1]:NN  word[i-1]:tin  vTag[i-2]:JJ  word[i-2]:old
+#sentence: 39, #Tags: 89, #errors: 4, Precision: 0.9550561797752809
+Error! sentence:40  tagIdx:9  tag[i]:NN  vTag[i]:JJ  word[i]:human  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:,  word[i-2]:,
+#sentence: 40, #Tags: 115, #errors: 5, Precision: 0.9565217391304348
+Error! sentence:41  tagIdx:9  tag[i]:JJ  vTag[i]:NN  word[i]:attack  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:JJ  word[i-2]:unstoppable
+#sentence: 41, #Tags: 125, #errors: 6, Precision: 0.952
+Error! sentence:42  tagIdx:10  tag[i]:NN  vTag[i]:VBG  word[i]:advancing  vTag[i-1]:NNP  word[i-1]:Kasparov  vTag[i-2]:NNP  word[i-2]:Mr.
+Error! sentence:42  tagIdx:20  tag[i]:NN  vTag[i]:VBD  word[i]:lost  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NN  word[i-2]:resistance
+Error! sentence:42  tagIdx:22  tag[i]:VB  vTag[i]:RBR  word[i]:faster  vTag[i-1]:RB  word[i-1]:even  vTag[i-2]:VBD  word[i-2]:lost
+#sentence: 42, #Tags: 148, #errors: 9, Precision: 0.9391891891891891
+Error! sentence:43  tagIdx:1  tag[i]:NNP  vTag[i]:UH  word[i]:well  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:43  tagIdx:6  tag[i]:JJ  vTag[i]:JJR  word[i]:easier  vTag[i-1]:VB  word[i-1]:rest  vTag[i-2]:MD  word[i-2]:can
+#sentence: 43, #Tags: 157, #errors: 11, Precision: 0.9299363057324841
+Error! sentence:44  tagIdx:3  tag[i]:RB  vTag[i]:NN  word[i]:everybody  vTag[i-1]:RB  word[i-1]:almost  vTag[i-2]:IN  word[i-2]:though
+Error! sentence:44  tagIdx:7  tag[i]:JJ  vTag[i]:NN  word[i]:site  vTag[i-1]:VBG  word[i-1]:playing  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:44  tagIdx:14  tag[i]:JJ  vTag[i]:NNP  word[i]:Soviet  vTag[i-1]:JJ  word[i-1]:26-year-old  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:44  tagIdx:22  tag[i]:VBP  vTag[i]:VBD  word[i]:gave  vTag[i-1]:PRP  word[i-1]:he  vTag[i-2]:,  word[i-2]:,
+Error! sentence:44  tagIdx:26  tag[i]:JJ  vTag[i]:RB  word[i]:far  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:NN  word[i-2]:machine
+Error! sentence:44  tagIdx:27  tag[i]:NN  vTag[i]:JJR  word[i]:worse  vTag[i-1]:RB  word[i-1]:far  vTag[i-2]:DT  word[i-2]:a
+Error! sentence:44  tagIdx:28  tag[i]:VBG  vTag[i]:NN  word[i]:drubbing  vTag[i-1]:JJR  word[i-1]:worse  vTag[i-2]:RB  word[i-2]:far
+Error! sentence:44  tagIdx:31  tag[i]:VBN  vTag[i]:VBD  word[i]:expected  vTag[i-1]:JJ  word[i-1]:many  vTag[i-2]:IN  word[i-2]:than
+#sentence: 44, #Tags: 189, #errors: 19, Precision: 0.8994708994708994
+Error! sentence:45  tagIdx:8  tag[i]:NN  vTag[i]:VBG  word[i]:playing  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:into
+#sentence: 45, #Tags: 204, #errors: 20, Precision: 0.9019607843137255
+Error! sentence:46  tagIdx:8  tag[i]:RB  vTag[i]:IN  word[i]:about  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Mike
+Error! sentence:46  tagIdx:15  tag[i]:CD  vTag[i]:JJ  word[i]:98-pound  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:with
+#sentence: 46, #Tags: 240, #errors: 22, Precision: 0.9083333333333333
+#sentence: 47, #Tags: 277, #errors: 22, Precision: 0.9205776173285198
+#sentence: 48, #Tags: 282, #errors: 22, Precision: 0.9219858156028369

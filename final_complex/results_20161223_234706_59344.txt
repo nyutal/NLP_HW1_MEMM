@@ -1,0 +1,511 @@
+lambda=0.5
+feature generators =  F100 F101_2 F101_3 F101_4 F102_2 F102_3 F102_4 F103 F104 F105 FCapital FDigit FPlural FDigitWord
+learn corpus = train.wtag with #samples: -1
+#sentence: 751, #Tags: 10, #errors: 0, Precision: 1.0
+#sentence: 752, #Tags: 46, #errors: 0, Precision: 1.0
+Error! sentence:753  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:genteel  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NNS  word[i-2]:decades
+#sentence: 753, #Tags: 55, #errors: 1, Precision: 0.9818181818181818
+Error! sentence:754  tagIdx:8  tag[i]:NN  vTag[i]:VB  word[i]:influence  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NN  word[i-2]:power
+Error! sentence:754  tagIdx:15  tag[i]:VBN  vTag[i]:VBD  word[i]:dominated  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Lloyd
+#sentence: 754, #Tags: 79, #errors: 3, Precision: 0.9620253164556962
+#sentence: 755, #Tags: 103, #errors: 3, Precision: 0.970873786407767
+Error! sentence:756  tagIdx:16  tag[i]:IN  vTag[i]:RB  word[i]:about  vTag[i-1]:VBZ  word[i-1]:is  vTag[i-2]:,  word[i-2]:,
+#sentence: 756, #Tags: 122, #errors: 4, Precision: 0.9672131147540983
+Error! sentence:757  tagIdx:2  tag[i]:NNS  vTag[i]:PRP$  word[i]:Its  vTag[i-1]:-LRB-  word[i-1]:-lrb-  vTag[i-2]:*  word[i-2]:*
+#sentence: 757, #Tags: 135, #errors: 5, Precision: 0.9629629629629629
+Error! sentence:758  tagIdx:10  tag[i]:VBD  vTag[i]:VBN  word[i]:backed  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Allianz
+Error! sentence:758  tagIdx:22  tag[i]:NN  vTag[i]:VBP  word[i]:operate  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:branches
+#sentence: 758, #Tags: 169, #errors: 7, Precision: 0.9585798816568047
+Error! sentence:759  tagIdx:4  tag[i]:VBN  vTag[i]:VBD  word[i]:pioneered  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Lloyd
+Error! sentence:759  tagIdx:6  tag[i]:RB  vTag[i]:JJ  word[i]:now-standard  vTag[i-1]:JJ  word[i-1]:such  vTag[i-2]:VBD  word[i-2]:pioneered
+Error! sentence:759  tagIdx:30  tag[i]:RBS  vTag[i]:JJS  word[i]:most  vTag[i-1]:VBP  word[i-1]:underwrite  vTag[i-2]:RB  word[i-2]:now
+#sentence: 759, #Tags: 203, #errors: 10, Precision: 0.9507389162561576
+Error! sentence:760  tagIdx:27  tag[i]:RB  vTag[i]:JJ  word[i]:offshore  vTag[i-1]:''  word[i-1]:''  vTag[i-2]:JJ  word[i-2]:captive
+#sentence: 760, #Tags: 235, #errors: 11, Precision: 0.9531914893617022
+#sentence: 761, #Tags: 248, #errors: 11, Precision: 0.9556451612903226
+Error! sentence:762  tagIdx:16  tag[i]:VBN  vTag[i]:JJ  word[i]:thoroughbred  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:insurer
+#sentence: 762, #Tags: 266, #errors: 12, Precision: 0.9548872180451128
+#sentence: 763, #Tags: 288, #errors: 12, Precision: 0.9583333333333334
+#sentence: 764, #Tags: 316, #errors: 12, Precision: 0.9620253164556962
+#sentence: 765, #Tags: 330, #errors: 12, Precision: 0.9636363636363636
+#sentence: 766, #Tags: 344, #errors: 12, Precision: 0.9651162790697675
+#sentence: 767, #Tags: 357, #errors: 12, Precision: 0.9663865546218487
+#sentence: 768, #Tags: 371, #errors: 12, Precision: 0.967654986522911
+#sentence: 769, #Tags: 392, #errors: 12, Precision: 0.9693877551020408
+Error! sentence:770  tagIdx:17  tag[i]:NN  vTag[i]:VBP  word[i]:copy  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:VBP  word[i-2]:take
+Error! sentence:770  tagIdx:19  tag[i]:VB  vTag[i]:VBP  word[i]:cut  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:VBP  word[i-2]:copy
+#sentence: 770, #Tags: 414, #errors: 14, Precision: 0.966183574879227
+Error! sentence:771  tagIdx:20  tag[i]:JJ  vTag[i]:NN  word[i]:bottom  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:at
+Error! sentence:771  tagIdx:24  tag[i]:RB  vTag[i]:IN  word[i]:as  vTag[i-1]:VBZ  word[i-1]:acts  vTag[i-2]:WDT  word[i-2]:which
+#sentence: 771, #Tags: 446, #errors: 16, Precision: 0.9641255605381166
+#sentence: 772, #Tags: 464, #errors: 16, Precision: 0.9655172413793104
+#sentence: 773, #Tags: 478, #errors: 16, Precision: 0.9665271966527197
+#sentence: 774, #Tags: 486, #errors: 16, Precision: 0.9670781893004116
+#sentence: 775, #Tags: 493, #errors: 16, Precision: 0.9675456389452333
+Error! sentence:776  tagIdx:12  tag[i]:NN  vTag[i]:JJ  word[i]:space-age  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:in
+Error! sentence:776  tagIdx:26  tag[i]:WDT  vTag[i]:IN  word[i]:that  vTag[i-1]:NN  word[i-1]:architecture  vTag[i-2]:JJ  word[i-2]:modern
+#sentence: 776, #Tags: 526, #errors: 18, Precision: 0.9657794676806084
+#sentence: 777, #Tags: 540, #errors: 18, Precision: 0.9666666666666667
+Error! sentence:778  tagIdx:2  tag[i]:RB  vTag[i]:IN  word[i]:along  vTag[i-1]:CC  word[i-1]:but  vTag[i-2]:*  word[i-2]:*
+Error! sentence:778  tagIdx:14  tag[i]:POS  vTag[i]:VBZ  word[i]:'s  vTag[i-1]:NNP  word[i-1]:Lloyd  vTag[i-2]:,  word[i-2]:,
+Error! sentence:778  tagIdx:16  tag[i]:VBN  vTag[i]:VBD  word[i]:brought  vTag[i-1]:RB  word[i-1]:also  vTag[i-2]:VBZ  word[i-2]:'s
+#sentence: 778, #Tags: 563, #errors: 21, Precision: 0.9626998223801065
+#sentence: 779, #Tags: 580, #errors: 21, Precision: 0.9637931034482758
+Error! sentence:780  tagIdx:1  tag[i]:VBG  vTag[i]:NN  word[i]:underwriting  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:780  tagIdx:13  tag[i]:NN  vTag[i]:RB  word[i]:a.m  vTag[i-1]:CD  word[i-1]:10  vTag[i-2]:IN  word[i-2]:at
+#sentence: 780, #Tags: 594, #errors: 23, Precision: 0.9612794612794613
+#sentence: 781, #Tags: 600, #errors: 23, Precision: 0.9616666666666667
+Error! sentence:782  tagIdx:3  tag[i]:RB  vTag[i]:RP  word[i]:down  vTag[i-1]:VBP  word[i-1]:wind  vTag[i-2]:NNS  word[i-2]:things
+Error! sentence:782  tagIdx:5  tag[i]:IN  vTag[i]:RB  word[i]:about  vTag[i-1]:IN  word[i-1]:at  vTag[i-2]:RP  word[i-2]:down
+Error! sentence:782  tagIdx:7  tag[i]:NN  vTag[i]:RB  word[i]:p.m.  vTag[i-1]:CD  word[i-1]:4:30  vTag[i-2]:RB  word[i-2]:about
+#sentence: 782, #Tags: 615, #errors: 26, Precision: 0.9577235772357724
+Error! sentence:783  tagIdx:6  tag[i]:NNS  vTag[i]:VBZ  word[i]:houses  vTag[i-1]:NN  word[i-1]:hall  vTag[i-2]:NN  word[i-2]:trading
+#sentence: 783, #Tags: 627, #errors: 27, Precision: 0.9569377990430622
+#sentence: 784, #Tags: 639, #errors: 27, Precision: 0.9577464788732394
+#sentence: 785, #Tags: 653, #errors: 27, Precision: 0.9586523736600306
+Error! sentence:786  tagIdx:3  tag[i]:NN  vTag[i]:JJ  word[i]:thick  vTag[i-1]:VBG  word[i-1]:clutching  vTag[i-2]:NNS  word[i-2]:brokers
+#sentence: 786, #Tags: 670, #errors: 28, Precision: 0.9582089552238806
+Error! sentence:787  tagIdx:7  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:VB  word[i-1]:approach  vTag[i-2]:TO  word[i-2]:to
+#sentence: 787, #Tags: 691, #errors: 29, Precision: 0.9580318379160637
+#sentence: 788, #Tags: 703, #errors: 29, Precision: 0.9587482219061166
+Error! sentence:789  tagIdx:11  tag[i]:NNP  vTag[i]:NN  word[i]:Lloyd  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:,  word[i-2]:,
+Error! sentence:789  tagIdx:29  tag[i]:VBD  vTag[i]:JJ  word[i]:mad  vTag[i-1]:PRP  word[i-1]:you  vTag[i-2]:VBZ  word[i-2]:drives
+#sentence: 789, #Tags: 734, #errors: 31, Precision: 0.9577656675749319
+Error! sentence:790  tagIdx:2  tag[i]:JJ  vTag[i]:VBP  word[i]:maintain  vTag[i-1]:DT  word[i-1]:some  vTag[i-2]:*  word[i-2]:*
+Error! sentence:790  tagIdx:7  tag[i]:IN  vTag[i]:JJ  word[i]:inept  vTag[i-1]:VBN  word[i-1]:been  vTag[i-2]:VBP  word[i-2]:have
+#sentence: 790, #Tags: 742, #errors: 33, Precision: 0.9555256064690026
+Error! sentence:791  tagIdx:15  tag[i]:VBN  vTag[i]:VBD  word[i]:underestimated  vTag[i-1]:NNS  word[i-1]:underwriters  vTag[i-2]:JJ  word[i-2]:fellow
+Error! sentence:791  tagIdx:17  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:IN  word[i-1]:by  vTag[i-2]:VBD  word[i-2]:underestimated
+#sentence: 791, #Tags: 777, #errors: 35, Precision: 0.954954954954955
+Error! sentence:792  tagIdx:14  tag[i]:NN  vTag[i]:JJ  word[i]:incompetent  vTag[i-1]:WRB  word[i-1]:how  vTag[i-2]::  word[i-2]:--
+#sentence: 792, #Tags: 801, #errors: 36, Precision: 0.9550561797752809
+#sentence: 793, #Tags: 811, #errors: 36, Precision: 0.9556103575832305
+#sentence: 794, #Tags: 819, #errors: 36, Precision: 0.9560439560439561
+Error! sentence:795  tagIdx:18  tag[i]:RB  vTag[i]:RBR  word[i]:further  vTag[i-1]:RB  word[i-1]:even  vTag[i-2]:NNS  word[i-2]:rates
+#sentence: 795, #Tags: 838, #errors: 37, Precision: 0.9558472553699284
+#sentence: 796, #Tags: 858, #errors: 37, Precision: 0.9568764568764568
+Error! sentence:797  tagIdx:24  tag[i]:VB  vTag[i]:JJ  word[i]:open  vTag[i-1]:NNS  word[i-1]:books  vTag[i-2]:DT  word[i-2]:the
+#sentence: 797, #Tags: 893, #errors: 38, Precision: 0.9574468085106383
+Error! sentence:798  tagIdx:3  tag[i]:JJ  vTag[i]:RB  word[i]:only  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Lloyd
+Error! sentence:798  tagIdx:5  tag[i]:VBN  vTag[i]:VBD  word[i]:reported  vTag[i-1]:RB  word[i-1]:recently  vTag[i-2]:RB  word[i-2]:only
+#sentence: 798, #Tags: 904, #errors: 40, Precision: 0.9557522123893806
+Error! sentence:799  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:record  vTag[i-1]:VBD  word[i-1]:posted  vTag[i-2]:PRP  word[i-2]:it
+#sentence: 799, #Tags: 928, #errors: 41, Precision: 0.9558189655172413
+Error! sentence:800  tagIdx:5  tag[i]:VBN  vTag[i]:JJ  word[i]:reported  vTag[i-1]:VBZ  word[i-1]:says  vTag[i-2]:NNP  word[i-2]:Lawrence
+Error! sentence:800  tagIdx:9  tag[i]:RP  vTag[i]:RB  word[i]:down  vTag[i-1]:VB  word[i-1]:be  vTag[i-2]:MD  word[i-2]:will
+Error! sentence:800  tagIdx:23  tag[i]:NN  vTag[i]:JJ  word[i]:steep  vTag[i-1]:WRB  word[i-1]:how  vTag[i-2]:VB  word[i-2]:specify
+#sentence: 800, #Tags: 956, #errors: 44, Precision: 0.9539748953974896
+#sentence: 801, #Tags: 1004, #errors: 44, Precision: 0.9561752988047809
+Error! sentence:802  tagIdx:14  tag[i]:VBG  vTag[i]:NN  word[i]:underwriting  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VB  word[i-2]:hurt
+Error! sentence:802  tagIdx:18  tag[i]:IN  vTag[i]:RB  word[i]:about  vTag[i-1]:RB  word[i-1]:currently  vTag[i-2]:,  word[i-2]:,
+#sentence: 802, #Tags: 1026, #errors: 46, Precision: 0.9551656920077972
+#sentence: 803, #Tags: 1046, #errors: 46, Precision: 0.9560229445506692
+Error! sentence:804  tagIdx:9  tag[i]:JJR  vTag[i]:VB  word[i]:lower  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:VBG  word[i-2]:trying
+#sentence: 804, #Tags: 1057, #errors: 47, Precision: 0.9555345316934721
+#sentence: 805, #Tags: 1072, #errors: 47, Precision: 0.9561567164179104
+#sentence: 806, #Tags: 1091, #errors: 47, Precision: 0.9569202566452796
+Error! sentence:807  tagIdx:7  tag[i]:NNS  vTag[i]:VBZ  word[i]:reckons  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:underwriter
+#sentence: 807, #Tags: 1115, #errors: 48, Precision: 0.95695067264574
+Error! sentence:808  tagIdx:10  tag[i]:VBG  vTag[i]:NN  word[i]:underwriting  vTag[i-1]:VBG  word[i-1]:computerizing  vTag[i-2]:IN  word[i-2]:about
+#sentence: 808, #Tags: 1135, #errors: 49, Precision: 0.9568281938325991
+#sentence: 809, #Tags: 1150, #errors: 49, Precision: 0.957391304347826
+Error! sentence:810  tagIdx:3  tag[i]:VBG  vTag[i]:VBP  word[i]:cling  vTag[i-1]:NNS  word[i-1]:groups  vTag[i-2]:DT  word[i-2]:both
+Error! sentence:810  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:face-to-face  vTag[i-1]:JJ  word[i-1]:traditional  vTag[i-2]:TO  word[i-2]:to
+#sentence: 810, #Tags: 1163, #errors: 51, Precision: 0.9561478933791917
+#sentence: 811, #Tags: 1175, #errors: 51, Precision: 0.9565957446808511
+#sentence: 812, #Tags: 1195, #errors: 51, Precision: 0.9573221757322176
+Error! sentence:813  tagIdx:5  tag[i]:RB  vTag[i]:JJ  word[i]:only  vTag[i-1]:VBZ  word[i-1]:sells  vTag[i-2]:RB  word[i-2]:presently
+Error! sentence:813  tagIdx:11  tag[i]:JJ  vTag[i]:NN  word[i]:public  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:TO  word[i-2]:to
+#sentence: 813, #Tags: 1223, #errors: 53, Precision: 0.9566639411283728
+#sentence: 814, #Tags: 1245, #errors: 53, Precision: 0.957429718875502
+Error! sentence:815  tagIdx:8  tag[i]:JJ  vTag[i]:NN  word[i]:public  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:TO  word[i-2]:to
+#sentence: 815, #Tags: 1259, #errors: 54, Precision: 0.9571088165210484
+Error! sentence:816  tagIdx:10  tag[i]:IN  vTag[i]:RB  word[i]:though  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:fronts
+#sentence: 816, #Tags: 1270, #errors: 55, Precision: 0.9566929133858267
+#sentence: 817, #Tags: 1286, #errors: 55, Precision: 0.9572317262830482
+#sentence: 818, #Tags: 1307, #errors: 55, Precision: 0.9579188982402448
+Error! sentence:819  tagIdx:4  tag[i]:NNPS  vTag[i]:NNP  word[i]:Securities  vTag[i-1]:NNP  word[i-1]:Daiwa  vTag[i-2]:POS  word[i-2]:'s
+#sentence: 819, #Tags: 1317, #errors: 56, Precision: 0.9574791192103265
+#sentence: 820, #Tags: 1329, #errors: 56, Precision: 0.9578630549285176
+#sentence: 821, #Tags: 1345, #errors: 56, Precision: 0.958364312267658
+Error! sentence:822  tagIdx:23  tag[i]:NN  vTag[i]:JJ  word[i]:ceremonial  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:RBR  word[i-2]:more
+Error! sentence:822  tagIdx:24  tag[i]:CD  vTag[i]:NN  word[i]:one  vTag[i-1]:JJ  word[i-1]:ceremonial  vTag[i-2]:DT  word[i-2]:a
+#sentence: 822, #Tags: 1370, #errors: 58, Precision: 0.9576642335766423
+Error! sentence:823  tagIdx:4  tag[i]:NN  vTag[i]:JJ  word[i]:chief  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:title
+Error! sentence:823  tagIdx:5  tag[i]:NN  vTag[i]:JJ  word[i]:executive  vTag[i-1]:JJ  word[i-1]:chief  vTag[i-2]:IN  word[i-2]:of
+#sentence: 823, #Tags: 1380, #errors: 60, Precision: 0.9565217391304348
+Error! sentence:824  tagIdx:9  tag[i]:VBN  vTag[i]:VBD  word[i]:expected  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:internationalists
+#sentence: 824, #Tags: 1410, #errors: 61, Precision: 0.9567375886524823
+Error! sentence:825  tagIdx:11  tag[i]:VBG  vTag[i]:JJ  word[i]:easygoing  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:JJ  word[i-2]:jovial
+Error! sentence:825  tagIdx:12  tag[i]:JJ  vTag[i]:NN  word[i]:executive  vTag[i-1]:JJ  word[i-1]:easygoing  vTag[i-2]:,  word[i-2]:,
+Error! sentence:825  tagIdx:31  tag[i]:NN  vTag[i]:JJ  word[i]:deputy  vTag[i-1]:VBN  word[i-1]:appointed  vTag[i-2]:VBD  word[i-2]:was
+#sentence: 825, #Tags: 1443, #errors: 64, Precision: 0.9556479556479557
+Error! sentence:826  tagIdx:21  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:CC  word[i-1]:but  vTag[i-2]:NN  word[i-2]:market
+Error! sentence:826  tagIdx:28  tag[i]:JJ  vTag[i]:NN  word[i]:potential  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VB  word[i-2]:realize
+Error! sentence:826  tagIdx:35  tag[i]:VBG  vTag[i]:NN  word[i]:dealing  vTag[i-1]:NNS  word[i-1]:securities  vTag[i-2]:CC  word[i-2]:and
+#sentence: 826, #Tags: 1479, #errors: 67, Precision: 0.9546991210277215
+#sentence: 827, #Tags: 1490, #errors: 67, Precision: 0.9550335570469799
+Error! sentence:828  tagIdx:15  tag[i]:NNS  vTag[i]:NN  word[i]:yen  vTag[i-1]:CD  word[i-1]:billion  vTag[i-2]:CD  word[i-2]:801.21
+#sentence: 828, #Tags: 1511, #errors: 68, Precision: 0.9549966909331569
+Error! sentence:829  tagIdx:13  tag[i]:NN  vTag[i]:JJ  word[i]:parent  vTag[i-1]:-LRB-  word[i-1]:-LRB-  vTag[i-2]:JJ  word[i-2]:unconsolidated
+Error! sentence:829  tagIdx:21  tag[i]:NNS  vTag[i]:NN  word[i]:yen  vTag[i-1]:CD  word[i-1]:billion  vTag[i-2]:CD  word[i-2]:79.03
+Error! sentence:829  tagIdx:32  tag[i]:NNS  vTag[i]:NN  word[i]:yen  vTag[i-1]:CD  word[i-1]:billion  vTag[i-2]:CD  word[i-2]:332.38
+#sentence: 829, #Tags: 1549, #errors: 71, Precision: 0.9541639767591995
+Error! sentence:830  tagIdx:4  tag[i]:NN  vTag[i]:JJ  word[i]:record  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:NNS  word[i-2]:figures
+#sentence: 830, #Tags: 1555, #errors: 72, Precision: 0.9536977491961415
+Error! sentence:831  tagIdx:29  tag[i]:VBG  vTag[i]:JJ  word[i]:continuing  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:831  tagIdx:40  tag[i]:VBN  vTag[i]:JJ  word[i]:increased  vTag[i-1]:VB  word[i-1]:mean  vTag[i-2]:MD  word[i-2]:should
+#sentence: 831, #Tags: 1597, #errors: 74, Precision: 0.9536631183469004
+Error! sentence:832  tagIdx:7  tag[i]:NNP  vTag[i]:CD  word[i]:Four  vTag[i-1]:NNP  word[i-1]:Big  vTag[i-2]:JJ  word[i-2]:so-called
+Error! sentence:832  tagIdx:12  tag[i]:NNPS  vTag[i]:NNP  word[i]:Securities  vTag[i-1]:NNP  word[i-1]:Nomura  vTag[i-2]::  word[i-2]:--
+#sentence: 832, #Tags: 1641, #errors: 76, Precision: 0.9536867763558805
+Error! sentence:833  tagIdx:7  tag[i]:JJ  vTag[i]:NN  word[i]:fore  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:TO  word[i-2]:to
+#sentence: 833, #Tags: 1677, #errors: 77, Precision: 0.9540846750149076
+#sentence: 834, #Tags: 1690, #errors: 77, Precision: 0.9544378698224852
+Error! sentence:835  tagIdx:4  tag[i]:JJ  vTag[i]:NNPS  word[i]:Japanese  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:while
+Error! sentence:835  tagIdx:25  tag[i]:JJ  vTag[i]:NN  word[i]:past  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+#sentence: 835, #Tags: 1720, #errors: 79, Precision: 0.9540697674418605
+#sentence: 836, #Tags: 1752, #errors: 79, Precision: 0.9549086757990868
+#sentence: 837, #Tags: 1759, #errors: 79, Precision: 0.9550881182490051
+Error! sentence:838  tagIdx:21  tag[i]:VBN  vTag[i]:JJ  word[i]:yen-denominated  vTag[i-1]:JJ  word[i-1]:Japanese  vTag[i-2]:VBG  word[i-2]:selling
+#sentence: 838, #Tags: 1785, #errors: 80, Precision: 0.9551820728291317
+Error! sentence:839  tagIdx:12  tag[i]:VBG  vTag[i]:NN  word[i]:beginning  vTag[i-1]:IN  word[i-1]:from  vTag[i-2]:NNS  word[i-2]:pages
+Error! sentence:839  tagIdx:14  tag[i]:VB  vTag[i]:NN  word[i]:end  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:beginning
+Error! sentence:839  tagIdx:23  tag[i]:NNP  vTag[i]:NN  word[i]:Daiwa  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:president
+#sentence: 839, #Tags: 1812, #errors: 83, Precision: 0.9541942604856513
+#sentence: 840, #Tags: 1824, #errors: 83, Precision: 0.9544956140350878
+Error! sentence:841  tagIdx:11  tag[i]:JJ  vTag[i]:RB  word[i]:much  vTag[i-1]:VB  word[i-1]:do  vTag[i-2]:RB  word[i-2]:n't
+Error! sentence:841  tagIdx:12  tag[i]:JJR  vTag[i]:RBR  word[i]:better  vTag[i-1]:RB  word[i-1]:much  vTag[i-2]:VB  word[i-2]:do
+#sentence: 841, #Tags: 1840, #errors: 85, Precision: 0.9538043478260869
+Error! sentence:842  tagIdx:17  tag[i]:NNPS  vTag[i]:NNP  word[i]:Brothers  vTag[i-1]:NNP  word[i-1]:Salomon  vTag[i-2]:IN  word[i-2]:at
+#sentence: 842, #Tags: 1875, #errors: 86, Precision: 0.9541333333333334
+#sentence: 843, #Tags: 1882, #errors: 86, Precision: 0.9543039319872476
+Error! sentence:844  tagIdx:6  tag[i]:NNP  vTag[i]:JJ  word[i]:American  vTag[i-1]:VBG  word[i-1]:selling  vTag[i-2]:NNS  word[i-2]:salesmen
+#sentence: 844, #Tags: 1890, #errors: 87, Precision: 0.953968253968254
+#sentence: 845, #Tags: 1899, #errors: 87, Precision: 0.9541864139020537
+Error! sentence:846  tagIdx:4  tag[i]:VBN  vTag[i]:VBD  word[i]:related  vTag[i-1]:RB  word[i-1]:even  vTag[i-2]:NNP  word[i-2]:Dozen
+Error! sentence:846  tagIdx:7  tag[i]:VBD  vTag[i]:VBN  word[i]:suffered  vTag[i-1]:NN  word[i-1]:indignity  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:846  tagIdx:23  tag[i]:VBD  vTag[i]:NN  word[i]:shore  vTag[i-1]:NNP  word[i-1]:Jersey  vTag[i-2]:NNP  word[i-2]:New
+#sentence: 846, #Tags: 1926, #errors: 90, Precision: 0.9532710280373832
+Error! sentence:847  tagIdx:1  tag[i]:NNP  vTag[i]:IN  word[i]:upon  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:847  tagIdx:8  tag[i]:VBD  vTag[i]:JJ  word[i]:Exhausted  vTag[i-1]:``  word[i-1]:``  vTag[i-2]:,  word[i-2]:,
+#sentence: 847, #Tags: 1958, #errors: 92, Precision: 0.9530132788559755
+Error! sentence:848  tagIdx:6  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:VBD  word[i-1]:said  vTag[i-2]:NNP  word[i-2]:Dozen
+Error! sentence:848  tagIdx:15  tag[i]:JJ  vTag[i]:NN  word[i]:high-technology  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:``  word[i-2]:``
+Error! sentence:848  tagIdx:16  tag[i]:VBN  vTag[i]:JJ  word[i]:oriented  vTag[i-1]:NN  word[i-1]:high-technology  vTag[i-2]:DT  word[i-2]:a
+#sentence: 848, #Tags: 1985, #errors: 95, Precision: 0.9521410579345088
+Error! sentence:849  tagIdx:11  tag[i]:NN  vTag[i]:VBG  word[i]:gaining  vTag[i-1]:NN  word[i-1]:firm  vTag[i-2]:PRP$  word[i-2]:his
+Error! sentence:849  tagIdx:18  tag[i]:VBD  vTag[i]:JJ  word[i]:mortgaged-backed  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:options
+Error! sentence:849  tagIdx:21  tag[i]:VBN  vTag[i]:JJ  word[i]:computerized  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:securities
+Error! sentence:849  tagIdx:26  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:NNS  word[i-1]:systems  vTag[i-2]:NN  word[i-2]:investment
+#sentence: 849, #Tags: 2017, #errors: 99, Precision: 0.9509172037679723
+#sentence: 850, #Tags: 2046, #errors: 99, Precision: 0.9516129032258065
+Error! sentence:851  tagIdx:5  tag[i]:NN  vTag[i]:IN  word[i]:upon  vTag[i-1]:NNP  word[i-1]:Daiwa  vTag[i-2]:VBD  word[i-2]:joined
+#sentence: 851, #Tags: 2059, #errors: 100, Precision: 0.9514327343370568
+#sentence: 852, #Tags: 2078, #errors: 100, Precision: 0.9518768046198267
+Error! sentence:853  tagIdx:6  tag[i]:JJ  vTag[i]:NN  word[i]:top  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:TO  word[i-2]:to
+Error! sentence:853  tagIdx:19  tag[i]:JJ  vTag[i]:NN  word[i]:fixed-income  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:,  word[i-2]:,
+#sentence: 853, #Tags: 2103, #errors: 102, Precision: 0.9514978601997147
+Error! sentence:854  tagIdx:18  tag[i]:VBN  vTag[i]:JJ  word[i]:well-balanced  vTag[i-1]:RB  word[i-1]:very  vTag[i-2]:VBZ  word[i-2]:is
+#sentence: 854, #Tags: 2137, #errors: 103, Precision: 0.9518015910154423
+Error! sentence:855  tagIdx:24  tag[i]:VBP  vTag[i]:NN  word[i]:force  vTag[i-1]:NNS  word[i-1]:sales  vTag[i-2]:JJ  word[i-2]:retail
+#sentence: 855, #Tags: 2168, #errors: 104, Precision: 0.9520295202952029
+#sentence: 856, #Tags: 2188, #errors: 104, Precision: 0.9524680073126143
+Error! sentence:857  tagIdx:11  tag[i]:VBP  vTag[i]:NN  word[i]:force  vTag[i-1]:NNS  word[i-1]:sales  vTag[i-2]:JJ  word[i-2]:retail
+#sentence: 857, #Tags: 2210, #errors: 105, Precision: 0.9524886877828054
+#sentence: 858, #Tags: 2224, #errors: 105, Precision: 0.9527877697841727
+#sentence: 859, #Tags: 2245, #errors: 105, Precision: 0.9532293986636972
+#sentence: 860, #Tags: 2268, #errors: 105, Precision: 0.9537037037037037
+Error! sentence:861  tagIdx:22  tag[i]:RB  vTag[i]:RP  word[i]:back  vTag[i-1]:VB  word[i-1]:buy  vTag[i-2]:MD  word[i-2]:may
+Error! sentence:861  tagIdx:23  tag[i]:IN  vTag[i]:RB  word[i]:as  vTag[i-1]:RP  word[i-1]:back  vTag[i-2]:VB  word[i-2]:buy
+#sentence: 861, #Tags: 2300, #errors: 107, Precision: 0.9534782608695652
+#sentence: 862, #Tags: 2307, #errors: 107, Precision: 0.9536194191590811
+Error! sentence:863  tagIdx:6  tag[i]:VBN  vTag[i]:JJ  word[i]:disappointed  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:NNS  word[i-2]:investors
+Error! sentence:863  tagIdx:9  tag[i]:NN  vTag[i]:JJ  word[i]:cash-rich  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:that
+#sentence: 863, #Tags: 2325, #errors: 109, Precision: 0.9531182795698925
+#sentence: 864, #Tags: 2345, #errors: 109, Precision: 0.9535181236673774
+#sentence: 865, #Tags: 2391, #errors: 109, Precision: 0.9544123797574237
+#sentence: 866, #Tags: 2405, #errors: 109, Precision: 0.9546777546777547
+#sentence: 867, #Tags: 2439, #errors: 109, Precision: 0.955309553095531
+#sentence: 868, #Tags: 2452, #errors: 109, Precision: 0.9555464926590538
+Error! sentence:869  tagIdx:5  tag[i]:NN  vTag[i]:JJ  word[i]:tax-loss  vTag[i-1]:IN  word[i-1]:from  vTag[i-2]:NNS  word[i-2]:gains
+#sentence: 869, #Tags: 2487, #errors: 110, Precision: 0.9557700040209087
+Error! sentence:870  tagIdx:34  tag[i]:JJ  vTag[i]:NN  word[i]:arsenic  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NNS  word[i-2]:levels
+Error! sentence:870  tagIdx:37  tag[i]:JJ  vTag[i]:NN  word[i]:ore  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+#sentence: 870, #Tags: 2525, #errors: 112, Precision: 0.9556435643564356
+Error! sentence:871  tagIdx:7  tag[i]:RB  vTag[i]:RP  word[i]:back  vTag[i-1]:VB  word[i-1]:buy  vTag[i-2]:TO  word[i-2]:to
+#sentence: 871, #Tags: 2551, #errors: 113, Precision: 0.955703645629165
+Error! sentence:872  tagIdx:4  tag[i]:NN  vTag[i]:JJ  word[i]:buyback  vTag[i-1]:JJ  word[i-1]:previous  vTag[i-2]:DT  word[i-2]:a
+#sentence: 872, #Tags: 2568, #errors: 114, Precision: 0.955607476635514
+Error! sentence:873  tagIdx:14  tag[i]:NN  vTag[i]:JJ  word[i]:labor-management  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:873  tagIdx:15  tag[i]:NN  vTag[i]:JJ  word[i]:buy-out  vTag[i-1]:JJ  word[i-1]:labor-management  vTag[i-2]:DT  word[i-2]:a
+Error! sentence:873  tagIdx:19  tag[i]:NNPS  vTag[i]:NNP  word[i]:Airlines  vTag[i-1]:NNP  word[i-1]:United  vTag[i-2]:VBG  word[i-2]:saying
+#sentence: 873, #Tags: 2595, #errors: 117, Precision: 0.9549132947976878
+Error! sentence:874  tagIdx:14  tag[i]:RP  vTag[i]:IN  word[i]:out  vTag[i-1]:VBD  word[i-1]:pulled  vTag[i-2]:,  word[i-2]:,
+#sentence: 874, #Tags: 2620, #errors: 118, Precision: 0.9549618320610687
+Error! sentence:875  tagIdx:10  tag[i]:VB  vTag[i]:NN  word[i]:square  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:RB  word[i-2]:back
+Error! sentence:875  tagIdx:35  tag[i]:VBN  vTag[i]:JJ  word[i]:damaged  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VB  word[i-2]:restore
+#sentence: 875, #Tags: 2657, #errors: 120, Precision: 0.9548362815205118
+Error! sentence:876  tagIdx:17  tag[i]:NN  vTag[i]:JJ  word[i]:labor-management  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:WRB  word[i-2]:when
+#sentence: 876, #Tags: 2690, #errors: 121, Precision: 0.9550185873605948
+Error! sentence:877  tagIdx:10  tag[i]:JJ  vTag[i]:NNP  word[i]:British  vTag[i-1]:WRB  word[i-1]:when  vTag[i-2]:NN  word[i-2]:setback
+Error! sentence:877  tagIdx:11  tag[i]:NNPS  vTag[i]:NNP  word[i]:Airways  vTag[i-1]:NNP  word[i-1]:British  vTag[i-2]:WRB  word[i-2]:when
+Error! sentence:877  tagIdx:20  tag[i]:NN  vTag[i]:JJ  word[i]:labor-management  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+Error! sentence:877  tagIdx:23  tag[i]:IN  vTag[i]:VBD  word[i]:withdrew  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:bid
+#sentence: 877, #Tags: 2716, #errors: 125, Precision: 0.9539764359351989
+#sentence: 878, #Tags: 2737, #errors: 125, Precision: 0.9543295579101205
+Error! sentence:879  tagIdx:26  tag[i]:VBG  vTag[i]:NN  word[i]:being  vTag[i-1]:NN  word[i-1]:bid  vTag[i-2]:JJ  word[i-2]:new
+Error! sentence:879  tagIdx:37  tag[i]:NN  vTag[i]:JJ  word[i]:off-exchange  vTag[i-1]:IN  word[i-1]:in  vTag[i-2]:VBD  word[i-2]:plummeted
+Error! sentence:879  tagIdx:42  tag[i]:NN  vTag[i]:RB  word[i]:p.m.  vTag[i-1]:CD  word[i-1]:5:09  vTag[i-2]:DT  word[i-2]:the
+#sentence: 879, #Tags: 2782, #errors: 128, Precision: 0.9539899352983465
+Error! sentence:880  tagIdx:5  tag[i]:VBD  vTag[i]:VBN  word[i]:reported  vTag[i-1]:NNS  word[i-1]:trades  vTag[i-2]:JJ  word[i-2]:first
+Error! sentence:880  tagIdx:11  tag[i]:NNS  vTag[i]:NNP  word[i]:Jefferies  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:firm
+#sentence: 880, #Tags: 2832, #errors: 130, Precision: 0.9540960451977402
+Error! sentence:881  tagIdx:13  tag[i]:JJ  vTag[i]:RB  word[i]:first  vTag[i-1]:PRP$  word[i-1]:its  vTag[i-2]:VBD  word[i-2]:was
+#sentence: 881, #Tags: 2880, #errors: 131, Precision: 0.9545138888888889
+Error! sentence:882  tagIdx:1  tag[i]:NNP  vTag[i]:CD  word[i]:twelve  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:882  tagIdx:26  tag[i]:VBN  vTag[i]:JJ  word[i]:revised  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:IN  word[i-2]:for
+#sentence: 882, #Tags: 2908, #errors: 133, Precision: 0.9542640990371389
+#sentence: 883, #Tags: 2919, #errors: 133, Precision: 0.9544364508393285
+#sentence: 884, #Tags: 2948, #errors: 133, Precision: 0.9548846675712347
+Error! sentence:885  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:firm  vTag[i-1]:DT  word[i-1]:no  vTag[i-2]:VBD  word[i-2]:had
+#sentence: 885, #Tags: 2959, #errors: 134, Precision: 0.9547144305508618
+#sentence: 886, #Tags: 2980, #errors: 134, Precision: 0.9550335570469799
+#sentence: 887, #Tags: 3019, #errors: 134, Precision: 0.9556144418681682
+Error! sentence:888  tagIdx:9  tag[i]:VBG  vTag[i]:JJ  word[i]:being  vTag[i-1]:NN  word[i-1]:time  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:888  tagIdx:19  tag[i]:VB  vTag[i]:NN  word[i]:normalcy  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:VB  word[i-2]:return
+#sentence: 888, #Tags: 3039, #errors: 136, Precision: 0.9552484369858506
+Error! sentence:889  tagIdx:21  tag[i]:NN  vTag[i]:JJR  word[i]:broader  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:CC  word[i-2]:and
+#sentence: 889, #Tags: 3081, #errors: 137, Precision: 0.955533917559234
+Error! sentence:890  tagIdx:4  tag[i]:PDT  vTag[i]:DT  word[i]:all  vTag[i-1]:VBD  word[i-1]:urged  vTag[i-2]:NNP  word[i-2]:Wolf
+#sentence: 890, #Tags: 3099, #errors: 138, Precision: 0.9554695062923524
+Error! sentence:891  tagIdx:10  tag[i]:NN  vTag[i]:VB  word[i]:nurture  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:effort
+#sentence: 891, #Tags: 3124, #errors: 139, Precision: 0.95550576184379
+#sentence: 892, #Tags: 3139, #errors: 139, Precision: 0.9557183816502071
+Error! sentence:893  tagIdx:1  tag[i]:NNP  vTag[i]:NN  word[i]:labor  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:893  tagIdx:3  tag[i]:JJ  vTag[i]:VBP  word[i]:top  vTag[i-1]:NNS  word[i-1]:problems  vTag[i-2]:NN  word[i-2]:labor
+#sentence: 893, #Tags: 3145, #errors: 141, Precision: 0.9551669316375199
+Error! sentence:894  tagIdx:17  tag[i]:JJ  vTag[i]:NN  word[i]:pilot  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:United
+#sentence: 894, #Tags: 3164, #errors: 142, Precision: 0.9551201011378002
+Error! sentence:895  tagIdx:24  tag[i]:NN  vTag[i]:JJ  word[i]:no-strike  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:VBD  word[i-2]:included
+#sentence: 895, #Tags: 3201, #errors: 143, Precision: 0.9553264604810997
+#sentence: 896, #Tags: 3212, #errors: 143, Precision: 0.9554794520547946
+Error! sentence:897  tagIdx:28  tag[i]:CD  vTag[i]:NNP  word[i]:747-400  vTag[i-1]:NNP  word[i-1]:Boeing  vTag[i-2]:JJ  word[i-2]:new
+#sentence: 897, #Tags: 3242, #errors: 144, Precision: 0.9555829734731647
+#sentence: 898, #Tags: 3258, #errors: 144, Precision: 0.9558011049723757
+Error! sentence:899  tagIdx:4  tag[i]:JJ  vTag[i]:RB  word[i]:late  vTag[i-1]:VBD  word[i-1]:said  vTag[i-2]:NN  word[i-2]:union
+Error! sentence:899  tagIdx:7  tag[i]:WDT  vTag[i]:IN  word[i]:that  vTag[i-1]:NN  word[i-1]:night  vTag[i-2]:JJ  word[i-2]:last
+Error! sentence:899  tagIdx:11  tag[i]:VBN  vTag[i]:JJ  word[i]:committed  vTag[i-1]:RB  word[i-1]:still  vTag[i-2]:VBZ  word[i-2]:is
+Error! sentence:899  tagIdx:20  tag[i]:VBZ  vTag[i]:NNS  word[i]:disputes  vTag[i-1]:NN  word[i-1]:labor  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:899  tagIdx:21  tag[i]:IN  vTag[i]:WDT  word[i]:that  vTag[i-1]:NNS  word[i-1]:disputes  vTag[i-2]:NN  word[i-2]:labor
+Error! sentence:899  tagIdx:22  tag[i]:VBN  vTag[i]:VBD  word[i]:faced  vTag[i-1]:WDT  word[i-1]:that  vTag[i-2]:NNS  word[i-2]:disputes
+Error! sentence:899  tagIdx:32  tag[i]:VB  vTag[i]:VBP  word[i]:need  vTag[i-1]:RB  word[i-1]:still  vTag[i-2]:``  word[i-2]:``
+#sentence: 899, #Tags: 3295, #errors: 151, Precision: 0.9541729893778452
+Error! sentence:900  tagIdx:6  tag[i]:VBN  vTag[i]:JJ  word[i]:already-strained  vTag[i-1]:VBD  word[i-1]:worsened  vTag[i-2]:RB  word[i-2]:also
+#sentence: 900, #Tags: 3310, #errors: 152, Precision: 0.9540785498489426
+Error! sentence:901  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:labor-management  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:901  tagIdx:24  tag[i]:JJ  vTag[i]:VB  word[i]:cool  vTag[i-1]:VBD  word[i-1]:helped  vTag[i-2]:NN  word[i-2]:year
+Error! sentence:901  tagIdx:29  tag[i]:NN  vTag[i]:VBG  word[i]:financing  vTag[i-1]:IN  word[i-1]:in  vTag[i-2]:NN  word[i-2]:interest
+#sentence: 901, #Tags: 3342, #errors: 155, Precision: 0.9536205864751646
+Error! sentence:902  tagIdx:31  tag[i]:JJ  vTag[i]:NN  word[i]:pilot  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:with
+#sentence: 902, #Tags: 3375, #errors: 156, Precision: 0.9537777777777777
+Error! sentence:903  tagIdx:10  tag[i]:VBN  vTag[i]:VBD  word[i]:received  vTag[i-1]:NN  word[i-1]:management  vTag[i-2]:CC  word[i-2]:and
+#sentence: 903, #Tags: 3389, #errors: 157, Precision: 0.9536736500442609
+#sentence: 904, #Tags: 3413, #errors: 157, Precision: 0.953999414005274
+#sentence: 905, #Tags: 3425, #errors: 157, Precision: 0.9541605839416059
+Error! sentence:906  tagIdx:18  tag[i]:NN  vTag[i]:JJS  word[i]:savviest  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NN  word[i-2]:nation
+Error! sentence:906  tagIdx:30  tag[i]:NNPS  vTag[i]:NNP  word[i]:Airlines  vTag[i-1]:NNP  word[i-1]:Republic  vTag[i-2]:CC  word[i-2]:and
+#sentence: 906, #Tags: 3456, #errors: 159, Precision: 0.9539930555555556
+#sentence: 907, #Tags: 3516, #errors: 159, Precision: 0.9547781569965871
+Error! sentence:908  tagIdx:9  tag[i]:NN  vTag[i]:VBG  word[i]:nursing  vTag[i-1]:NNS  word[i-1]:traders  vTag[i-2]:NN  word[i-2]:stock
+Error! sentence:908  tagIdx:10  tag[i]:DT  vTag[i]:RB  word[i]:some  vTag[i-1]:VBG  word[i-1]:nursing  vTag[i-2]:NNS  word[i-2]:traders
+#sentence: 908, #Tags: 3544, #errors: 161, Precision: 0.9545711060948081
+#sentence: 909, #Tags: 3554, #errors: 161, Precision: 0.9546989307822172
+Error! sentence:910  tagIdx:5  tag[i]:VBN  vTag[i]:JJ  word[i]:disappointed  vTag[i-1]:VBD  word[i-1]:were  vTag[i-2]:PRP  word[i-2]:they
+#sentence: 910, #Tags: 3573, #errors: 162, Precision: 0.9546599496221663
+Error! sentence:911  tagIdx:13  tag[i]:VBN  vTag[i]:JJ  word[i]:written  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:through
+#sentence: 911, #Tags: 3600, #errors: 163, Precision: 0.9547222222222222
+#sentence: 912, #Tags: 3625, #errors: 163, Precision: 0.9550344827586207
+Error! sentence:913  tagIdx:9  tag[i]:CD  vTag[i]:JJ  word[i]:240-a-share  vTag[i-1]:$  word[i-1]:$  vTag[i-2]:WP$  word[i-2]:whose
+#sentence: 913, #Tags: 3652, #errors: 164, Precision: 0.9550930996714129
+Error! sentence:914  tagIdx:9  tag[i]:NN  vTag[i]:JJ  word[i]:hostile  vTag[i-1]:JJ  word[i-1]:certain  vTag[i-2]:VBG  word[i-2]:making
+Error! sentence:914  tagIdx:20  tag[i]:NN  vTag[i]:NNS  word[i]:data  vTag[i-1]:NNP  word[i-1]:UAL  vTag[i-2]:JJ  word[i-2]:confidential
+#sentence: 914, #Tags: 3673, #errors: 166, Precision: 0.9548053362374082
+#sentence: 915, #Tags: 3695, #errors: 166, Precision: 0.9550744248985115
+Error! sentence:916  tagIdx:18  tag[i]:JJ  vTag[i]:NNPS  word[i]:Japanese  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VB  word[i-2]:battle
+#sentence: 916, #Tags: 3721, #errors: 167, Precision: 0.9551195915076592
+#sentence: 917, #Tags: 3732, #errors: 167, Precision: 0.9552518756698821
+#sentence: 918, #Tags: 3748, #errors: 167, Precision: 0.9554429028815368
+Error! sentence:919  tagIdx:3  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:VBD  word[i-1]:said  vTag[i-2]:NNP  word[i-2]:Apple
+Error! sentence:919  tagIdx:8  tag[i]:JJR  vTag[i]:RBR  word[i]:better  vTag[i-1]:VB  word[i-1]:be  vTag[i-2]:MD  word[i-2]:would
+Error! sentence:919  tagIdx:9  tag[i]:NN  vTag[i]:VBN  word[i]:spent  vTag[i-1]:RBR  word[i-1]:better  vTag[i-2]:VB  word[i-2]:be
+#sentence: 919, #Tags: 3765, #errors: 170, Precision: 0.9548472775564409
+Error! sentence:920  tagIdx:20  tag[i]:NN  vTag[i]:JJ  word[i]:random  vTag[i-1]:JJ  word[i-1]:dynamic  vTag[i-2]:IN  word[i-2]:for
+Error! sentence:920  tagIdx:30  tag[i]:JJ  vTag[i]:NNPS  word[i]:Japanese  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:by
+#sentence: 920, #Tags: 3796, #errors: 172, Precision: 0.9546891464699684
+#sentence: 921, #Tags: 3818, #errors: 172, Precision: 0.9549502357255107
+Error! sentence:922  tagIdx:10  tag[i]:VB  vTag[i]:NN  word[i]:merit  vTag[i-1]:RB  word[i-1]:n't  vTag[i-2]:VBD  word[i-2]:did
+#sentence: 922, #Tags: 3845, #errors: 173, Precision: 0.9550065019505852
+Error! sentence:923  tagIdx:23  tag[i]:NNP  vTag[i]:NNS  word[i]:DRAMs  vTag[i-1]:IN  word[i-1]:for  vTag[i-2]:-LRB-  word[i-2]:-LCB-
+#sentence: 923, #Tags: 3888, #errors: 174, Precision: 0.9552469135802469
+#sentence: 924, #Tags: 3912, #errors: 174, Precision: 0.9555214723926381
+Error! sentence:925  tagIdx:7  tag[i]:VBN  vTag[i]:VBD  word[i]:had  vTag[i-1]:VB  word[i-1]:have  vTag[i-2]:TO  word[i-2]:to
+#sentence: 925, #Tags: 3925, #errors: 175, Precision: 0.9554140127388535
+#sentence: 926, #Tags: 3946, #errors: 175, Precision: 0.9556512924480487
+Error! sentence:927  tagIdx:6  tag[i]:NN  vTag[i]:JJ  word[i]:chief  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NN  word[i-2]:president
+Error! sentence:927  tagIdx:7  tag[i]:NN  vTag[i]:JJ  word[i]:executive  vTag[i-1]:JJ  word[i-1]:chief  vTag[i-2]:CC  word[i-2]:and
+Error! sentence:927  tagIdx:27  tag[i]:NNPS  vTag[i]:NNP  word[i]:Devices  vTag[i-1]:NNP  word[i-1]:Micro  vTag[i-2]:NNP  word[i-2]:Advanced
+Error! sentence:927  tagIdx:42  tag[i]:NNPS  vTag[i]:NNP  word[i]:Machines  vTag[i-1]:NNP  word[i-1]:Business  vTag[i-2]:NNP  word[i-2]:International
+#sentence: 927, #Tags: 3998, #errors: 179, Precision: 0.9552276138069035
+#sentence: 928, #Tags: 4029, #errors: 179, Precision: 0.955572102258625
+#sentence: 929, #Tags: 4044, #errors: 179, Precision: 0.9557368941641938
+Error! sentence:930  tagIdx:5  tag[i]:JJS  vTag[i]:RBS  word[i]:most  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:RB  word[i-2]:far
+#sentence: 930, #Tags: 4055, #errors: 180, Precision: 0.9556103575832305
+Error! sentence:931  tagIdx:2  tag[i]:NNPS  vTag[i]:NNP  word[i]:Microsystems  vTag[i-1]:NNP  word[i-1]:Sun  vTag[i-2]:*  word[i-2]:*
+Error! sentence:931  tagIdx:13  tag[i]:NNS  vTag[i]:VBZ  word[i]:plans  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NNP  word[i-2]:Memories
+#sentence: 931, #Tags: 4078, #errors: 182, Precision: 0.9553702795487984
+#sentence: 932, #Tags: 4095, #errors: 182, Precision: 0.9555555555555556
+#sentence: 933, #Tags: 4108, #errors: 182, Precision: 0.9556962025316456
+#sentence: 934, #Tags: 4133, #errors: 182, Precision: 0.9559641906605372
+#sentence: 935, #Tags: 4157, #errors: 182, Precision: 0.9562184267500602
+Error! sentence:936  tagIdx:10  tag[i]:VBN  vTag[i]:JJ  word[i]:upset  vTag[i-1]:VBZ  word[i-1]:is  vTag[i-2]:,  word[i-2]:,
+#sentence: 936, #Tags: 4206, #errors: 183, Precision: 0.956490727532097
+#sentence: 937, #Tags: 4227, #errors: 183, Precision: 0.9567068843151171
+Error! sentence:938  tagIdx:14  tag[i]:NNP  vTag[i]:JJ  word[i]:American  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:,  word[i-2]:,
+#sentence: 938, #Tags: 4246, #errors: 184, Precision: 0.9566650965614696
+Error! sentence:939  tagIdx:8  tag[i]:VBG  vTag[i]:JJ  word[i]:fitting  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:VBZ  word[i-2]:is
+#sentence: 939, #Tags: 4261, #errors: 185, Precision: 0.956582961746069
+#sentence: 940, #Tags: 4288, #errors: 185, Precision: 0.956856343283582
+Error! sentence:941  tagIdx:16  tag[i]:RP  vTag[i]:IN  word[i]:up  vTag[i-1]:VBG  word[i-1]:running  vTag[i-2]:NN  word[i-2]:debate
+Error! sentence:941  tagIdx:18  tag[i]:RB  vTag[i]:IN  word[i]:down  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:IN  word[i-2]:up
+#sentence: 941, #Tags: 4309, #errors: 187, Precision: 0.9566024599675098
+Error! sentence:942  tagIdx:10  tag[i]:VB  vTag[i]:NN  word[i]:micromanage  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:authority
+#sentence: 942, #Tags: 4335, #errors: 188, Precision: 0.9566320645905421
+Error! sentence:943  tagIdx:6  tag[i]:NNPS  vTag[i]:NNP  word[i]:States  vTag[i-1]:NNP  word[i-1]:United  vTag[i-2]:DT  word[i-2]:the
+#sentence: 943, #Tags: 4352, #errors: 189, Precision: 0.9565716911764706
+Error! sentence:944  tagIdx:11  tag[i]:JJ  vTag[i]:NN  word[i]:initiative  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VB  word[i-2]:have
+Error! sentence:944  tagIdx:16  tag[i]:NN  vTag[i]:VB  word[i]:block  vTag[i-1]:IN  word[i-1]:than  vTag[i-2]:JJR  word[i-2]:more
+#sentence: 944, #Tags: 4373, #errors: 191, Precision: 0.9563228904642123
+Error! sentence:945  tagIdx:2  tag[i]:NN  vTag[i]:JJ  word[i]:executive  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:*  word[i-2]:*
+#sentence: 945, #Tags: 4383, #errors: 192, Precision: 0.9561943874058864
+Error! sentence:946  tagIdx:5  tag[i]:JJ  vTag[i]:NN  word[i]:initiative  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:kind
+Error! sentence:946  tagIdx:8  tag[i]:VBP  vTag[i]:VB  word[i]:expect  vTag[i-1]:PRP  word[i-1]:you  vTag[i-2]:MD  word[i-2]:can
+#sentence: 946, #Tags: 4398, #errors: 194, Precision: 0.9558890404729422
+Error! sentence:947  tagIdx:14  tag[i]:JJ  vTag[i]:NN  word[i]:fellow  vTag[i-1]:PRP$  word[i-1]:his  vTag[i-2]:CC  word[i-2]:and
+#sentence: 947, #Tags: 4423, #errors: 195, Precision: 0.9559122767352476
+Error! sentence:948  tagIdx:6  tag[i]:VBP  vTag[i]:VB  word[i]:play  vTag[i-1]:NNS  word[i-1]:warnings  vTag[i-2]:NNP  word[i-2]:U.S.
+Error! sentence:948  tagIdx:9  tag[i]:JJ  vTag[i]:NN  word[i]:major  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+#sentence: 948, #Tags: 4454, #errors: 197, Precision: 0.9557700942972609
+Error! sentence:949  tagIdx:9  tag[i]:RB  vTag[i]:IN  word[i]:once  vTag[i-1]:NN  word[i-1]:hesitation  vTag[i-2]:DT  word[i-2]:any
+#sentence: 949, #Tags: 4468, #errors: 198, Precision: 0.9556848701880036
+Error! sentence:950  tagIdx:15  tag[i]:JJ  vTag[i]:NN  word[i]:right  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VBP  word[i-2]:have
+#sentence: 950, #Tags: 4496, #errors: 199, Precision: 0.9557384341637011
+Error! sentence:951  tagIdx:9  tag[i]:NNP  vTag[i]:VBG  word[i]:Confiding  vTag[i-1]::  word[i-1]::  vTag[i-2]:NN  word[i-2]:warning
+#sentence: 951, #Tags: 4513, #errors: 200, Precision: 0.955683580766674
+Error! sentence:952  tagIdx:14  tag[i]:VBD  vTag[i]:VBN  word[i]:started  vTag[i-1]:NN  word[i-1]:debate  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:952  tagIdx:23  tag[i]:NN  vTag[i]:VBG  word[i]:banning  vTag[i-1]:NN  word[i-1]:order  vTag[i-2]:JJ  word[i-2]:executive
+#sentence: 952, #Tags: 4546, #errors: 202, Precision: 0.9555653321601408
+Error! sentence:953  tagIdx:7  tag[i]:NNPS  vTag[i]:NNP  word[i]:Operations  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NNP  word[i-2]:Director
+Error! sentence:953  tagIdx:16  tag[i]:IN  vTag[i]:RP  word[i]:over  vTag[i-1]:NNS  word[i-1]:things  vTag[i-2]:VB  word[i-2]:smooth
+Error! sentence:953  tagIdx:25  tag[i]:VBN  vTag[i]:VBD  word[i]:underlined  vTag[i-1]:RB  word[i-1]:simply  vTag[i-2]:RB  word[i-2]:instead
+#sentence: 953, #Tags: 4576, #errors: 205, Precision: 0.955201048951049
+Error! sentence:954  tagIdx:26  tag[i]:VBN  vTag[i]:VBD  word[i]:interpreted  vTag[i-1]:NN  word[i-1]:time  vTag[i-2]:IN  word[i-2]:over
+#sentence: 954, #Tags: 4623, #errors: 206, Precision: 0.9554401903525849
+Error! sentence:955  tagIdx:11  tag[i]:VBP  vTag[i]:VB  word[i]:do  vTag[i-1]:NNP  word[i-1]:CIA  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:955  tagIdx:18  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:,  word[i-2]:,
+Error! sentence:955  tagIdx:19  tag[i]:POS  vTag[i]:VBZ  word[i]:'s  vTag[i-1]:DT  word[i-1]:that  vTag[i-2]:CC  word[i-2]:and
+Error! sentence:955  tagIdx:20  tag[i]:NN  vTag[i]:JJ  word[i]:fine  vTag[i-1]:VBZ  word[i-1]:'s  vTag[i-2]:DT  word[i-2]:that
+#sentence: 955, #Tags: 4647, #errors: 210, Precision: 0.9548095545513234
+Error! sentence:956  tagIdx:3  tag[i]:POS  vTag[i]:VBZ  word[i]:'s  vTag[i-1]:NN  word[i-1]:pay  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:956  tagIdx:11  tag[i]:NN  vTag[i]:JJR  word[i]:lighter  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NN  word[i-2]:duty
+#sentence: 956, #Tags: 4659, #errors: 212, Precision: 0.9544966731058167
+Error! sentence:957  tagIdx:7  tag[i]:IN  vTag[i]:WDT  word[i]:that  vTag[i-1]:NN  word[i-1]:anything  vTag[i-2]:VBG  word[i-2]:doing
+#sentence: 957, #Tags: 4675, #errors: 213, Precision: 0.9544385026737968
+Error! sentence:958  tagIdx:1  tag[i]:NN  vTag[i]:VB  word[i]:witness  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+#sentence: 958, #Tags: 4683, #errors: 214, Precision: 0.9543027973521248
+Error! sentence:959  tagIdx:5  tag[i]:NN  vTag[i]:JJ  word[i]:ranking  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:Committee
+Error! sentence:959  tagIdx:6  tag[i]:JJ  vTag[i]:NNP  word[i]:Republican  vTag[i-1]:JJ  word[i-1]:ranking  vTag[i-2]:POS  word[i-2]:'s
+#sentence: 959, #Tags: 4714, #errors: 216, Precision: 0.9541790411540093
+#sentence: 960, #Tags: 4733, #errors: 216, Precision: 0.9543629833086837
+Error! sentence:961  tagIdx:4  tag[i]:JJ  vTag[i]:NN  word[i]:initiative  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:kind
+Error! sentence:961  tagIdx:7  tag[i]:VBP  vTag[i]:VB  word[i]:expect  vTag[i-1]:NN  word[i-1]:anyone  vTag[i-2]:MD  word[i-2]:should
+Error! sentence:961  tagIdx:20  tag[i]:VB  vTag[i]:VBP  word[i]:know  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:DT  word[i-2]:this
+#sentence: 961, #Tags: 4760, #errors: 219, Precision: 0.9539915966386555
+#sentence: 962, #Tags: 4775, #errors: 219, Precision: 0.9541361256544503
+Error! sentence:963  tagIdx:18  tag[i]:CD  vTag[i]:NNS  word[i]:1970s  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+#sentence: 963, #Tags: 4800, #errors: 220, Precision: 0.9541666666666667
+#sentence: 964, #Tags: 4828, #errors: 220, Precision: 0.9544324772162386
+#sentence: 965, #Tags: 4865, #errors: 220, Precision: 0.9547790339157246
+Error! sentence:966  tagIdx:18  tag[i]:NN  vTag[i]:VB  word[i]:order  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NN  word[i-2]:freedom
+#sentence: 966, #Tags: 4891, #errors: 221, Precision: 0.9548149662645675
+Error! sentence:967  tagIdx:2  tag[i]:PDT  vTag[i]:JJ  word[i]:such  vTag[i-1]:IN  word[i-1]:in  vTag[i-2]:*  word[i-2]:*
+#sentence: 967, #Tags: 4914, #errors: 222, Precision: 0.9548229548229549
+Error! sentence:968  tagIdx:2  tag[i]:NN  vTag[i]:JJ  word[i]:executive  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:*  word[i-2]:*
+Error! sentence:968  tagIdx:6  tag[i]:VBD  vTag[i]:JJ  word[i]:reported  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:CC  word[i-2]:and
+#sentence: 968, #Tags: 4931, #errors: 224, Precision: 0.9545731089028595
+#sentence: 969, #Tags: 4951, #errors: 224, Precision: 0.9547566148252878
+Error! sentence:970  tagIdx:9  tag[i]:NN  vTag[i]:JJ  word[i]:terrorist  vTag[i-1]:VB  word[i-1]:strafe  vTag[i-2]:TO  word[i-2]:to
+#sentence: 970, #Tags: 4973, #errors: 225, Precision: 0.9547556806756485
+Error! sentence:971  tagIdx:1  tag[i]:DT  vTag[i]:PDT  word[i]:both  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+#sentence: 971, #Tags: 5010, #errors: 226, Precision: 0.9548902195608783
+Error! sentence:972  tagIdx:6  tag[i]:VBG  vTag[i]:JJ  word[i]:property-tax-cutting  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:California
+Error! sentence:972  tagIdx:37  tag[i]:JJ  vTag[i]:NNP  word[i]:Democratic  vTag[i-1]:VBD  word[i-1]:asked  vTag[i-2]:PRP  word[i-2]:he
+Error! sentence:972  tagIdx:45  tag[i]:IN  vTag[i]:VBN  word[i]:withheld  vTag[i-1]:VBD  word[i-1]:had  vTag[i-2]:CD  word[i-2]:13
+#sentence: 972, #Tags: 5061, #errors: 229, Precision: 0.9547520252914444
+Error! sentence:973  tagIdx:10  tag[i]:WDT  vTag[i]:IN  word[i]:that  vTag[i-1]:NN  word[i-1]:fact  vTag[i-2]:DT  word[i-2]:the
+#sentence: 973, #Tags: 5090, #errors: 230, Precision: 0.9548133595284872
+#sentence: 974, #Tags: 5111, #errors: 230, Precision: 0.9549990217178634
+Error! sentence:975  tagIdx:9  tag[i]:JJ  vTag[i]:RB  word[i]:pretty  vTag[i-1]:DT  word[i-1]:a  vTag[i-2]:VBZ  word[i-2]:is
+#sentence: 975, #Tags: 5123, #errors: 231, Precision: 0.9549092328713644
+#sentence: 976, #Tags: 5153, #errors: 231, Precision: 0.9551717446147875
+#sentence: 977, #Tags: 5175, #errors: 231, Precision: 0.9553623188405798
+Error! sentence:978  tagIdx:13  tag[i]:VBD  vTag[i]:VBN  word[i]:said  vTag[i-1]:RB  word[i-1]:n't  vTag[i-2]:VBD  word[i-2]:had
+Error! sentence:978  tagIdx:20  tag[i]:VBZ  vTag[i]:NNS  word[i]:fires  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NNS  word[i-2]:explosions
+Error! sentence:978  tagIdx:30  tag[i]:JJ  vTag[i]:RB  word[i]:high  vTag[i-1]:VBG  word[i-1]:billowing  vTag[i-2]:NN  word[i-2]:smoke
+#sentence: 978, #Tags: 5209, #errors: 234, Precision: 0.9550777500479939
+#sentence: 979, #Tags: 5225, #errors: 234, Precision: 0.9552153110047847
+#sentence: 980, #Tags: 5256, #errors: 234, Precision: 0.9554794520547946
+#sentence: 981, #Tags: 5276, #errors: 234, Precision: 0.9556482183472328
+Error! sentence:982  tagIdx:8  tag[i]:CD  vTag[i]:JJ  word[i]:800-acre  vTag[i-1]:DT  word[i-1]:an  vTag[i-2]:IN  word[i-2]:on
+Error! sentence:982  tagIdx:19  tag[i]:RB  vTag[i]:IN  word[i]:along  vTag[i-1]:VBZ  word[i-1]:reaches  vTag[i-2]:WDT  word[i-2]:that
+#sentence: 982, #Tags: 5300, #errors: 236, Precision: 0.9554716981132075
+Error! sentence:983  tagIdx:15  tag[i]:IN  vTag[i]:RB  word[i]:about  vTag[i-1]:WRB  word[i-1]:where  vTag[i-2]:,  word[i-2]:,
+Error! sentence:983  tagIdx:27  tag[i]:VBN  vTag[i]:VBD  word[i]:obscured  vTag[i-1]:NN  word[i-1]:smoke  vTag[i-2]:JJ  word[i-2]:black
+#sentence: 983, #Tags: 5330, #errors: 238, Precision: 0.9553470919324578
+Error! sentence:984  tagIdx:9  tag[i]:NN  vTag[i]:VBG  word[i]:handling  vTag[i-1]:IN  word[i-1]:for  vTag[i-2]:NN  word[i-2]:terminal
+Error! sentence:984  tagIdx:10  tag[i]:NN  vTag[i]:JJ  word[i]:bulk  vTag[i-1]:VBG  word[i-1]:handling  vTag[i-2]:IN  word[i-2]:for
+#sentence: 984, #Tags: 5342, #errors: 240, Precision: 0.9550730063646574
+Error! sentence:985  tagIdx:1  tag[i]:NNP  vTag[i]:JJ  word[i]:broken  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+#sentence: 985, #Tags: 5366, #errors: 241, Precision: 0.9550875885203131
+Error! sentence:986  tagIdx:8  tag[i]:VBZ  vTag[i]:NN  word[i]:debris  vTag[i-1]:VBD  word[i-1]:spewed  vTag[i-2]:,  word[i-2]:,
+#sentence: 986, #Tags: 5386, #errors: 242, Precision: 0.9550686966208689
+Error! sentence:987  tagIdx:12  tag[i]:IN  vTag[i]:RB  word[i]:about  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Houston
+#sentence: 987, #Tags: 5402, #errors: 243, Precision: 0.9550166604961126
+Error! sentence:988  tagIdx:22  tag[i]:IN  vTag[i]:DT  word[i]:that  vTag[i-1]:VBD  word[i-1]:said  vTag[i-2]:NN  word[i-2]:spokeswoman
+#sentence: 988, #Tags: 5428, #errors: 244, Precision: 0.9550478997789241
+Error! sentence:989  tagIdx:15  tag[i]:VBG  vTag[i]:NN  word[i]:breathing  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNS  word[i-2]:burns
+#sentence: 989, #Tags: 5454, #errors: 245, Precision: 0.9550788412174551
+#sentence: 990, #Tags: 5465, #errors: 245, Precision: 0.9551692589204026
+#sentence: 991, #Tags: 5478, #errors: 245, Precision: 0.9552756480467324
+#sentence: 992, #Tags: 5493, #errors: 245, Precision: 0.9553977789914436
+Error! sentence:993  tagIdx:12  tag[i]:NNP  vTag[i]:NNS  word[i]:Phillips  vTag[i-1]:CD  word[i-1]:one  vTag[i-2]:CC  word[i-2]:and
+#sentence: 993, #Tags: 5522, #errors: 246, Precision: 0.9554509235784137
+Error! sentence:994  tagIdx:4  tag[i]:NNS  vTag[i]:VBZ  word[i]:manufactures  vTag[i-1]:NN  word[i-1]:facility  vTag[i-2]:NNP  word[i-2]:Phillips
+Error! sentence:994  tagIdx:9  tag[i]:NNP  vTag[i]:NN  word[i]:K-resin  vTag[i-1]:CC  word[i-1]:and  vTag[i-2]:NN  word[i-2]:polypropylene
+Error! sentence:994  tagIdx:12  tag[i]:VBD  vTag[i]:VBN  word[i]:used  vTag[i-1]:NNS  word[i-1]:plastics  vTag[i-2]:,  word[i-2]:,
+#sentence: 994, #Tags: 5547, #errors: 249, Precision: 0.955110870740941
+#sentence: 995, #Tags: 5569, #errors: 249, Precision: 0.9552882025498294
+Error! sentence:996  tagIdx:13  tag[i]:VBN  vTag[i]:JJ  word[i]:organized  vTag[i-1]:NNP  word[i-1]:Chicago  vTag[i-2]:DT  word[i-2]:a
+Error! sentence:996  tagIdx:24  tag[i]:VBN  vTag[i]:JJ  word[i]:alleged  vTag[i-1]:VBG  word[i-1]:representing  vTag[i-2]:,  word[i-2]:,
+Error! sentence:996  tagIdx:36  tag[i]:NNP  vTag[i]:NNPS  word[i]:Teamsters  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NNP  word[i-2]:Brotherhood
+#sentence: 996, #Tags: 5606, #errors: 252, Precision: 0.9550481626828398
+Error! sentence:997  tagIdx:22  tag[i]:VBN  vTag[i]:JJ  word[i]:organized  vTag[i-1]:DT  word[i-1]:an  vTag[i-2]:IN  word[i-2]:from
+Error! sentence:997  tagIdx:25  tag[i]:VBD  vTag[i]:VBN  word[i]:indicted  vTag[i-1]:NN  word[i-1]:figure  vTag[i-2]:NN  word[i-2]:crime
+#sentence: 997, #Tags: 5637, #errors: 254, Precision: 0.9549405712258293
+Error! sentence:998  tagIdx:14  tag[i]:VBN  vTag[i]:JJ  word[i]:organized  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:''  word[i-2]:''
+Error! sentence:998  tagIdx:33  tag[i]:NNP  vTag[i]:NNPS  word[i]:Teamsters  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:against
+#sentence: 998, #Tags: 5671, #errors: 256, Precision: 0.9548580497266796
+Error! sentence:999  tagIdx:30  tag[i]:VBG  vTag[i]:NN  word[i]:racketeering  vTag[i-1]:IN  word[i-1]:of  vTag[i-2]:NN  word[i-2]:pattern
+#sentence: 999, #Tags: 5702, #errors: 257, Precision: 0.954928095405121
+Error! sentence:1000  tagIdx:9  tag[i]:VBN  vTag[i]:JJ  word[i]:organized  vTag[i-1]:IN  word[i-1]:that  vTag[i-2]:VBD  word[i-2]:claimed
+#sentence: 1000, #Tags: 5722, #errors: 258, Precision: 0.9549108703250612

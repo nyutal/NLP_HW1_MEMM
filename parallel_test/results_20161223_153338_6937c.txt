@@ -1,0 +1,46 @@
+lambda=0.0
+feature generators =  F100 F103 F104
+learn corpus = train.wtag with #samples: -1
+Error! sentence:11  tagIdx:3  tag[i]:NN  vTag[i]:JJS  word[i]:best  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:in
+Error! sentence:11  tagIdx:12  tag[i]:JJ  vTag[i]:JJS  word[i]:worst  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:VBZ  word[i-2]:is
+Error! sentence:11  tagIdx:19  tag[i]:CD  vTag[i]:VBG  word[i]:experiencing  vTag[i-1]:RB  word[i-1]:often  vTag[i-2]:,  word[i-2]:,
+#sentence: 11, #Tags: 28, #errors: 3, Precision: 0.8928571428571429
+#sentence: 12, #Tags: 36, #errors: 3, Precision: 0.9166666666666666
+Error! sentence:13  tagIdx:1  tag[i]:NNP  vTag[i]:NN  word[i]:storm  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:13  tagIdx:2  tag[i]:NNP  vTag[i]:NN  word[i]:flooding  vTag[i-1]:NN  word[i-1]:storm  vTag[i-2]:*  word[i-2]:*
+Error! sentence:13  tagIdx:4  tag[i]:CD  vTag[i]:NNS  word[i]:back-ups  vTag[i-1]:VBD  word[i-1]:caused  vTag[i-2]:NN  word[i-2]:flooding
+Error! sentence:13  tagIdx:17  tag[i]:VB  vTag[i]:NNP  word[i]:BART  vTag[i-1]:TO  word[i-1]:to  vTag[i-2]:NNS  word[i-2]:rides
+Error! sentence:13  tagIdx:19  tag[i]:NN  vTag[i]:NNS  word[i]:stations  vTag[i-1]:POS  word[i-1]:'s  vTag[i-2]:NNP  word[i-2]:BART
+#sentence: 13, #Tags: 64, #errors: 8, Precision: 0.875
+Error! sentence:14  tagIdx:8  tag[i]:NNP  vTag[i]:VBG  word[i]:stranding  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NN  word[i-2]:disarray
+Error! sentence:14  tagIdx:9  tag[i]:NNP  vTag[i]:NNS  word[i]:commuters  vTag[i-1]:VBG  word[i-1]:stranding  vTag[i-2]:,  word[i-2]:,
+Error! sentence:14  tagIdx:10  tag[i]:NNP  vTag[i]:JJ  word[i]:such  vTag[i-1]:NNS  word[i-1]:commuters  vTag[i-2]:VBG  word[i-2]:stranding
+#sentence: 14, #Tags: 78, #errors: 11, Precision: 0.8589743589743589
+Error! sentence:15  tagIdx:1  tag[i]:NNP  vTag[i]:PRP  word[i]:Her  vTag[i-1]:*  word[i-1]:*  vTag[i-2]:*  word[i-2]:*
+Error! sentence:15  tagIdx:2  tag[i]:NNP  vTag[i]:NN  word[i]:commute  vTag[i-1]:PRP  word[i-1]:Her  vTag[i-2]:*  word[i-2]:*
+Error! sentence:15  tagIdx:8  tag[i]:NNP  vTag[i]:RB  word[i]:normally  vTag[i-1]:,  word[i-1]:,  vTag[i-2]:NNP  word[i-2]:Calif.
+Error! sentence:15  tagIdx:9  tag[i]:NNP  vTag[i]:VBZ  word[i]:takes  vTag[i-1]:RB  word[i-1]:normally  vTag[i-2]:,  word[i-2]:,
+Error! sentence:15  tagIdx:18  tag[i]:JJ  vTag[i]:NNP  word[i]:Golden  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:via
+Error! sentence:15  tagIdx:19  tag[i]:NN  vTag[i]:NNP  word[i]:Gate  vTag[i-1]:NNP  word[i-1]:Golden  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:15  tagIdx:20  tag[i]:NN  vTag[i]:NNP  word[i]:Bridge  vTag[i-1]:NNP  word[i-1]:Gate  vTag[i-2]:NNP  word[i-2]:Golden
+Error! sentence:15  tagIdx:23  tag[i]:VBD  vTag[i]:VBZ  word[i]:connects  vTag[i-1]:WDT  word[i-1]:which  vTag[i-2]:,  word[i-2]:,
+Error! sentence:15  tagIdx:28  tag[i]:JJ  vTag[i]:NNP  word[i]:North  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:with
+Error! sentence:15  tagIdx:29  tag[i]:NN  vTag[i]:NNP  word[i]:Bay  vTag[i-1]:NNP  word[i-1]:North  vTag[i-2]:DT  word[i-2]:the
+#sentence: 15, #Tags: 109, #errors: 21, Precision: 0.8073394495412844
+#sentence: 16, #Tags: 135, #errors: 21, Precision: 0.8444444444444444
+Error! sentence:17  tagIdx:4  tag[i]:JJ  vTag[i]:JJR  word[i]:worse  vTag[i-1]:VBZ  word[i-1]:'s  vTag[i-2]:PRP  word[i-2]:It
+#sentence: 17, #Tags: 147, #errors: 22, Precision: 0.8503401360544217
+Error! sentence:18  tagIdx:6  tag[i]:VBN  vTag[i]:WRB  word[i]:where  vTag[i-1]:VB  word[i-1]:know  vTag[i-2]:RB  word[i-2]:n't
+Error! sentence:18  tagIdx:7  tag[i]:DT  vTag[i]:PDT  word[i]:all  vTag[i-1]:WRB  word[i-1]:where  vTag[i-2]:VB  word[i-2]:know
+Error! sentence:18  tagIdx:9  tag[i]:NN  vTag[i]:NNS  word[i]:buses  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:PDT  word[i-2]:all
+#sentence: 18, #Tags: 159, #errors: 25, Precision: 0.8427672955974843
+Error! sentence:19  tagIdx:12  tag[i]:JJ  vTag[i]:NNP  word[i]:Golden  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:over
+Error! sentence:19  tagIdx:13  tag[i]:NN  vTag[i]:NNP  word[i]:Gate  vTag[i-1]:NNP  word[i-1]:Golden  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:19  tagIdx:17  tag[i]:NNS  vTag[i]:NN  word[i]:a.m.  vTag[i-1]:CD  word[i-1]:8  vTag[i-2]:IN  word[i-2]:by
+Error! sentence:19  tagIdx:21  tag[i]:NNP  vTag[i]:VBN  word[i]:thinned  vTag[i-1]:VBD  word[i-1]:had  vTag[i-2]:RB  word[i-2]:already
+Error! sentence:19  tagIdx:22  tag[i]:NNP  vTag[i]:IN  word[i]:out  vTag[i-1]:VBN  word[i-1]:thinned  vTag[i-2]:VBD  word[i-2]:had
+#sentence: 19, #Tags: 182, #errors: 30, Precision: 0.8351648351648352
+Error! sentence:20  tagIdx:7  tag[i]:JJ  vTag[i]:JJS  word[i]:smoothest  vTag[i-1]:DT  word[i-1]:the  vTag[i-2]:IN  word[i-2]:of
+Error! sentence:20  tagIdx:8  tag[i]:NN  vTag[i]:NNS  word[i]:commutes  vTag[i-1]:JJS  word[i-1]:smoothest  vTag[i-2]:DT  word[i-2]:the
+Error! sentence:20  tagIdx:12  tag[i]:VBD  vTag[i]:VBN  word[i]:had  vTag[i-1]:RB  word[i-1]:ever  vTag[i-2]:VBP  word[i-2]:'ve
+#sentence: 20, #Tags: 213, #errors: 33, Precision: 0.8450704225352113
